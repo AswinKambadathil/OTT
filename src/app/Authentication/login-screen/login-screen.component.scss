@@ -13,6 +13,12 @@
 }
 
 
+span{
+    color: red;
+    margin-top: 20px;
+}
+
+
 .imagediv{
     width: 60%;
     height: 100%;
@@ -89,25 +95,20 @@
 
 .mobno{
     position: absolute;
-    // transform: translate(8px,-50px);
     color:rgba($color: #fff, $alpha: 0.8);
-    // z-index: 9999;
     background-color: black;
     top: 45px;
     left: 10px;
-    // padding-left: 10px;
-    // padding-right: 10px;
+    pointer-events: none;
 }
+ 
 
-
-.inputText:focus + .mobno,
-    .inputText:not(:placeholder-shown) + .mobno {
-      top: -1px;
-      font-size: 12px;
+.inputText:focus + .mobno, .inputText:not(:placeholder-shown)+.mobno{
+      top: 25px;
       color: rgba($color: #fff, $alpha: 0.8);
       background-color: black;
       padding: 0 15px;
-    }
+}
 
 
 .otpButton{
@@ -120,6 +121,10 @@
     font-weight: bold;
     border: 0;
     margin-top: 40px;
+    &:disabled{
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
 }
 
 
@@ -190,6 +195,9 @@
     font-weight: bold;
     margin-top: 35px;
     font-style: italic;
+    &::placeholder{
+        color: black;
+    }
 }
 
 

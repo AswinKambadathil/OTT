@@ -10,41 +10,53 @@
       <img class="logoImg" src="assets/Login/onnet+logo+white/onnet+logo+white.png" alt="" />
     </div>
 
+    
     <div class="bottomcontentdiv">
+    <form [formGroup] = "userform" >
       <div class="inputText0">
-        <input class="inputText" type="text"/>
-      <label class="mobno">Mobile Number</label>
+        <input formControlName="mobno" class="inputText" type="text" placeholder=" "/>
+        @if(userform.controls['mobno'].touched && userform.controls['mobno'].invalid)
+        {<span>The Mobile Number is required.</span>}      
+        <label class="mobno">Mobile Number</label>
       </div>
 
       @if (signp) {
         <div class="inputText0">
-            <input class="inputText" type="text"/>
-          <label class="mobno">Full Name</label>
+            <input formControlName="fname" class="inputText" type="text"/>
+            @if(userform.controls['fname'].touched && userform.controls['fname'].invalid)
+            {<span>The Firstname is required.</span>}
+            <label class="mobno">Full Name</label>
         </div>
 
           <div class="inputText0">
-            <input class="inputText" type="text"/>
-          <label class="mobno">Email Id</label>
+            <input formControlName="email"class="inputText" type="text"/>
+            @if(userform.controls['email'].touched && userform.controls['email'].invalid)
+            {<span>The Email is required.</span>}
+            <label class="mobno">Email Id</label>
         </div>
 
         <div class="genderDob">
             <div class="inputText0">
-                <select class="inputText1" type="text">
+                <select formControlName="gender" class="inputText1" type="text">
                     <option class="null" value="null" selected disabled hidden></option>
                     <option value="male">Male</option>
                     <option value="male">Female</option>
                 </select>
+                @if(userform.controls['gender'].touched && userform.controls['gender'].invalid)
+                {<span>The Gender is required.</span>}
                 <p class="mobno">Gender</p>
             </div>
               
             <div class="inputText0">
-                <input class="inputText1" type="date"/>
+                <input formControlName="date" class="inputText1" type="date"/>
+                @if(userform.controls['date'].touched && userform.controls['date'].invalid)
+                {<span>The Firstname is required.</span>}
                 <p class="mobno">DOB</p>
             </div>
               
         </div>
           <div class="inputText0">
-            <select class="inputText" type="text">
+            <select  formControlName="state" class="inputText" type="text">
                     <option class="null" selected disabled hidden></option>
                     <option value="Andhra Pradesh">Andhra Pradesh</option>
                     <option value="Arunachal Pradesh">Arunachal Pradesh</option>
@@ -81,6 +93,8 @@
                     <option value="Delhi">Delhi</option>
                     <option value="Puducherry">Puducherry</option>                 
             </select>
+            @if(userform.get('mobno')?.touched && userform.get('mobno')?.invalid)
+            {<span>The State is required.</span>}
             <label class="mobno">State</label>
         </div>
           
@@ -90,13 +104,16 @@
         <div class="resendOtp">Resend OTP</div>
         <div class="otpDiv">
           @for (item of [1,2,3,4,5,6]; track $index) {
-          <input required type="text" maxlength="1" class="otpInput" />
+          <input required formControlName="{{'otp'+item}}" type="text" maxlength="1" class="otpInput" />
+          @if(userform.controls['otp'].touched && userform.controls['otp'].invalid)
+          {<span>The OTP is required.</span>}
           }
         </div>
       </div>
       }
+    </form>
       <div>
-        <button class="otpButton" (click)="butLogin()">
+        <button class="otpButton" [disabled]="validateCase()" (click)="butLogin()">
           {{signCase}}
         </button>
       </div>
