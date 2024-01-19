@@ -1,0 +1,96 @@
+<div class="header paddingbox">
+    <div class="header-top">
+        <img src="/assets/onnet+logo+white@2x.png" class="logo" />
+        <div>
+            <button class="head-button">SIGN IN</button>
+        </div>
+    </div>
+    <div class="header-content">
+
+        <div class="texts">
+            <h1>Watch TV & OTT, Everything in one place!</h1> 
+            <h3>Watch Everywhere, Cancel Anytime</h3>
+        </div>
+        <div class="email-up">
+            <form [formGroup]="emailForm"> 
+                <div class="in">
+                    <input type="email" class="email" [class.email-danger]="emailForm.get('primaryEmail')?.hasError('email')" formControlName="primaryEmail" placeholder=" " #emailInput/>
+                    <label class="placeholder">Email Address</label><br>
+                    <!-- <div  *ngIf="emailForm?.get('primaryEmail')?.hasError('required') && emailForm?.get('primaryEmail')?.touched" style="color: red; display: flex;justify-content: flex-start;padding-left: 10px; padding-top: 2px;">
+                        Email is required.
+                    </div>
+                    <div *ngIf="emailForm.get('primaryEmail')?.hasError('email') && emailForm.get('primaryEmail')?.touched" style="color: red; display: flex;justify-content: flex-start;padding-left: 10px; padding-top: 2px;">
+                        Invalid email format.
+                    </div> -->
+                </div>
+            </form>
+            <div class="submit">
+                <button class="get-started-btn" (click)="get_email()">Get Started <img class="submit img" style="width: 3vh; font-weight: 900;" src="/assets/arrow.svg"></button>
+            </div>   
+        </div>
+        <div class="downarrow">
+            <div class="down">
+                
+            </div>
+        </div>
+    </div>
+</div>
+<div class="second paddingbox">
+    <div class="tv">
+        <img src="/assets/TV.png" >
+    </div>
+    <div class="content">
+    <h1>Enjoy Movies, Shows & Much More</h1>
+    <h3>
+    We have made one step destination<br>
+    for all your content needs</h3>
+    </div>
+</div>
+<div class="third paddingbox">
+   <div class="content3">
+    <h1>Download on the go</h1>
+    <h3>
+        You can download your favourite show<br>
+        and movies onto your mobile!
+    </h3>
+   </div>
+   <div class="appimg">
+    <img src="/assets/Group 6.png">
+   </div>
+</div>
+<div class="fourth paddingbox">
+    <div class="content4">
+        <h1>Frequently Asked Questions</h1>
+        <div class="faq-list">
+            <div class="faq">
+                <div class="ques">
+                    <p>What is IPTV?</p>
+                    <i class="fa-solid fa-plus"></i>
+                </div>
+                <div class="ans">
+                    <!-- <p>Live Broadcast Solution, on-demand bi-directional broadcast solution and IPTV system management solution.</p> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="fifth">
+    <div class="bottom paddingbox">
+        <img src="/assets/onnet+logo+white@2x.png" class="logo" />
+    <div>
+        <div class="about">
+            <p>FAQ</p>
+            <p>Home</p>
+            <p>Newsletter</p>
+            <p>Speed Test</p>
+            <p>Cookies Preferance</p>
+        </div>
+        <div class="made">
+            <p>Made with love in India!</p>
+        </div>
+</div>
+</div>
+</div>
+
+
