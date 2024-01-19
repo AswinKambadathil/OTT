@@ -63,6 +63,8 @@ span{
     font-weight: bold;
     border: 0;
     padding: 20px;
+    display: flex;
+    align-items: center;
 }
 
 
@@ -122,9 +124,15 @@ span{
     border: 0;
     margin-top: 40px;
     &:disabled{
-        opacity: 0.5;
         cursor: not-allowed;
+        opacity: 0.8;
     }
+}
+
+
+.otpButton:hover{
+    opacity: 1;
+    cursor: pointer;
 }
 
 
@@ -201,6 +209,14 @@ span{
 }
 
 
+.inputText1:focus + .mobno, .inputText1:not(:placeholder-shown)+.mobno{
+    top: 25px;
+    color: rgba($color: #fff, $alpha: 0.8);
+    background-color: black;
+    padding: 0 15px;
+}
+
+
 .male{
     background-color: black;
     color: black;
@@ -246,4 +262,4 @@ span{
         margin-left: 10px;
         margin-right: 10px;
     }
-}
+}     
