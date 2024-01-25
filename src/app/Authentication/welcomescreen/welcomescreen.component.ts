@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormsModule, ReactiveFormsModule,FormGroup,FormBuilder,Validators } from '@angular/forms';
 import { ViewChild,ElementRef } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-welcomescreen',
@@ -13,7 +14,7 @@ import { ViewChild,ElementRef } from '@angular/core';
 export class WelcomescreenComponent {
   @ViewChild('emailInput') emailInput!: ElementRef;
   emailForm: FormGroup;
-
+  private router = inject(Router);
   private fb = inject(FormBuilder)
   constructor() {
     this.emailForm = this.fb.group({
@@ -28,5 +29,17 @@ get_email() {
     this.emailInput.nativeElement.focus();
   }
 }
+signIn(){
+  this.router.navigate(['singin']);
+}
+
+scrollDown()
+{
+  window.scrollBy({
+    top: window.innerHeight,
+    behavior: 'smooth'
+});
+}
 
 }
+

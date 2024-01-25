@@ -2,7 +2,7 @@
     <div class="header-top">
         <img src="/assets/onnet+logo+white@2x.png" class="logo" />
         <div>
-            <button class="head-button">SIGN IN</button>
+            <button class="head-button" (click)="signIn()" routerLink='/signin' routerLinkActive="router-link-active" >SIGN IN</button>
         </div>
     </div>
     <div class="header-content">
@@ -29,7 +29,7 @@
             </div>   
         </div>
         <div class="downarrow">
-            <div class="down">
+            <div class="down" (click)="scrollDown()">
                 
             </div>
         </div>
@@ -68,13 +68,24 @@
                     <i class="fa-solid fa-plus"></i>
                 </div>
                 <div class="ans">
-                    <!-- <p>Live Broadcast Solution, on-demand bi-directional broadcast solution and IPTV system management solution.</p> -->
+                    <p>Live Broadcast Solution, on-demand bi-directional broadcast solution and IPTV system management solution.</p>
                 </div>
             </div>
         </div>
     </div>
-
 </div>
+<!-- <div class="faq">
+    <h2>Frequently Asked Questions</h2>
+    <ul class="accordion">
+        <li>
+            <input type="radio" name="accordion" id="first">
+            <label for="first">What is IPTV?</label>
+            <div class="answer">
+                <p>Live Broadcast Solution, on-demand bi-directional broadcast solution and IPTV system management solution.</p>
+            </div>
+        </li>
+    </ul>
+</div> -->
 <div class="fifth">
     <div class="bottom paddingbox">
         <img src="/assets/onnet+logo+white@2x.png" class="logo" />
