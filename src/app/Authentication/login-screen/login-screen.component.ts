@@ -41,7 +41,7 @@ export class LoginScreenComponent implements OnInit{
   signUpF:boolean = false
 
   signCase : "Sign Up" | "Sign In" = "Sign In"
-
+  mobnum:string=''
 
   initializeForm1() {
     this.userform1 = this.FormBuilder.group({
@@ -54,12 +54,12 @@ export class LoginScreenComponent implements OnInit{
   initializeForm2() {
     this.userform2 = this.FormBuilder.group({
       mobno : [''],
-      otp1 : new FormControl('',Validators.required),
-      otp2 : new FormControl('',Validators.required,),
-      otp3 : new FormControl('',Validators.required),
-      otp4 : new FormControl('',Validators.required),
-      otp5 : new FormControl('',Validators.required),
-      otp6 : new FormControl('',Validators.required)
+      otp1 : new FormControl('',[Validators.required,Validators.pattern(/^\d{1}$/)]),
+      otp2 : new FormControl('',[Validators.required,Validators.pattern(/^\d{1}$/)],),
+      otp3 : new FormControl('',[Validators.required,Validators.pattern(/^\d{1}$/)]),
+      otp4 : new FormControl('',[Validators.required,Validators.pattern(/^\d{1}$/)]),
+      otp5 : new FormControl('',[Validators.required,Validators.pattern(/^\d{1}$/)]),
+      otp6 : new FormControl('',[Validators.required,Validators.pattern(/^\d{1}$/)])
     })
   }
 
@@ -77,6 +77,8 @@ export class LoginScreenComponent implements OnInit{
 
 
   onChange(mobno:string){
+    console.log(this.mobnum);
+    
     this.userform2.patchValue({
       mobno : mobno
     })
@@ -98,7 +100,7 @@ export class LoginScreenComponent implements OnInit{
 
 
   validateCase1(){
-    return this.userform1.invalid
+        return this.userform1.invalid
   }
 
 
@@ -160,5 +162,7 @@ export class LoginScreenComponent implements OnInit{
       nextInput.focus();
     }
   }
+
+
 }
 

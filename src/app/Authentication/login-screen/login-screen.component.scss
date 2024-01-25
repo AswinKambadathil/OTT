@@ -26,10 +26,37 @@ span{
 }
 
 
+.carousel{
+    width: 400px;
+    height: 450px;
+    display: flex;
+    margin: auto;
+    overflow: hidden;
+    // transition: transform 0.3s ease-in-out;
+}
+
+
 .imagediv img{
     margin: auto;
-    height: 70%;
-    width: 60%;
+    height: 450px;
+    width: 400px;
+    animation: carouselMove 5s ease-in-out infinite;
+}
+
+
+@keyframes carouselMove{
+    0%{
+        translate : 0 0;
+    }
+    10%{
+        translate : 0 0;
+    }
+    50%{
+        translate: -100% 0;
+    }
+    100%{
+        translate: -100% 0;
+    }
 }
 
 
@@ -102,10 +129,11 @@ span{
     top: 45px;
     left: 10px;
     pointer-events: none;
+    z-index: 1;
 }
  
 
-.inputText:focus + .mobno, .inputText:not(:placeholder-shown)+.mobno{
+.inputText:focus + .mobno, .inputText:not(:placeholder-shown) + .mobno{
       top: 25px;
       color: rgba($color: #fff, $alpha: 0.8);
       background-color: black;
@@ -184,7 +212,7 @@ span{
     gap: 10px;
 }
 
-
+  
 .genderDob div{
     width: 100%;
 }
@@ -209,7 +237,7 @@ span{
 }
 
 
-.inputText1:focus + .mobno, .inputText1:not(:placeholder-shown)+.mobno{
+.inputText1 select:focus + .mobno,.inputText0 select:not(:placeholder-shown)+.mobno{
     top: 25px;
     color: rgba($color: #fff, $alpha: 0.8);
     background-color: black;
@@ -217,16 +245,24 @@ span{
 }
 
 
-.male{
-    background-color: black;
-    color: black;
-}
+// .mobno:active{
+//     top: 25px;
+//     color: rgba($color: #fff, $alpha: 0.8);
+//     background-color: black;
+//     padding: 0 15px;
+// }
 
 
-.null{
-    color:rgba($color: #fff, $alpha: 0.8);
-    background-color: black;
-}
+// .male{
+//     background-color: black;
+//     color: black;
+// }
+
+
+// .null{
+//     color:rgba($color: #fff, $alpha: 0.8);
+//     background-color: black;
+// }
 
 
 @media screen and (max-width:954px) {
@@ -263,3 +299,8 @@ span{
         margin-right: 10px;
     }
 }     
+
+
+input[type="date"]::-webkit-calendar-picker-indicator {  
+    filter: invert(1);
+}

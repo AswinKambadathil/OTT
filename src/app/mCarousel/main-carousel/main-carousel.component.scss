@@ -1,0 +1,162 @@
+.main{
+    height: 48vh;
+    width: 100%;
+    display: flex;
+    margin-top: 15px;
+}
+
+
+// .wrap{    
+//     .item{
+//         animation: carouselMove 40s ease-in-out infinite;
+//         display: flex;
+//     }
+// }
+
+
+// @keyframes carouselMove{
+//     0%{
+//         translate : 10% 0;
+//     }
+//     20%{
+//         translate : -90% 0;
+//     }
+//     40%{
+//         translate: -190% 0;
+//     }
+//     60%{
+//         translate: -290% 0;
+//     }
+//     80%{
+//         translate: -390% 0;
+//     }
+//     100%{
+//         translate: -490% 0;
+//     }
+
+// }
+
+.discription{
+    background-color: rgb(128, 126, 126);
+    border-radius: 10px;
+    font-size: small;
+    padding: 1px 5px 1px 5px;
+    width: fit-content;
+    font-weight: bold;
+    color: white;
+    margin-top: 20px;
+}
+
+
+.mainImg img{
+    width: 60vw;
+    height: 48vh
+}
+
+
+.wrap{
+    display: flex;
+}
+
+
+.header{
+    width: 23vw;
+}
+
+
+.header img{
+    width: 20vw;
+}
+
+
+.detail{
+    background-color: black;
+    padding-left: 2%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+.logo{
+   margin-right: 5px; 
+}
+
+
+.logo img{
+    width: 2vw;
+    border-radius: 5px;
+}
+
+
+.logoWrap{
+    display: flex;
+    font-size: smaller;
+}
+
+
+.logoWrite{
+    color: rgb(168, 164, 164);
+}
+
+
+.playWrap{
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    width: 80%;
+}
+
+
+.playWrite{
+    color: white;
+    margin-left: 15px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+
+.title{
+    font-weight: bold;
+    color: white;
+}
+
+
+.playButton img{
+    height: auto;
+    width: 50px;
+}
+
+
+.favorite{
+    background-color: rgb(117, 111, 111);
+    border-radius: 25px;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.exclema{
+    background-color: rgb(117, 111, 111);
+    border-radius: 25px;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.favorite img{
+    width: 40%;
+}
+
+
+.exclema img{
+    width: 18%;
+}
