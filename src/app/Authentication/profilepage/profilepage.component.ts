@@ -74,6 +74,7 @@ export class ProfilepageComponent implements OnInit{
     else{
       this.ispassword = false
       this.isReset = false
+      this.isActive = !this.isActive;
       console.log("hai");
     }
     
