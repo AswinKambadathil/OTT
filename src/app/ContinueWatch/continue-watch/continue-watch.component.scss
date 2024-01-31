@@ -8,6 +8,7 @@
 
 .mainWrap{
     padding-left: 20px;
+    display: flex;
 }
 
 
@@ -53,20 +54,14 @@
 }
 
 
-// .arrow{
-//     position: fixed;
-//     left: 1080px;
-//     bottom: 500px;
-//     height: 100%;
-//     opacity: 30%;
-//     display: flex;
-//     justify-content: flex-end;
-// }
+.arrow{
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+}
 
 
-// .arrowButton{
-//     color: white;
-//     font-weight: bolder;
-//     font-size: 40px;
-//     // position: fixed;
-// }
+.arrow img{
+    width: 15px;
+    height: 30px;
+}
