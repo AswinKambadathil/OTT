@@ -12,10 +12,24 @@
                       <div class="secondeye"><img id="secondeye" [className]="isEdit ? 'visible' : ''" src="/assets/eye.svg"></div>
                       <div class="smile" ><img id="smile" [className]="isEdit ? 'visible' : ''" src="/assets/smile.svg"></div>
                   
-                      <p style="color: #707070; text-align: center">{{ profile.name }}</p>
+                      <p style="color: #707070; text-align: center; margin-top: 1rem;margin-bottom: 0; ">{{ profile.name }}</p>
+
+                     
+
+                        @if (profile.ifprofilelock) {
+                            
+                                <div class="lock-icon">
+                                    <i class="fas fa-lock" style="color: #707070;"></i>
+                            </div>
+                            
+                            
+                          }
+                      
+                     
+                       
                       @if (isEdit) {
                         <div class="pen">
-                            <i class="fa-solid fa-pen" (click)="profileEdit()"></i>
+                            <i class="fa-solid fa-pen" (click)="profileEdit(profile.name,profile.id)"></i>
                         </div>
                       } 
                     </div>
@@ -34,9 +48,12 @@
  
     
     @if (isprofileEdit) { 
+       
     <div class="editprofile">
         <div class="title">
             <h1>Edit Profile</h1>
+            @for (profile of profiles; track $index) {
+                @if(profile.id == this.id){
             <div class="editingProfile">
                 <div class="profile-pic profile2">
                     
@@ -51,7 +68,7 @@
                             </div>
                     </div>
                     <div class="details">
-                        <div class="name"><span style="color: #fff;">Athul</span></div>
+                        <div class="name"><span style="color: #fff;">{{this.names}}</span></div>
                         <div class="kidsafe"><span  style="color: #fff;">Kid Safe</span>
                             <div class="toggle1">
                                 <label class="toggle">
@@ -61,37 +78,54 @@
                                 </label>
                             </div>
                         </div>
-                        <div class="lock"><span  style="color: #fff;">Pin Lock</span>
-                            <div class="toggle2">
-                                
+                        
+                           
+                                <div class="lock"><span  style="color: #fff;">Pin Lock</span>
+
+                                <div class="toggle2">
+                               
                                     <label class="toggle">
-                                        <input class="toggle-checkbox" type="checkbox"  [checked]="isActive" (click)=" profilePassword()" >
+                                        <input class="toggle-checkbox" type="checkbox"  [checked]="profile.ifprofilelock" (click)=" profilePassword(profile)" >
                                         <div class="toggle-switch"></div>
                                         <span class="toggle-label"></span>
                                     </label>
+                                    
                                 
-                                
-                            </div>
-                            @if (isReset) {
-                                <div class="reset" (click)="passwordForm.valid ?reset() :null">Reset PIN</div>
-                            }
+                                </div>
+                                @if (isReset && profile.ifprofilelock) {
+                                <div class="reset" (click)="passwordForm.valid ?reset(profile) :null">Reset PIN</div>
+                                }
                         </div>
+                    
                     </div>
                     
-                </div>  
+                </div> 
+                    
+                <div class="password-button">
+                    <button class="profileedit-save" (click)="profileedit(profile.id)" ><span style="font-weight: bold;">Save</span></button>     
+                 </div>
+                 
             </div>
+        }
+    }
+    
+        
+                
         </div>
     </div>
-        
+
     } 
 @if(ispassword){
     <div class="row">
         <div class="lock__screen">
             <div class="pin-content">
+                @for (profile of profiles; track $index){
+                    @if (profile.id == this.id) {
                 <form [formGroup]="passwordForm">
                     <div class="fields">
+                       
                         <nav>
-                            <button class="close-btn" (click)="close()">X</button>
+                            <button class="close-btn" (click)="close(profile)">X</button>
                         </nav>
                         <div class="setpin">
                             <h2 style="color: #fff; font-weight: bold;">Set PIN</h2>
@@ -113,9 +147,12 @@
                         </div>
                     </div>
                     </form>
+                
                         <div class="password-button">
                             <button class="save" [disabled]="formValidity()" (click)="passwordForm.valid ? savePassword() : null" [className]="passwordForm.valid ?'save':'notsave'" ><span style="font-weight: bold;">Save</span></button>     
                     </div>
+                }
+                }
             </div>
         </div>
     </div>

@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Validators } from '@angular/forms';
 
+
 @Component({
   selector: 'app-profilepage',
   standalone: true,
@@ -13,15 +14,17 @@ import { Validators } from '@angular/forms';
   styleUrl: './profilepage.component.scss'
 })
 export class ProfilepageComponent implements OnInit{
-
+  id:any = '';
+  names:any=''
   isEdit = false;
-  isprofileEdit = true
+  isprofileEdit =false
   ifCond = true;
-  isprofileLocl = false;
+  isprofileLock = false;
   ispassword =false;
   isReset = false;
-  isActive = false;
-  isnotActive = true;
+  // isActive = false;
+  // isnotActive = true;
+ 
 
 
 
@@ -50,33 +53,48 @@ export class ProfilepageComponent implements OnInit{
   
 
   profiles = [
-    { id: 1, name: 'Athul', image: '/assets/profilelogo2.svg' },
-    { id: 2, name: 'Aswin', image: '/assets/profilelogo.svg' },
-    { id: 3, name: 'Manoj', image: '/assets/profilelogo3.svg' },
+    { id: 1, name: 'Athul', image: '/assets/profilelogo2.svg',ifprofilelock: false },
+    { id: 2, name: 'Aswin', image: '/assets/profilelogo.svg',ifprofilelock: false },
+    { id: 3, name: 'Manoj', image: '/assets/profilelogo3.svg',ifprofilelock: false },
   ];
 
-
+ 
   editProfile() {
     this.isEdit = !this.isEdit;
   }
-  profileEdit(){
+
+  profileEdit(name:any,id:any){
+    console.log(id);
+    
+     this.names = name;
+     this.id = id;
+     console.log(id);
+     
+    
     this.ifCond=false
     this.isprofileEdit=true
   }
-  profilePassword(){
-    if(!this.isActive){
-    this.ifCond=false
-    this.ispassword = true
-    this.isActive = !this.isActive;
-    console.log("hello");
+
+
+  profilePassword(profile:any){
     
+    profile.id = this.id;
+    console.log(profile.id);
+    
+    profile.ifprofilelock = !profile.ifprofilelock;
+    console.log("Profile lock state toggled:", profile.ifprofilelock);
+    if(profile.ifprofilelock){
+      this.ifCond=false
+      this.ispassword = true
+      this.isReset=true
     }
     else{
       this.ispassword = false
-      this.isReset = false
-      this.isActive = !this.isActive;
-      console.log("hai");
+      this.isReset=false
+  
+      
     }
+
     
   }
   
@@ -92,13 +110,16 @@ export class ProfilepageComponent implements OnInit{
       
      console.log("pin correct");
      this.ispassword =false;
-     this.isReset = true;
+    //  this.isReset = true;
+     
+     
     }
     else{
       this.passwordForm.setErrors({mismatch : true})
       console.log("pin is incorrect");
       
     } 
+    this.passwordForm.reset();
   }
 
 
@@ -114,12 +135,46 @@ export class ProfilepageComponent implements OnInit{
     return this.passwordForm.invalid 
   }
 
-  reset(){
+  reset(profile:any){
+    profile.ifprofilelock = true;
+    console.log("Profile PIN reset for:", profile.name);
+    
+    this.ifCond = false;
     this.ispassword = true;
+    this.isReset = true;
+    this.ispassword = true;
+  
+  
   }
-  close(){
+  close(profile:any){
     this.ispassword= false;
-    this.isActive = false
-  }
+    profile.ifprofilelock = !profile.ifprofilelock;
+    if(profile.ifprofilelock){
+      this.isReset=true
+    }
+    else{
 
+      this.isReset=false
+  
+      
+    }
+    
+
+  }
+  
+  
+  profileedit(id:any){
+    // let closep = this.profiles.findIndex(profile => profile.id=id)
+    // if(this.profiles[closep].ifprofilelock= true){
+    //   this.isReset = true
+    // }
+    // else{
+    //   this.isReset = false;
+    // }
+  this.isprofileEdit =false
+  this.ifCond = true;
+
+  this.isEdit = true;
+  
+  }
 }
