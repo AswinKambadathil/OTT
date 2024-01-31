@@ -22,6 +22,7 @@ export class ProfilepageComponent implements OnInit{
   isprofileLock = false;
   ispassword =false;
   isReset = false;
+  isprofile_login= false;
   // isActive = false;
   // isnotActive = true;
  
@@ -176,5 +177,18 @@ export class ProfilepageComponent implements OnInit{
 
   this.isEdit = true;
   
+  }
+  profileLogin(profile:any){
+    if(profile.ifprofilelock){
+      this.isprofile_login = true; 
+    }
+    else{
+      console.log("hi");
+      
+    }
+    
+  }
+  profile_close(){
+    this.isprofile_login = false;
   }
 }
