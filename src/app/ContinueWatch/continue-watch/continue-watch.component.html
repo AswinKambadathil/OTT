@@ -1,0 +1,15 @@
+@if(styleChange == "1stStyle"){
+    <div class="mainWrap"  >
+        <div class="continueWatching">Continue Watching</div>
+            <div class="mainImageWrap">
+                @for (item of imageArray; track $index) {
+                    <div class="imageWrap">
+                        <img [src]="item.discriptUrl" alt=""/>
+                    </div>
+                }
+                <div class="arrow">
+                    <button class="arrowButton">></button>
+                </div>
+            </div>
+    </div>
+}

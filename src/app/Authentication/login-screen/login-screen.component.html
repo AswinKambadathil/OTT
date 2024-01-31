@@ -81,7 +81,7 @@
           <label class="mobno">Mobile Number</label>
         </div>
 
-        <div>
+        <div class="otpresend">
           <div class="resendOtp">Resend OTP</div>
 
           <div class="otpDiv">
@@ -155,13 +155,29 @@
               oninput="this.value = this.value.replace(/[^0-9]/,'')"
             />
           </div>
+        
           @if(userform2.controls['otp1'].touched &&
           userform2.controls['otp1'].invalid) {<span>The OTP is required.</span
+          >}
+          @if(userform2.controls['otp2'].touched &&
+          userform2.controls['otp2'].invalid) {<span>The OTP is required.</span
+          >}
+          @if(userform2.controls['otp3'].touched &&
+          userform2.controls['otp3'].invalid) {<span>The OTP is required.</span
+          >}
+          @if(userform2.controls['otp4'].touched &&
+          userform2.controls['otp4'].invalid) {<span>The OTP is required.</span
+          >}
+          @if(userform2.controls['otp5'].touched &&
+          userform2.controls['otp5'].invalid) {<span>The OTP is required.</span
+          >}
+          @if(userform2.controls['otp6'].touched &&
+          userform2.controls['otp6'].invalid) {<span>The OTP is required.</span
           >}
         </div>
       </form>
 
-      <div>
+      <div class="signedButton">
         <button
           class="otpButton"
           [disabled]="validateCase2()"
@@ -175,10 +191,12 @@
         <input class="keepSigned" type="checkbox" />Keep me signed in
       </div>
     </div>
-    } @if (signUpF) {
+    } 
+    @if (signUpF) {
     <div class="bottomcontentdiv">
-      <form [formGroup]="userform3">
-        <div class="inputText0">
+      <form [formGroup]="userform3" class="signupForm">
+      <div class="inputdiv1">
+        <div class="inputText7">
           <input
             formControlName="mobno"
             class="inputText"
@@ -191,8 +209,10 @@
           >}
           <label class="mobno">Mobile Number</label>
         </div>
+      </div>
 
-        <div class="inputText0">
+      <div class="inputdiv2">
+        <div class="inputText6">
           <input
             formControlName="fname"
             class="inputText"
@@ -205,13 +225,15 @@
           >}
           <label class="mobno">Full Name</label>
         </div>
+      </div>
 
-        <div class="inputText0">
+      <div class="inputdiv3">
+        <div class="inputText2">
           <input
             formControlName="email"
             class="inputText"
             type="text"
-            placeholder="@gmail.com "
+            placeholder=" "
             inputmode="email"
           />
           @if(userform3.controls['email'].touched &&
@@ -220,9 +242,11 @@
           >}
           <label class="mobno">Email Id</label>
         </div>
+      </div>
+
 
         <div class="genderDob">
-          <div class="inputText0">
+          <div class="inputText3">
             <select formControlName="gender" class="inputText1" >
               <option class="null" selected disabled hidden>Gender</option>
               <option value="male">Male</option>
@@ -235,7 +259,7 @@
             <p class="mobno">Gender</p>
           </div>
 
-          <div class="inputText0">
+          <div class="inputText4">
             <input
               formControlName="date"
               class="inputText1"
@@ -244,12 +268,14 @@
             />
             @if(userform3.controls['date'].touched &&
             userform3.controls['date'].invalid) {<span
-              >The Firstname is required.</span
+              >The DOB is required.</span
             >}
             <p class="mobno">DOB</p>
           </div>
         </div>
-        <div class="inputText0">
+
+        <div class="inputdiv4">
+        <div class="inputText5">
           <select formControlName="state" class="inputText" type="text">
             <option class="null" selected disabled hidden>State</option>
             <option value="Andhra Pradesh">Andhra Pradesh</option>
@@ -295,8 +321,9 @@
           userform3.get('state')?.invalid) {<span>The State is required.</span>}
           <label class="mobno">State</label>
         </div>
+      </div>
 
-        <div>
+        <div class="signupButton">
           <button
             class="otpButton"
             [disabled]="validateCase3()"
