@@ -6,36 +6,6 @@
 }
 
 
-// .wrap{    
-//     .item{
-//         animation: carouselMove 40s ease-in-out infinite;
-//         display: flex;
-//     }
-// }
-
-
-// @keyframes carouselMove{
-//     0%{
-//         translate : 10% 0;
-//     }
-//     20%{
-//         translate : -90% 0;
-//     }
-//     40%{
-//         translate: -190% 0;
-//     }
-//     60%{
-//         translate: -290% 0;
-//     }
-//     80%{
-//         translate: -390% 0;
-//     }
-//     100%{
-//         translate: -490% 0;
-//     }
-
-// }
-
 .discription{
     background-color: rgb(128, 126, 126);
     border-radius: 10px;
@@ -106,57 +76,46 @@
     align-items: center;
     margin-bottom: 10px;
     width: 80%;
-}
-
-
-.playWrite{
-    color: white;
-    margin-left: 15px;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
+    .playWrite{
+        color: white;
+        margin-left: 15px;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+    }
+    .playButton img{
+        height: auto;
+        width: 50px;
+    }
+    .favorite{
+        background-color: rgb(117, 111, 111);
+        border-radius: 25px;
+        width: 35px;
+        height: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        img{
+            width: 40%;
+        }
+    }
+    .exclema{
+        background-color: rgb(117, 111, 111);
+        border-radius: 25px;
+        width: 35px;
+        height: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        img{
+            width: 18%;
+        }
+    }
+    
 }
 
 
 .title{
     font-weight: bold;
     color: white;
-}
-
-
-.playButton img{
-    height: auto;
-    width: 50px;
-}
-
-
-.favorite{
-    background-color: rgb(117, 111, 111);
-    border-radius: 25px;
-    width: 35px;
-    height: 35px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-
-.exclema{
-    background-color: rgb(117, 111, 111);
-    border-radius: 25px;
-    width: 35px;
-    height: 35px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-
-.favorite img{
-    width: 40%;
-}
-
-
-.exclema img{
-    width: 18%;
 }

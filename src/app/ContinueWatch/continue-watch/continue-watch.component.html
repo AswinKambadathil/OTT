@@ -1,15 +1,80 @@
 @if(styleChange == "1stStyle"){
-    <div class="mainWrap"  >
+    <div>
         <div class="continueWatching">Continue Watching</div>
-            <div class="mainImageWrap">
-                @for (item of imageArray; track $index) {
-                    <div class="imageWrap">
-                        <img [src]="item.discriptUrl" alt=""/>
-                    </div>
-                }
-                <div class="arrow">
-                    <button class="arrowButton">></button>
+        <div class="mainWrap"  >
+            @if(arrowLeft){
+                <div class="arrowLeft">
+                    <img src="assets/Login/Chevron/chevron_right.svg" alt="" (click)="transformImgleft()">
                 </div>
-            </div>
+            }
+                <div class="mainImageWrap" id="mainImageWrap">
+                    @for (item of imageArray; track $index) {
+                        <div class="imageWrap">
+                            <img [src]="item.discriptUrl" alt=""/>
+                        </div>
+                    }
+                </div>
+
+            @if(arrowRight){
+                <div class="arrow">
+                    <img src="assets/Login/Chevron/chevron_right.svg" alt="" (click)="transformImg()">
+                </div>
+            }
+            
+        </div>
     </div>
+}   
+
+@if(styleChange == "2ndStyle"){
+    <div>
+        <div class="continueWatching">Featured for you</div>
+        <div class="mainWrap"  >
+            @if(arrowLeft){
+                <div class="arrowLeft">
+                    <img src="assets/Login/Chevron/chevron_right.svg" (click)="transformImgleft()">
+                </div>
+            }
+                <div class="mainImageWrap" id="mainImageWrap">
+                    <ul class="portImg">
+                    @for (item of imageArray; track $index) {
+                        <li>
+                            <div class="portimageWrap" (mouseover)="onFocus(item, $event)" (mouseleave)="onRelease(item, $event)">
+                                <img [src]="item.potrait" alt="" id="mainImg{{item.id}}" />
+                        
+                                <div class="playWrapMain">
+                                    <div class="playName">
+                                        {{item.name}}
+                                    </div>
+                                    <div class="playWrap">
+                                        <div class="playButton">
+                                            <img src="assets/Login/Logos/Path 51.svg" alt="">
+                                        </div>
+                                        <div class="playWrite">
+                                            Play
+                                        </div>
+                                        <div class="favorite">
+                                            <img src="assets/Login/Logos/favorite.svg" alt="">
+                                        </div>
+                                        <div class="exclema">
+                                            <img src="assets/Login/Logos/i.svg" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                            </div>
+                        </li>
+                        
+                    }
+                    </ul>
+                </div>
+
+            @if(arrowRight){
+                <div class="arrow">
+                    <img src="assets/Login/Chevron/chevron_right.svg" alt="" (click)="transformImg()">
+                </div>
+            }
+            
+        </div>
+    </div>
+
 }
