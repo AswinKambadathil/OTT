@@ -49,12 +49,9 @@
     color: #fff;
 }
 .profiles{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    flex-wrap: wrap;
-    margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
 }
 .squircle img{
     width: 100px;
@@ -88,9 +85,9 @@
 .fa-plus{
   width: 100px;
     height: 100px; 
-    // transform: translate(-50%, -50%);
+
     font-size: 40px;
-    // filter: invert(1);
+
     cursor: pointer;   
     display: flex;
     justify-content: center;
@@ -234,20 +231,34 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    width: 300PX;
+    width: 100%;
     height: 95PX;
 }
 .name{
-    width: 100%;
-    height: 10px;
-    display: flex;
-    background-color: #707070;
-    padding: 20px 30px 20px 8px;
-    border-radius: 8px;
-    flex-wrap: wrap;
-    align-content: center;
-    align-items: center;
-    justify-content: flex-start;
+  width: 100%;
+  height: 10px;
+  display: flex;
+  background-color: #707070;
+  padding: 20px 30px 20px 8px;
+  border-radius: 8px;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: center;
+  justify-content: flex-start;
+}
+.name input{
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: #fff;
+  outline: none;
+}
+.name input::placeholder {
+  color: #fff;
+  opacity: 1; 
+}
+.name input:focus::placeholder {
+  color: transparent;
 }
 .kidsafe{
     display: flex;
@@ -431,7 +442,7 @@ nav {
 .setpin{
   display: flex;
     flex-direction: column;
-    flex-wrap: nowrap;
+    // flex-wrap: nowrap;
     justify-content: center;
     align-items: flex-start;
 }
@@ -459,7 +470,7 @@ nav {
   margin-top: 30px;
   display: flex;
     flex-direction: column;
-    flex-wrap: nowrap;
+    // flex-wrap: nowrap;
     justify-content: center;
     align-items: flex-start;
 }
@@ -483,6 +494,9 @@ color: #fff;
 font-size:40px;
 text-align: center;
 
+}
+.pin-mismatch{
+  margin-top: 20px;
 }
 .password-button{
   display: flex;
@@ -552,12 +566,13 @@ text-align: center;
 .text3 p{
   color:#fff;
   font-weight: 200;
+  cursor: pointer;
 }
 .loginpass{
   margin-top: 20px;
     width: 100%;
     display: flex;
-    flex-wrap: wrap;
+    // flex-wrap: wrap;
     align-content: center;
     justify-content: center;
     align-items: center;
@@ -573,4 +588,38 @@ text-align: center;
   color: #fff;
   font-size:40px;
   text-align: center;
+}
+.details1{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  height: 95PX;
+}
+.name1{
+  width: 100%;
+  height: 10px;
+  display: flex;
+  background-color: #707070;
+  padding: 20px 30px 20px 8px;
+  border-radius: 8px;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: center;
+  justify-content: flex-start;
+}
+.name1 input{
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: #fff;
+  outline: none;
+}
+.name1 input::placeholder {
+  color: #fff;
+  opacity: 1; 
+}
+.name1 input:focus::placeholder {
+  color: transparent;
 }
