@@ -1,8 +1,12 @@
 .main{
-    height: 48vh;
+    height: 40vh;
     width: 100%;
     display: flex;
-    margin-top: 15px;
+    overflow: scroll;
+    overflow-y: hidden;
+    &::-webkit-scrollbar {
+        display: none;
+    }
 }
 
 
@@ -20,22 +24,25 @@
 
 .mainImg img{
     width: 60vw;
-    height: 48vh
+    height: 40vh
 }
 
 
 .wrap{
     display: flex;
+    width: 100%;
 }
 
 
 .header{
     width: 23vw;
+    height: 120px;
 }
 
 
 .header img{
     width: 20vw;
+    height: 110px;
 }
 
 

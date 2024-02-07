@@ -1,6 +1,6 @@
-@if(styleChange == "1stStyle"){
+ @if(styleChange == "1stStyle"){
     <div>
-        <div class="continueWatching">Continue Watching</div>
+        <div class="continueWatching">{{label}}</div>
         <div class="mainWrap"  >
             @if(arrowLeft){
                 <div class="arrowLeft">
@@ -27,19 +27,19 @@
 
 @if(styleChange == "2ndStyle"){
     <div>
-        <div class="continueWatching">Featured for you</div>
+        <div class="continueWatching">{{label}}</div>
         <div class="mainWrap"  >
             @if(arrowLeft){
                 <div class="arrowLeft">
-                    <img src="assets/Login/Chevron/chevron_right.svg" (click)="transformImgleft()">
+                    <img src="assets/Login/Chevron/chevron_right.svg" (click)="transformImgleftTwo()">
                 </div>
             }
-                <div class="mainImageWrap" id="mainImageWrap">
+                <div class="mainImageWrap" id="mainImageWrap2">
                     <ul class="portImg">
                     @for (item of imageArray; track $index) {
                         <li>
                             <div class="portimageWrap" (mouseover)="onFocus(item, $event)" (mouseleave)="onRelease(item, $event)">
-                                <img [src]="item.potrait" alt="" id="mainImg{{item.id}}" />
+                                <img [src]="item.potrait" alt="" [id]="'mainImg' + item.id" class="mainImg"/>
                         
                                 <div class="playWrapMain">
                                     <div class="playName">
@@ -52,8 +52,21 @@
                                         <div class="playWrite">
                                             Play
                                         </div>
-                                        <div class="favorite">
-                                            <img src="assets/Login/Logos/favorite.svg" alt="">
+                                        <div class="favorite" (click)="myFavorite(item)">
+                                            @if(item.isFavorite){
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="26.091" height="23.706" viewBox="0 0 26.091 23.706">
+                                                    <g id="favorite" transform="translate(-0.921 -4.004)">
+                                                      <path id="Path_52" data-name="Path 52" d="M24.093,6.944A6.55,6.55,0,0,0,14,7.957a6.55,6.55,0,1,0-10.089,8.25L14,26.3,24.093,16.207A6.55,6.55,0,0,0,24.093,6.944Z" transform="translate(0 0)" fill="#fff" stroke="#f7f7f7" stroke-linecap="square" stroke-width="2"/>
+                                                    </g>
+                                                  </svg>                                       
+
+                                            }@else {
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="26.091" height="23.706" viewBox="0 0 26.091 23.706">
+                                                    <g id="favorite" transform="translate(-0.921 -4.004)">
+                                                      <path id="Path_52" data-name="Path 52" d="M24.093,6.944A6.55,6.55,0,0,0,14,7.957a6.55,6.55,0,1,0-10.089,8.25L14,26.3,24.093,16.207A6.55,6.55,0,0,0,24.093,6.944Z" transform="translate(0 0)" fill="#f00" stroke="#f00" stroke-linecap="square" stroke-width="2"/>
+                                                    </g>
+                                                  </svg>
+                                            }
                                         </div>
                                         <div class="exclema">
                                             <img src="assets/Login/Logos/i.svg" alt="">
@@ -70,7 +83,7 @@
 
             @if(arrowRight){
                 <div class="arrow">
-                    <img src="assets/Login/Chevron/chevron_right.svg" alt="" (click)="transformImg()">
+                    <img src="assets/Login/Chevron/chevron_right.svg" alt="" (click)="transformImgTwo()">
                 </div>
             }
             
