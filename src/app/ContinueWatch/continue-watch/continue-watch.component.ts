@@ -10,6 +10,7 @@ import { Component, Input } from '@angular/core';
 export class ContinueWatchComponent {
   
   @Input() styleChange: "1stStyle" | "2ndStyle" = "1stStyle"
+  @Input() label!:string
   arrowLeft = false
   arrowRight = true
 
@@ -23,7 +24,8 @@ export class ContinueWatchComponent {
       discriptUrl: 'assets/Login/Movies/kantara-Name.jpg',
       logoUrl: 'assets/Login/Movies/Amazon-Prime-Video-Icon.png',
       potrait: 'assets/Login/Movies/potrait1.jpeg',
-      name: 'Kantara'
+      name: 'Kantara',
+      isFavorite: 'false'
     },
     {
       id : 2,
@@ -33,7 +35,8 @@ export class ContinueWatchComponent {
       discriptUrl: 'assets/Login/Movies/neru-name.jpeg',
       logoUrl: 'assets/Login/Movies/Amazon-Prime-Video-Icon.png',
       potrait: 'assets/Login/Movies/potrait2.jpeg',
-      name: 'Kantara1'
+      name: 'Kantara1',
+      isFavorite: 'false'
     },
     {
       id : 3,
@@ -43,7 +46,8 @@ export class ContinueWatchComponent {
       discriptUrl: 'assets/Login/Movies/kantara-Name.jpg',
       logoUrl: 'assets/Login/Movies/Amazon-Prime-Video-Icon.png',
       potrait: 'assets/Login/Movies/potrait3.jpeg',
-      name: 'Kantara2'
+      name: 'Kantara2',
+      isFavorite: 'false'
     },
     {
       id : 4,
@@ -53,7 +57,8 @@ export class ContinueWatchComponent {
       discriptUrl: 'assets/Login/Movies/ozler-name.jpeg',
       logoUrl: 'assets/Login/Movies/Amazon-Prime-Video-Icon.png',
       potrait: 'assets/Login/Movies/potrait4.jpg',
-      name: 'Kantara3'
+      name: 'Kantara3',
+      isFavorite: 'false'
     },
     {
       id : 5,
@@ -63,7 +68,8 @@ export class ContinueWatchComponent {
       discriptUrl: 'assets/Login/Movies/kantara-Name.jpg',
       logoUrl: 'assets/Login/Movies/Amazon-Prime-Video-Icon.png',
       potrait: 'assets/Login/Movies/potrait5.jpg',
-      name: 'Kantara4'
+      name: 'Kantara4',
+      isFavorite: 'false'
     }
     ,
     {
@@ -74,7 +80,64 @@ export class ContinueWatchComponent {
       discriptUrl: 'assets/Login/Movies/animal-name.jpg',
       logoUrl: 'assets/Login/Movies/Amazon-Prime-Video-Icon.png',
       potrait: 'assets/Login/Movies/potrait6.jpeg',
-      name: 'Kantara5'
+      name: 'Kantara5',
+      isFavorite: 'false'
+    },
+    {
+      id : 7,
+      imageUrl: 'assets/Login/Movies/neru.jpg',
+      description: 'Movie',
+      title: '#1 in Trending',
+      discriptUrl: 'assets/Login/Movies/neru-name.jpeg',
+      logoUrl: 'assets/Login/Movies/Amazon-Prime-Video-Icon.png',
+      potrait: 'assets/Login/Movies/potrait2.jpeg',
+      name: 'Kantara1',
+      isFavorite: 'false'
+    },
+    {
+      id : 8,
+      imageUrl: 'assets/Login/Movies/kantara-Banner.jpg',
+      description: 'Movie',
+      title: '#1 in Trending',
+      discriptUrl: 'assets/Login/Movies/kantara-Name.jpg',
+      logoUrl: 'assets/Login/Movies/Amazon-Prime-Video-Icon.png',
+      potrait: 'assets/Login/Movies/potrait3.jpeg',
+      name: 'Kantara2',
+      isFavorite: 'false'
+    },
+    {
+      id : 9,
+      imageUrl: 'assets/Login/Movies/ozler.jpg',
+      description: 'Movie',
+      title: '#1 in Trending',
+      discriptUrl: 'assets/Login/Movies/ozler-name.jpeg',
+      logoUrl: 'assets/Login/Movies/Amazon-Prime-Video-Icon.png',
+      potrait: 'assets/Login/Movies/potrait4.jpg',
+      name: 'Kantara3',
+      isFavorite: 'false'
+    },
+    {
+      id : 10,
+      imageUrl: 'assets/Login/Movies/kantara-Banner.jpg',
+      description: 'Movie',
+      title: '#1 in Trending',
+      discriptUrl: 'assets/Login/Movies/kantara-Name.jpg',
+      logoUrl: 'assets/Login/Movies/Amazon-Prime-Video-Icon.png',
+      potrait: 'assets/Login/Movies/potrait5.jpg',
+      name: 'Kantara4',
+      isFavorite: 'false'
+    }
+    ,
+    {
+      id : 11,
+      imageUrl: 'assets/Login/Movies/animal.jpg',
+      description: 'Movie',
+      title: '#1 in Trending',
+      discriptUrl: 'assets/Login/Movies/animal-name.jpg',
+      logoUrl: 'assets/Login/Movies/Amazon-Prime-Video-Icon.png',
+      potrait: 'assets/Login/Movies/potrait6.jpeg',
+      name: 'Kantara5',
+      isFavorite: 'false'
     }
   ];
 
@@ -100,26 +163,54 @@ export class ContinueWatchComponent {
   }
 
 
-
-  onFocus(item:any,e:Event){
-    let image = (e.target as HTMLImageElement)    
-    image.src = item.discriptUrl
-    console.log(image.src);
-    
-    let parentDiv = image.parentElement
-    let childDiv = parentDiv?.querySelector('.playWrapMain') as HTMLDivElement
-    childDiv.style.display = 'block'
-
-
+  transformImgTwo() {
+    let mainImageWrap = document.getElementById("mainImageWrap2") as HTMLDivElement
+    mainImageWrap.scrollLeft += 300
+    this.arrowLeft = true
+    if(mainImageWrap.scrollLeft + mainImageWrap.clientWidth+1 >= mainImageWrap.scrollWidth){
+      this.arrowRight = false
+    }
   }
 
 
-  onRelease(item:any,e:Event){
-    let mainImg = document.getElementById("mainImg"+item.id) as HTMLImageElement
-    mainImg.src=item.potrait
-    let image = (e.target as HTMLImageElement)
-    let parentDiv = image.parentElement
-    let childDiv = parentDiv?.querySelector('.playWrapMain') as HTMLDivElement
-    childDiv.style.display = 'none'
+  transformImgleftTwo() {
+    let mainImageWrap = document.getElementById("mainImageWrap2") as HTMLDivElement
+    mainImageWrap.scrollLeft -= 200
+    this.arrowRight=true
+    let leftscroll = mainImageWrap.scrollLeft -= 100
+    if(leftscroll<=0){
+      this.arrowLeft = false
+    }
+  }
+
+
+  onFocus(item:any,e:MouseEvent){
+    let parentDiv = (e.target as HTMLImageElement).parentNode as HTMLDivElement
+    let image = document.getElementById(`mainImg${item.id}`)  as HTMLImageElement
+    image.src = item.discriptUrl
+    let childDiv = parentDiv?.getElementsByClassName('playWrapMain')
+    let childDivArray = Array.from(childDiv) as HTMLElement[]
+    childDivArray.forEach(elements => {
+      elements.style.display = 'block'
+    })
+    
+    
+  }
+
+
+  onRelease(item:any,e:MouseEvent){
+    let parentDiv = (e.target as HTMLImageElement).parentNode as HTMLDivElement
+    let image = document.getElementById(`mainImg${item.id}`)  as HTMLImageElement
+    image.src = item.potrait
+    let childDiv = parentDiv?.getElementsByClassName('playWrapMain')
+    let childDivArray = Array.from(childDiv) as HTMLElement[]
+    childDivArray.forEach(elements => {
+      elements.style.display = 'none'
+    })
+  }
+
+
+  myFavorite(item:any){
+    item.isFavorite = !item.isFavorite
   }
 }
