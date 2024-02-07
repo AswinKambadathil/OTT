@@ -107,7 +107,7 @@ export class ProfilepageComponent implements OnInit{
         name:name,
         isprofileLock:ifprofilelock
       });
-
+      
       // this.editProfileForm.get('name')?.setValidators([Validators.required]);
       // this.editProfileForm.get('name')?.updateValueAndValidity();
 
@@ -118,6 +118,7 @@ export class ProfilepageComponent implements OnInit{
       }
     }
   }
+
   
 
   Addnewprofile(profileObj:any){
@@ -131,7 +132,9 @@ export class ProfilepageComponent implements OnInit{
   }
 
 
-  profilePassword(){
+  profilePassword(profile:any){
+    console.log("profile id",this.editProfileForm.value.id);
+    
     const isProfileLocked = this.editProfileForm.value.isprofileLock;
     console.log('Is Profile Locked:', isProfileLocked);
     if(!isProfileLocked){
@@ -239,13 +242,14 @@ export class ProfilepageComponent implements OnInit{
   profileLogin(profile:any){
     const {id, ifprofilelock} = profile 
     console.log(profile.id); 
-    if (this.editProfileForm.value.isprofileLock && this.editProfileForm.value.id) {
+    if (!this.editProfileForm.value.isprofileLock && this.editProfileForm.value.id) {
       if (this.editProfileForm.value.isprofileLock) {
         this.isprofile_login = true;
       } else {
         this.isprofile_login = false;
         console.log("Toggle is not active for the selected profile");
       }
+      this.isprofile_login = true;
     } else {
       this.isprofile_login = false;
       console.log("Toggle is not active for the selected profile");
@@ -256,7 +260,8 @@ export class ProfilepageComponent implements OnInit{
     this.isprofile_login = false;
   }
 
-  forgotPassword(){
+  forgotPassword(profile:any){
+    console.log("Forgot password for:", this.editProfileForm.value.id);
     this.ispassword = true;
     this.isprofile_login = false
   }

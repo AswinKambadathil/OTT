@@ -6,7 +6,7 @@
       <div class="profiles">
           <div class="profile-pic">
             @for (profile of profiles; track profile){
-            <div class="squircle" (click)="profileLogin(profile)">
+            <div class="squircle" (click)="profileLogin(editProfileForm.value.ifprofileLock)">
               <img
                 id="psize"
                 [className]="isEdit ? 'visible' : ''"
@@ -99,7 +99,7 @@
                   <span style="color: #fff">Pin Lock</span>
                   <div class="toggle2">
                   <label class="toggle">
-                    <input class="toggle-checkbox" type="checkbox" [checked]="editProfileForm.value.isprofileLock" (click)=" profilePassword()" formControlName = "isprofileLock"/>
+                    <input class="toggle-checkbox" type="checkbox" [checked]="editProfileForm.value.isprofileLock" (click)=" profilePassword(this.editProfileForm.value.id)" formControlName = "isprofileLock"/>
                     <div class="toggle-switch"></div>
                     <span class="toggle-label"></span>
                   </label>
@@ -113,7 +113,7 @@
               </div>
             </div>
             <div class="password-button">
-              <button class="profileedit-save" (click)="profileedit()" [disabled]="editProfileForm.get('name')?.invalid" [className]="passwordForm.get('name') ? 'profileedit-save ' : 'notsave'">
+              <button class="profileedit-save" (click)="profileedit()" [disabled]="editProfileForm.get('name')?.invalid">
                 <span style="font-weight: bold">Save</span>
               </button>
             </div>
@@ -229,7 +229,7 @@
   </div>
   }
   
-   @if (isprofile_login) {
+@if (isprofile_login) {
   <div class="userprofile-login">
     <div class="profile_screen">
       <div class="profile-pin">
@@ -275,7 +275,7 @@
               />
             </div>
             <div class="text3">
-              <p (click)="forgotPassword()">Forgot PIN?</p>
+              <p (click)="forgotPassword(editProfileForm.value.id)">Forgot PIN?</p>
             </div>
           </div>
         </form>
