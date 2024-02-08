@@ -1,15 +1,11 @@
 .main-wrap{
     width: 100%;
-    height: 100%;
     background: black;
-    overflow: hidden;
-    position: relative;
 }
 .shadow1{
     border-radius: 50%;
     width: 100%;
     height: 100%;
-    height: 100;
     background: radial-gradient(circle, #e50914 50%, transparent 90%);
     box-shadow: 0 0 450px 250px #e50914;
     position: absolute;
@@ -20,7 +16,9 @@
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
-    margin: 40px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    margin-left: 60px;
     align-items: flex-start;
     flex-wrap: nowrap;
     align-content: center;

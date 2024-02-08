@@ -1,55 +1,75 @@
 <div class="main-wrap">
-    <div class="shadow1"></div>
-    <div class="language-container">
-        <div class="heading1">
-            <h1>Hi Athul!!</h1>
-        </div>
-        <div class="heading2">
-            <h6>Select any 3 languages </h6>
-        </div>
-        <div class="languages-icon">
-            @for (item of languages; track item ) {
-            <div class="squircle" (click)="toggleBorder(item)">
-                <svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg" version="1.1"
-                    [attr.fill]="item.color" 
-                    [attr.stroke]="item.showBorder ? item.borderColor : 'none'"
-                    >
->
-                    <path d="
+  <div class="shadow1"></div>
+  <div class="language-container">
+    <div class="heading1">
+      <h1>Hi Athul!!</h1>
+    </div>
+    <div class="heading2">
+      <h6>Select any 3 languages</h6>
+    </div>
+    <div class="languages-icon">
+      @for (item of languages; track item ) {
+      <div class="squircle" (click)="toggleBorder(item)">
+        <svg
+          viewBox="0 0 160 160"
+          xmlns="http://www.w3.org/2000/svg"
+          version="1.1"
+          [attr.fill]="item.color"
+          [attr.stroke]="item.showBorder ? item.borderColor : 'none'"
+        >
+          >
+          <path
+            d="
                         M 0 80
                         C 0 20, 20 0, 80 0
                         S 160 20, 160 80, 140 160
                         80 160, 0 140, 0 80
-                        " 
-                        transform="
+                        "
+            transform="
                         rotate(0, 80, 80)
                         translate(0, 0)
                         "
-                        stroke-width="5"
-                    ></path>
-                </svg>
-                
-                    <div class="language" [style.color]="item.textColor" style="font-weight: bold; text-align: left;">
-                        {{item.lang}}
-                    </div>
-                    <div class="sign" [style.color]="item.textColor" style="font-weight: bold; text-align: left; font-size: 50px;">
-                        {{item.sign}}
-                    </div>
-            </div>   
-        }
+            stroke-width="5"
+          ></path>
+        </svg>
+
+        <div
+          class="language"
+          [style.color]="item.textColor"
+          style="font-weight: bold; text-align: left"
+        >
+          {{ item.lang }}
         </div>
-        <div class="heading3">
-            <h6>Select any 3 Genre </h6>
+        <div
+          class="sign"
+          [style.color]="item.textColor"
+          style="font-weight: bold; text-align: left; font-size: 50px"
+        >
+          {{ item.sign }}
         </div>
-        <div class="genre-icon">
-            @for (item of genre; track item) {
-                <div class="squircle" (click)="toggleColor(item)">
-                    <svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg" version="1.1" [attr.fill]="item.clicked ? 'red' : '#707070'"><path d="
+      </div>
+      }
+    </div>
+    <div class="heading3">
+      <h6>Select any 3 Genre</h6>
+    </div>
+    <div class="genre-icon">
+      @for (item of genre; track item) {
+      <div class="squircle" (click)="toggleColor(item)">
+        <svg
+          viewBox="0 0 160 160"
+          xmlns="http://www.w3.org/2000/svg"
+          version="1.1"
+          [attr.fill]="item.clicked ? 'red' : '#707070'"
+        >
+          <path
+            d="
                         M 0 80
                         C 0 20, 20 0, 80 0
                         S 160 20, 160 80, 140 160
                         80 160, 0 140, 0 80
-                        " transform="
+                        "
+            transform="
                         rotate(
                         0,
                         80,
@@ -60,15 +80,31 @@
                         0
                         )
                         "
-                        ></path></svg>
-                        <div class="genre"  style="font-weight: bold; text-align: left;color: #fff; font-size: 20px;">
-                            {{item.lang}}
-                        </div>
-                </div>  
-            }    
+          ></path>
+        </svg>
+        <div
+          class="genre"
+          style="
+            font-weight: bold;
+            text-align: left;
+            color: #fff;
+            font-size: 20px;
+          "
+        >
+          {{ item.lang }}
         </div>
-        <div class="finish">
-            <button class="get-started-btn" >Finish <img class="finish img" style="width: 3vh; font-weight: 900; padding-bottom: 18px;" src="/assets/arrow.svg"></button>
-        </div>
+      </div>
+      }
     </div>
+    <div class="finish">
+      <button class="get-started-btn">
+        Finish
+        <img
+          class="finish img"
+          style="width: 3vh; font-weight: 900; padding-bottom: 18px"
+          src="/assets/arrow.svg"
+        />
+      </button>
+    </div>
+  </div>
 </div>
