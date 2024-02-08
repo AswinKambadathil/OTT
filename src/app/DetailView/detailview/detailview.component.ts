@@ -1,23 +1,20 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-continue-watch',
+  selector: 'app-detailview',
   standalone: true,
   imports: [],
-  templateUrl: './continue-watch.component.html',
-  styleUrl: './continue-watch.component.scss'
+  templateUrl: './detailview.component.html',
+  styleUrl: './detailview.component.scss'
 })
-export class ContinueWatchComponent {
-  
-  @Input() styleChange: "1stStyle" | "2ndStyle" = "1stStyle"
-  @Input() label!:string
-  arrowLeft = false
-  arrowRight = true
+export class DetailviewComponent {
 
-  
+
+  id = 4
+
   imageArray = [
     {
-      id : 1,
+      id: 1,
       imageUrl: 'assets/Login/Movies/kantara-Banner.jpg',
       description: 'Movie',
       title: '#1 in Trending',
@@ -28,7 +25,7 @@ export class ContinueWatchComponent {
       isFavorite: 'false'
     },
     {
-      id : 2,
+      id: 2,
       imageUrl: 'assets/Login/Movies/neru.jpg',
       description: 'Movie',
       title: '#1 in Trending',
@@ -39,7 +36,7 @@ export class ContinueWatchComponent {
       isFavorite: 'false'
     },
     {
-      id : 3,
+      id: 3,
       imageUrl: 'assets/Login/Movies/kantara-Banner.jpg',
       description: 'Movie',
       title: '#1 in Trending',
@@ -50,18 +47,32 @@ export class ContinueWatchComponent {
       isFavorite: 'false'
     },
     {
-      id : 4,
-      imageUrl: 'assets/Login/Movies/ozler.jpg',
+      id: 4,
+      imageUrl: 'assets/Login/Movies/kantara-Banner.jpg',
       description: 'Movie',
       title: '#1 in Trending',
       discriptUrl: 'assets/Login/Movies/ozler-name.jpeg',
       logoUrl: 'assets/Login/Movies/Amazon-Prime-Video-Icon.png',
       potrait: 'assets/Login/Movies/potrait4.jpg',
       name: 'Kantara3',
-      isFavorite: 'false'
+      isFavorite: 'false',
+      brief: 'It involves culture of Kambala and Bhootha Kola.A human and nature conflict where Shiva is a rebel who defends his village and nature. A death leadsto war between villagers and evil forces. Will he be able to regain peace in the village',
+      rating: 'IMDb 6.1',
+      time: '2 h 28 min',
+      year: '2023',
+      ua: 'U/A 13+',
+      category1: 'Suspense',
+      category2: 'Action',
+      category3: 'Drama',
+      category4: 'Adventure',
+      amazon: 'Play in Amazon Prime',
+      sony: 'Play in Sony Liv',
+      aha: 'Play in Aha Telugu',
+      disney: 'Play in Disney+'
+
     },
     {
-      id : 5,
+      id: 5,
       imageUrl: 'assets/Login/Movies/kantara-Banner.jpg',
       description: 'Movie',
       title: '#1 in Trending',
@@ -73,7 +84,7 @@ export class ContinueWatchComponent {
     }
     ,
     {
-      id : 6,
+      id: 6,
       imageUrl: 'assets/Login/Movies/animal.jpg',
       description: 'Movie',
       title: '#1 in Trending',
@@ -84,7 +95,7 @@ export class ContinueWatchComponent {
       isFavorite: 'false'
     },
     {
-      id : 7,
+      id: 7,
       imageUrl: 'assets/Login/Movies/neru.jpg',
       description: 'Movie',
       title: '#1 in Trending',
@@ -95,7 +106,7 @@ export class ContinueWatchComponent {
       isFavorite: 'false'
     },
     {
-      id : 8,
+      id: 8,
       imageUrl: 'assets/Login/Movies/kantara-Banner.jpg',
       description: 'Movie',
       title: '#1 in Trending',
@@ -106,7 +117,7 @@ export class ContinueWatchComponent {
       isFavorite: 'false'
     },
     {
-      id : 9,
+      id: 9,
       imageUrl: 'assets/Login/Movies/ozler.jpg',
       description: 'Movie',
       title: '#1 in Trending',
@@ -117,7 +128,7 @@ export class ContinueWatchComponent {
       isFavorite: 'false'
     },
     {
-      id : 10,
+      id: 10,
       imageUrl: 'assets/Login/Movies/kantara-Banner.jpg',
       description: 'Movie',
       title: '#1 in Trending',
@@ -129,7 +140,7 @@ export class ContinueWatchComponent {
     }
     ,
     {
-      id : 11,
+      id: 11,
       imageUrl: 'assets/Login/Movies/animal.jpg',
       description: 'Movie',
       title: '#1 in Trending',
@@ -141,76 +152,4 @@ export class ContinueWatchComponent {
     }
   ];
 
-
-  transformImg() {
-    let mainImageWrap = document.getElementById("mainImageWrap") as HTMLDivElement
-    mainImageWrap.scrollLeft += 300
-    this.arrowLeft = true
-    if(mainImageWrap.scrollLeft + mainImageWrap.clientWidth+1 >= mainImageWrap.scrollWidth){
-      this.arrowRight = false
-    }
-  }
-
-
-  transformImgleft() {
-    let mainImageWrap = document.getElementById("mainImageWrap") as HTMLDivElement
-    mainImageWrap.scrollLeft -= 200
-    this.arrowRight=true
-    let leftscroll = mainImageWrap.scrollLeft -= 100
-    if(leftscroll<=0){
-      this.arrowLeft = false
-    }
-  }
-
-
-  transformImgTwo() {
-    let mainImageWrap = document.getElementById("mainImageWrap2") as HTMLDivElement
-    mainImageWrap.scrollLeft += 300
-    this.arrowLeft = true
-    if(mainImageWrap.scrollLeft + mainImageWrap.clientWidth+1 >= mainImageWrap.scrollWidth){
-      this.arrowRight = false
-    }
-  }
-
-
-  transformImgleftTwo() {
-    let mainImageWrap = document.getElementById("mainImageWrap2") as HTMLDivElement
-    mainImageWrap.scrollLeft -= 200
-    this.arrowRight=true
-    let leftscroll = mainImageWrap.scrollLeft -= 100
-    if(leftscroll<=0){
-      this.arrowLeft = false
-    }
-  }
-
-
-  onFocus(item:any,e:MouseEvent){
-    let parentDiv = (e.target as HTMLImageElement).parentNode as HTMLDivElement
-    let image = document.getElementById(`mainImg${item.id}`)  as HTMLImageElement
-    image.src = item.discriptUrl
-    let childDiv = parentDiv?.getElementsByClassName('playWrapMain')
-    let childDivArray = Array.from(childDiv) as HTMLElement[]
-    childDivArray.forEach(elements => {
-      elements.style.display = 'block'
-    })
-    
-    
-  }
-
-
-  onRelease(item:any,e:MouseEvent){
-    let parentDiv = (e.target as HTMLImageElement).parentNode as HTMLDivElement
-    let image = document.getElementById(`mainImg${item.id}`)  as HTMLImageElement
-    image.src = item.potrait
-    let childDiv = parentDiv?.getElementsByClassName('playWrapMain')
-    let childDivArray = Array.from(childDiv) as HTMLElement[]
-    childDivArray.forEach(elements => {
-      elements.style.display = 'none'
-    })
-  }
-
-
-  myFavorite(item:any){
-    item.isFavorite = !item.isFavorite
-  }
 }

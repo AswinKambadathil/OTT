@@ -99,7 +99,7 @@ export class LoginScreenComponent implements OnInit{
   }
 
 
-  validateCase1(){
+   validateCase1(){
         return this.userform1.invalid
   }
 
