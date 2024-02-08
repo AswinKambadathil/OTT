@@ -7,8 +7,22 @@
           <div class="profile-pic">
             @for (profile of profiles; track profile){
             <div class="squircle" (click)="profileLogin(profile)">
+              <!-- <svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg" version="1.1" 
+                    [attr.fill]="profile.color" 
+                    >
+                    <path d="
+                        M 0 80
+                        C 0 20, 20 0, 80 0
+                        S 160 20, 160 80, 140 160
+                        80 160, 0 140, 0 80
+                        " 
+                        transform="
+                        rotate(0, 80, 80)
+                        translate(0, 0)
+                        "
+                    ></path>
+                </svg> -->
               <img
-                id="psize"
                 [className]="isEdit ? 'visible' : ''"
                 [src]="profile.image"
               />
@@ -42,7 +56,6 @@
                   <i class="fas fa-lock" style="color: #707070"></i>
                 </div>
               }
-              
               @if (isEdit) {
                 <div class="pen">
                   <i class="fa-solid fa-pen" (click)="profileEdit(profile)"></i>
@@ -99,7 +112,7 @@
                   <span style="color: #fff">Pin Lock</span>
                   <div class="toggle2">
                   <label class="toggle">
-                    <input class="toggle-checkbox" type="checkbox" [checked]="editProfileForm.value.isprofileLock" (click)=" profilePassword()" formControlName = "isprofileLock"/>
+                    <input class="toggle-checkbox" type="checkbox" [checked] = "editProfileForm.get('isprofileLock')?.value" (click)="profilePassword(editProfileForm.value.id)" formControlName = "isprofileLock"/>
                     <div class="toggle-switch"></div>
                     <span class="toggle-label"></span>
                   </label>
@@ -113,7 +126,7 @@
               </div>
             </div>
             <div class="password-button">
-              <button class="profileedit-save" (click)="profileedit()" [disabled]="editProfileForm.get('name')?.invalid" [className]="passwordForm.get('name') ? 'profileedit-save ' : 'notsave'">
+              <button class="profileedit-save" (click)="profileedit()" [disabled]="editProfileForm.get('name')?.invalid">
                 <span style="font-weight: bold">Save</span>
               </button>
             </div>
@@ -122,7 +135,7 @@
       </div>
   }
 
-  @if(ispassword){
+@if(ispassword){
   <div class="row">
     <div class="lock__screen">
       <div class="pin-content">
@@ -141,6 +154,7 @@
                   oninput="this.value = this.value.replace(/[^0-9]/,'')"
                   maxlength="1"
                   formControlName="first"
+                  (input)="onInputChange(field1Input, field2Input)"
                 />
                 <input
                   #field2Input
@@ -163,7 +177,7 @@
                   type="text"
                   oninput="this.value = this.value.replace(/[^0-9]/,'')"
                   maxlength="1"
-                  (input)="onInputChange(field3Input, field5Input)"
+                  (input)="onInputChange(field4Input, field5Input)"
                   formControlName="fourth"
                 />
               </div>
@@ -205,7 +219,7 @@
               </div>
               <div
                 class="pin-mis"
-                *ngIf="passwordForm?.errors?.['mismatch'] && passwordForm.touched"
+                *ngIf="formValidity()&&passwordForm.touched"
               >
                 <span style="color: red">PIN must match</span>
               </div>
@@ -228,62 +242,61 @@
     </div>
   </div>
   }
-  
-   @if (isprofile_login) {
-  <div class="userprofile-login">
-    <div class="profile_screen">
-      <div class="profile-pin">
-       
-        <form [formGroup]="profileLoginform" (ngSubmit)="onSubmit()">
-          <nav>
-            <button class="close-btn" (click)="profile_close()">X</button>
-          </nav>
-          <div class="fields1">
-            <div class="text1">
-              <h6 style="color: #fff; font-weight: 200">Profile is Locked</h6>
+  @if (isprofile_login) {
+    <div class="userprofile-login">
+      <div class="profile_screen">
+        <div class="profile-pin">
+         
+          <form [formGroup]="profileLoginform" (ngSubmit)="onSubmit()">
+            <nav>
+              <button class="close-btn" (click)="profile_close()">X</button>
+            </nav>
+            <div class="fields1">
+              <div class="text1">
+                <h6 style="color: #fff; font-weight: 200">Profile is Locked</h6>
+              </div>
+              <div class="texts2">
+                <h2 style="color: #fff; font-weight: bold">Enter your PIN</h2>
+              </div>
+              <div class="loginpass">
+                <input
+                  #pro1
+                  type="text"
+                  oninput="this.value = this.value.replace(/[^0-9]/,'' )"
+                  maxlength="1"
+                  (input)="onInputChange(pro1, pro2)"
+                />
+                <input
+                  #pro2
+                  type="text"
+                  oninput="this.value = this.value.replace(/[^0-9]/,'')"
+                  maxlength="1"
+                  (input)="onInputChange(pro2, pro3)"
+                />
+                <input
+                  #pro3
+                  type="text"
+                  oninput="this.value = this.value.replace(/[^0-9]/,'')"
+                  maxlength="1"
+                  (input)="onInputChange(pro3, pro4)"
+                />
+                <input
+                  #pro4
+                  type="text"
+                  oninput="this.value = this.value.replace(/[^0-9]/,'')"
+                  maxlength="1"
+                />
+              </div>
+              <div class="text3">
+                <p (click)="forgotPassword(editProfileForm.value.id)">Forgot PIN?</p>
+              </div>
             </div>
-            <div class="texts2">
-              <h2 style="color: #fff; font-weight: bold">Enter your PIN</h2>
-            </div>
-            <div class="loginpass">
-              <input
-                #pro1
-                type="text"
-                oninput="this.value = this.value.replace(/[^0-9]/,'' )"
-                maxlength="1"
-                (input)="onInputChange(pro1, pro2)"
-              />
-              <input
-                #pro2
-                type="text"
-                oninput="this.value = this.value.replace(/[^0-9]/,'')"
-                maxlength="1"
-                (input)="onInputChange(pro2, pro3)"
-              />
-              <input
-                #pro3
-                type="text"
-                oninput="this.value = this.value.replace(/[^0-9]/,'')"
-                maxlength="1"
-                (input)="onInputChange(pro3, pro4)"
-              />
-              <input
-                #pro4
-                type="text"
-                oninput="this.value = this.value.replace(/[^0-9]/,'')"
-                maxlength="1"
-              />
-            </div>
-            <div class="text3">
-              <p (click)="forgotPassword()">Forgot PIN?</p>
-            </div>
-          </div>
-        </form>
-      
+          </form>
+        
+        </div>
       </div>
     </div>
-  </div>
-  }
+    }
   <div class="shadow1"></div>
   <div class="shadow2"></div>
 
