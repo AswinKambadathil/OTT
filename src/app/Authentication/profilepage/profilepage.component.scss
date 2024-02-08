@@ -19,8 +19,7 @@
 .shadow1{
   border-radius: 50%;
   width: 200px;
-  margin-bottom: 100px;
-  height: 200px;
+  height: 275px;
   background: radial-gradient(circle, #e50914 51%, transparent 94%);
   box-shadow: 0 0 100px 50px #e50914;
   position: absolute;
@@ -58,6 +57,11 @@
     width: 100px;
     height: 100px;
     cursor: pointer;
+}
+.squircle svg{
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
 }
 .addProfile{
   position: relative;

@@ -59,6 +59,7 @@ export class ProfilepageComponent implements OnInit {
       id: [''],
       name: ['', Validators.required],
       isprofileLock: [false],
+      color:[''],
     });
   }
 
@@ -68,18 +69,22 @@ export class ProfilepageComponent implements OnInit {
       name: 'Athul',
       image: '/assets/profilelogo2.svg',
       ifprofilelock: false,
+      color: '#CE7AEC'
     },
     {
       id: 2,
       name: 'Aswin',
       image: '/assets/profilelogo.svg',
       ifprofilelock: false,
+      color: '#ECE47A'
     },
     {
       id: 3,
       name: 'Manoj',
-      image: '/assets/profilelogo3.svg',
+      image: '/assets/profilelogo2.svg',
       ifprofilelock: false,
+      color:'blue'
+      
     },
   ];
 
@@ -104,6 +109,7 @@ export class ProfilepageComponent implements OnInit {
         name: this.editProfileForm.value.name,
         image: '/assets/profilelogo.svg',
         ifprofilelock: this.editProfileForm.value.isprofileLock,
+        color:this.editProfileForm.value.color
       };
 
       this.profiles.push(newProfile);
@@ -219,6 +225,7 @@ export class ProfilepageComponent implements OnInit {
         name: this.editProfileForm.value.name,
         image: '/assets/profilelogo.svg',
         ifprofilelock: this.editProfileForm.value.isprofileLock,
+        color:this.editProfileForm.value.color
       };
       this.isprofileEdit = false;
       this.ifCond = true;
