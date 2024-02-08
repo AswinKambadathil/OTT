@@ -4,24 +4,15 @@
     box-sizing: border-box;
 }
 .mainDetailWrap{
-    // height: 724px;
-    // width: 1533px;
-    height: auto;
-    width: 100vw;
+    // background-size: auto;
+    // height: fit-content;
+    // width: 100vw;
     color: white;
     background-color: black;
     .detailWrap{
-        height: 100%;
-        width: 100%;
-        // object-fit: cover;
         position: relative;
         .imgWrap{
-            height: 100%;
-            width: 100%;
             position: relative;
-            img{
-                height: 725px;
-            }
             .gradient{
                 height: 100%;
                 width: 100%;

@@ -152,4 +152,8 @@ export class DetailviewComponent {
     }
   ];
 
+
+  myFavorite(item:any){
+    item.isFavorite = !item.isFavorite
+  }
 }
