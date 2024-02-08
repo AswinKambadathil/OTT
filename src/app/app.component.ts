@@ -15,7 +15,7 @@ import { NavigationbarComponent } from './NavigationBar/navigationbar/navigation
   selector: 'app-root',
   standalone: true,
   imports: [CommonModule,RouterOutlet,LoginScreenComponent,MainCarouselComponent,ContinueWatchComponent,WelcomescreenComponent,ProfilepageComponent,ChooseLanguageComponent,ChoosePlanComponent,DetailviewComponent,NavigationbarComponent],
- templateUrl: './app.component.html',
+  templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent {

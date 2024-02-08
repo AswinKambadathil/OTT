@@ -7,6 +7,7 @@ import { ChoosePlanComponent } from './choose-plan/choose-plan.component';
 import { MainCarouselComponent } from './mCarousel/main-carousel/main-carousel.component';
 import { LoginScreenComponent } from './Authentication/login-screen/login-screen.component';
 import { ContinueWatchComponent } from './ContinueWatch/continue-watch/continue-watch.component';
+import { welcomescreen_router } from './welcomescreen/welcomescreen.routes';
 export const routes: Routes = [
     {path:'login/maincarousel',component:MainCarouselComponent},
     {path:'login',component:LoginScreenComponent},
