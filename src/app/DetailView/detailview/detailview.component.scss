@@ -1,20 +1,27 @@
 *{
     padding: 0;
     margin: 0;
+    box-sizing: border-box;
 }
 .mainDetailWrap{
-    height: 100vh;
-    width: 100%;
+    // height: 724px;
+    // width: 1533px;
+    height: auto;
+    width: 100vw;
     color: white;
     background-color: black;
     .detailWrap{
         height: 100%;
         width: 100%;
+        // object-fit: cover;
         position: relative;
         .imgWrap{
             height: 100%;
             width: 100%;
             position: relative;
+            img{
+                height: 725px;
+            }
             .gradient{
                 height: 100%;
                 width: 100%;
@@ -28,13 +35,14 @@
         }
         .detailContent{
             position: absolute;
-            top: 100px;
+            top: 150px;
             left: 100px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             height: 60%;
-            width: 30%;
+            object-fit: cover;
+            width: 35%;
             .category{
                 span{
                     font-weight: bold;
@@ -90,7 +98,7 @@
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    img{
+                    svg{
                         width: 20px;
                     }
                 }
@@ -112,7 +120,7 @@
             background-color: black;
             .related{
                 position: absolute;
-                bottom: 10px;
+                bottom: 20px;
                 display: flex;
                 gap: 10px;
                 left: 45%;
