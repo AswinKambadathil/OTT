@@ -1,6 +1,6 @@
 .profile-container{
-    width: 100vw;
-    height: 100%;
+    width: 100%;
+    height: 100vh;
     // background: rgb(5,20,22);
     background: black;
     overflow: hidden;
@@ -17,14 +17,14 @@
 }
 
 .shadow1{
-    border-radius: 50%;
-    width: 200px;
-    height: 275px;
-    background: radial-gradient(circle, #e50914 51%, transparent 94%);
-    box-shadow: 0 0 100px 50px #e50914 !important;
-    position: absolute;
-    bottom: -83px;
-    left: -205px;
+  border-radius: 50%;
+  width: 200px;
+  height: 275px;
+  background: radial-gradient(circle, #e50914 51%, transparent 94%);
+  box-shadow: 0 0 100px 50px #e50914;
+  position: absolute;
+  bottom: -83px;
+  left: -205px;
 }
 .shadow2{
     border-radius: 50%;
@@ -42,7 +42,7 @@
     flex-wrap: wrap;
     align-content: center;
     justify-content: center;
-    margin-top: 150px;
+    padding-top:  150px;
     text-align: center;
 }
 .heading h1{
@@ -57,6 +57,11 @@
     width: 100px;
     height: 100px;
     cursor: pointer;
+}
+.squircle svg{
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
 }
 .addProfile{
   position: relative;
@@ -442,7 +447,7 @@ nav {
 .setpin{
   display: flex;
     flex-direction: column;
-    // flex-wrap: nowrap;
+    flex-wrap: nowrap;
     justify-content: center;
     align-items: flex-start;
 }
@@ -450,11 +455,11 @@ nav {
     margin-top: 20px;
     width: 60%;
     display: flex;
-    flex-wrap: wrap;
     align-content: center;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
-    flex-direction: row
+    flex-direction: row;
+    gap:20px
 }
 .setpass input{
   width: 60px;
@@ -470,7 +475,7 @@ nav {
   margin-top: 30px;
   display: flex;
     flex-direction: column;
-    // flex-wrap: nowrap;
+    flex-wrap: nowrap;
     justify-content: center;
     align-items: flex-start;
 }
@@ -478,11 +483,12 @@ nav {
   margin-top: 20px;
   width: 60%;
   display: flex;
-  flex-wrap: wrap;
+ 
   align-content: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
-  flex-direction: row
+  flex-direction: row;
+  gap:20px;
 }
 .confpass input{
 width: 60px;
@@ -572,7 +578,6 @@ text-align: center;
   margin-top: 20px;
     width: 100%;
     display: flex;
-    // flex-wrap: wrap;
     align-content: center;
     justify-content: center;
     align-items: center;
@@ -596,30 +601,4 @@ text-align: center;
   align-items: flex-start;
   width: 100%;
   height: 95PX;
-}
-.name1{
-  width: 100%;
-  height: 10px;
-  display: flex;
-  background-color: #707070;
-  padding: 20px 30px 20px 8px;
-  border-radius: 8px;
-  flex-wrap: wrap;
-  align-content: center;
-  align-items: center;
-  justify-content: flex-start;
-}
-.name1 input{
-  width: 100%;
-  border: none;
-  background: transparent;
-  color: #fff;
-  outline: none;
-}
-.name1 input::placeholder {
-  color: #fff;
-  opacity: 1; 
-}
-.name1 input:focus::placeholder {
-  color: transparent;
 }

@@ -1,0 +1,109 @@
+.main-wrap {
+    width: 100vw;
+    height: 100vh;
+    background: black;
+    overflow: hidden;
+    // position: relative;
+}
+
+.shadow1 {
+    border-radius: 50%;
+    width: 200px;
+    height: 275px;
+    background: radial-gradient(circle, #e50914 51%, transparent 94%);
+    box-shadow: 0 0 100px 40px #e50914;
+    position: absolute;
+    bottom: -83px;
+    left: -205px;
+}
+
+.shadow2 {
+    border-radius: 50%;
+    width: 200px;
+    height: 275px;
+    background: radial-gradient(circle, #e50914 51%, transparent 94%);
+    box-shadow: 0 0 100px 50px #e50914 !important;
+    position: absolute;
+    top: -83px;
+    right: -205px;
+}
+
+.choose-plan {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    margin: 30px;
+    margin-left: 100px;
+    margin-right: 100px;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+    align-content: center;
+    gap: 25px;
+    height: 100%;
+}
+
+.header-top {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 20px;
+}
+
+.logo {
+    width: 120px;
+}
+
+.heading1 h1 {
+    color: #fff;
+}
+
+.ott {
+    width: 80%;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 29px;
+}
+
+.ott-platforms {
+    cursor: pointer;
+}
+
+.ott-platforms svg {
+    width: 90px;
+    height: 90px;
+}
+
+.finish {
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.get-started-btn {
+    align-items: center;
+}
+
+
+.get-started-btn:hover {
+    background-color: #ff1f3d;
+    opacity: 0.9;
+}
+
+.finish button {
+    width: 30%;
+    display: flex;
+    flex-wrap: wrap;
+    height: 40px;
+    background: #E50914;
+    border: 0;
+    outline: 0;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+    align-content: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
