@@ -30,8 +30,21 @@
       <div class="stream">
         <div class="amazon">{{ item.amazon }}</div>
         <div class="sony">{{ item.sony }}</div>
-        <div class="favorite">
-          <img src="assets/Login/Logos/favorite.svg" alt="" />
+        <div class="favorite" (click)="myFavorite(item)">
+            @if(item.isFavorite){
+                <svg xmlns="http://www.w3.org/2000/svg" width="26.091" height="23.706" viewBox="0 0 26.091 23.706">
+                    <g id="favorite" transform="translate(-0.921 -4.004)">
+                      <path id="Path_52" data-name="Path 52" d="M24.093,6.944A6.55,6.55,0,0,0,14,7.957a6.55,6.55,0,1,0-10.089,8.25L14,26.3,24.093,16.207A6.55,6.55,0,0,0,24.093,6.944Z" transform="translate(0 0)" fill="#fff" stroke="#f7f7f7" stroke-linecap="square" stroke-width="2"/>
+                    </g>
+                  </svg>                                       
+
+            }@else {
+                <svg xmlns="http://www.w3.org/2000/svg" width="26.091" height="23.706" viewBox="0 0 26.091 23.706">
+                    <g id="favorite" transform="translate(-0.921 -4.004)">
+                      <path id="Path_52" data-name="Path 52" d="M24.093,6.944A6.55,6.55,0,0,0,14,7.957a6.55,6.55,0,1,0-10.089,8.25L14,26.3,24.093,16.207A6.55,6.55,0,0,0,24.093,6.944Z" transform="translate(0 0)" fill="#f00" stroke="#f00" stroke-linecap="square" stroke-width="2"/>
+                    </g>
+                  </svg>
+            }
         </div>
       </div>
       <div class="stream">
