@@ -8,11 +8,13 @@ import { NavigationbarComponent } from './NavigationBar/navigationbar/navigation
 import { DetailviewComponent } from './DetailView/detailview/detailview.component';
 import { WelcomescreenComponent } from './Authentication/welcomescreen/welcomescreen.component';
 import { ProfilepageComponent } from './Authentication/profilepage/profilepage.component';
+import { ChooseLanguageComponent } from './Authentication/choose-language/choose-language.component';
+import { ChoosePlanComponent } from './Authentication/choose-plan/choose-plan.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet,LoginScreenComponent,MainCarouselComponent,ContinueWatchComponent,NavigationbarComponent,DetailviewComponent,WelcomescreenComponent,ProfilepageComponent],
+  imports: [CommonModule, RouterOutlet,LoginScreenComponent,MainCarouselComponent,ContinueWatchComponent,NavigationbarComponent,DetailviewComponent,WelcomescreenComponent,ProfilepageComponent,ChooseLanguageComponent,ChoosePlanComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

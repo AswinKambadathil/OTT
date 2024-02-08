@@ -5,6 +5,8 @@ import { LoginScreenComponent } from './Authentication/login-screen/login-screen
 import { ContinueWatchComponent } from './ContinueWatch/continue-watch/continue-watch.component';
 import { welcomescreen_router } from './Authentication/welcomescreen/welcomescreen.routes';
 import { ProfilepageComponent } from './Authentication/profilepage/profilepage.component';
+import { ChooseLanguageComponent } from './Authentication/choose-language/choose-language.component';
+import { ChoosePlanComponent} from './Authentication/choose-plan/choose-plan.component';
 export const routes: Routes = [
     {path:'login/maincarousel',component:MainCarouselComponent},
     {path:'login',component:LoginScreenComponent},
