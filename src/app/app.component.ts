@@ -5,11 +5,12 @@ import { LoginScreenComponent } from './Authentication/login-screen/login-screen
 import { MainCarouselComponent } from './mCarousel/main-carousel/main-carousel.component';
 import { ContinueWatchComponent } from './ContinueWatch/continue-watch/continue-watch.component';
 import { NavigationbarComponent } from './NavigationBar/navigationbar/navigationbar.component';
+import { DetailviewComponent } from './DetailView/detailview/detailview.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet,LoginScreenComponent,MainCarouselComponent,ContinueWatchComponent,NavigationbarComponent],
+  imports: [CommonModule, RouterOutlet,LoginScreenComponent,MainCarouselComponent,ContinueWatchComponent,NavigationbarComponent,DetailviewComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

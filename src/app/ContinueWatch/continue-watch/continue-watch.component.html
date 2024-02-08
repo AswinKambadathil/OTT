@@ -39,6 +39,7 @@
                     @for (item of imageArray; track $index) {
                         <li>
                             <div class="portimageWrap" (mouseover)="onFocus(item, $event)" (mouseleave)="onRelease(item, $event)">
+                                <div class="gradient"></div>
                                 <img [src]="item.potrait" alt="" [id]="'mainImg' + item.id" class="mainImg"/>
                         
                                 <div class="playWrapMain">
