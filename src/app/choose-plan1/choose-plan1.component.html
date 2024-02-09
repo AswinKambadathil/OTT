@@ -1,0 +1,129 @@
+<div class="main-container">
+  <div class="shadow1"></div>
+  <div class="shadow2"></div>
+  <div class="choose-plan1">
+    <div class="header-top">
+      <div class="heading1"><h1>Choose Plan</h1></div>
+      <img src="/assets/onnet+logo+white@2x.png" class="logo" />
+    </div>
+    <div class="subscription-plan">
+      <div class="subscription-type">
+        <div class="heading2">
+          <span style="color: #fff; font-weight: bold">Subscription</span>
+          <span style="color: #fff">Type</span>
+        </div>
+        <div class="screen">
+          <div class="sc"><input type="radio" id="specifyColor" name="screen" />1 Screen</div>
+          <div class="sc"><input type="radio" id="specifyColor"  name="screen" />2 Screen</div>
+        </div>
+      </div>
+     
+      <div class="months">
+        @for (item of choosePlan; track $index) {
+        <div class="month" [style.background]="item?.background ? '#E50914' : '#fff'"
+        (click)="planselect(item)">{{ item.plan }}</div>
+        }
+      </div>
+      
+    </div>
+    <div class="packss">
+      @for (items of pack; track $index) { @for (item of items.pack; track
+      $index) {
+      <div class="packs">
+        <div class="pack">
+          <div class="packNo">
+            <span style="color: #fff">Pack</span
+            ><span style="color: #fff; font-weight: bold">{{
+              item.month
+            }}</span>
+          </div>
+          <div class="percentge">
+            <span style="color: #e50914">{{ item.match }}% Match</span>
+          </div>
+          <div class="op">
+            <span style="color: #fff; font-weight: 500">OTT Channels</span
+            ><span style="color: #707070; font-weight: 500">9 Providers</span>
+          </div>
+
+          <div class="ottchannels">
+            @for (item of channelIcon; track item) {
+            <div class="channel-icon">
+              <svg
+                viewBox="0 0 160 160"
+                xmlns="http://www.w3.org/2000/svg"
+                version="1.1"
+                fill="#707070"
+              >
+                <path
+                  d="
+                                          M 0 80
+                                          C 0 20, 20 0, 80 0
+                                          S 160 20, 160 80, 140 160
+                                          80 160, 0 140, 0 80
+                                          "
+                  transform="
+                                          rotate(0, 80, 80)
+                                          translate(0, 0)
+                                          "
+                ></path>
+              </svg>
+            </div>
+            }
+          </div>
+          <div class="op">
+            <span style="color: #fff; font-weight: 500">FTA Channels</span
+            ><span style="color: #707070; font-weight: 500">9 Providers</span>
+          </div>
+
+          <div class="ottchannels">
+            @for (item of channelIcon; track item) {
+            <div class="channel-icon">
+              <svg
+                viewBox="0 0 160 160"
+                xmlns="http://www.w3.org/2000/svg"
+                version="1.1"
+                fill="#707070"
+              >
+                <path
+                  d="
+                                                M 0 80
+                                                C 0 20, 20 0, 80 0
+                                                S 160 20, 160 80, 140 160
+                                                80 160, 0 140, 0 80
+                                                "
+                  transform="
+                                                rotate(0, 80, 80)
+                                                translate(0, 0)
+                                                "
+                ></path>
+              </svg>
+            </div>
+            }
+          </div>
+          <div class="rate">
+            <div class="rates">
+              <div style="display: flex; gap: 3px">
+                <span style="color: #fff; font-weight: 500">₹</span
+                ><span style="color: #fff; font-weight: 500">{{
+                  item.price
+                }}</span
+                ><span style="color: #fff; font-weight: 500">/</span
+                ><span style="color: #707070; font-weight: 500">month</span>
+              </div>
+              <div class="discount">
+                <span>save</span><span>{{ item.discount }}%</span
+                ><span>yearly</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      } }
+    </div>
+    <div class="proceed">
+        <button class="get-started-btn">
+            proceed
+        </button>
+    </div>
+  </div>
+</div>
