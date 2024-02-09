@@ -6,11 +6,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-profilepage',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule,HttpClientModule],
   templateUrl: './profilepage.component.html',
   styleUrl: './profilepage.component.scss',
 })
@@ -34,9 +35,12 @@ export class ProfilepageComponent implements OnInit {
   private router = inject(Router);
   private profilelogin = inject(FormBuilder);
   private formBuilder = inject(FormBuilder);
-  constructor() {}
+
+  constructor( ) {}
 
   ngOnInit(): void {
+    console.log();
+    
     this.passwordForm = this.formBuilder.group({
       first: ['', Validators.required],
       second: ['', Validators.required],
@@ -62,7 +66,7 @@ export class ProfilepageComponent implements OnInit {
       color:[''],
     });
   }
-
+  
   profiles = [
     {
       id: 1,
