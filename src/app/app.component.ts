@@ -11,11 +11,12 @@ import { ChoosePlanComponent } from './choose-plan/choose-plan.component';
 import { DetailviewComponent } from './DetailView/detailview/detailview.component';
 import { NavigationbarComponent } from './NavigationBar/navigationbar/navigationbar.component';
 import { HttpClientModule } from '@angular/common/http';
+import { CastdetailsComponent } from './CastDetails/castdetails/castdetails.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule,RouterOutlet,LoginScreenComponent,MainCarouselComponent,ContinueWatchComponent,WelcomescreenComponent,ChooseLanguageComponent,ChoosePlanComponent,DetailviewComponent,NavigationbarComponent,ChoosePlanComponent,HttpClientModule,ProfilepageComponent],
+  imports: [CommonModule,RouterOutlet,LoginScreenComponent,MainCarouselComponent,ContinueWatchComponent,WelcomescreenComponent,ChooseLanguageComponent,ChoosePlanComponent,DetailviewComponent,NavigationbarComponent,ChoosePlanComponent,HttpClientModule,ProfilepageComponent,CastdetailsComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

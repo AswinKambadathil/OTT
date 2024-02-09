@@ -1,0 +1,30 @@
+<div class="mainCastWrapDiv">
+  <div class="castInfo">Cast Information</div>
+  @for (item of imageArray; track $index) { @if (item.id ==1) {
+  <div class="mainCastWrap">
+    <div class="mainCast">
+      <div class="castImg">
+        <img src="{{ item.potrait }}" alt="" />
+      </div>
+      <div class="castDetails">
+        <div class="castName">{{ item.cast }}</div>
+        <div class="subCastName">{{ item.subcast }}</div>
+      </div>
+    </div>
+  </div>
+  <div class="detailLang">
+    <div class="lang">
+        <div class="lang1">Languages</div>
+        <div class="lang2">{{item.name}} | {{item.subcast}} | {{item.cast}}</div>
+    </div>
+    <div class="subtitle">
+        <div class="lang1">Subtitles</div>
+        <div class="lang2">{{item.name}} | {{item.subcast}} | {{item.cast}}</div>
+    </div>
+    <div class="audio">
+        <div class="lang1">Audio & Vedio</div>
+        <div class="lang2">{{item.name}} | {{item.subcast}} | {{item.cast}}</div>
+    </div>
+  </div>
+  }}
+</div>
