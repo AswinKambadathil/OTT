@@ -10,11 +10,12 @@ import { ChooseLanguageComponent } from './choose-language/choose-language.compo
 import { ChoosePlanComponent } from './choose-plan/choose-plan.component';
 import { DetailviewComponent } from './DetailView/detailview/detailview.component';
 import { NavigationbarComponent } from './NavigationBar/navigationbar/navigationbar.component';
+import { CastdetailsComponent } from './CastDetails/castdetails/castdetails.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule,RouterOutlet,LoginScreenComponent,MainCarouselComponent,ContinueWatchComponent,WelcomescreenComponent,ProfilepageComponent,ChooseLanguageComponent,ChoosePlanComponent,DetailviewComponent,NavigationbarComponent],
+  imports: [CommonModule,RouterOutlet,LoginScreenComponent,MainCarouselComponent,ContinueWatchComponent,WelcomescreenComponent,ProfilepageComponent,ChooseLanguageComponent,ChoosePlanComponent,DetailviewComponent,NavigationbarComponent,CastdetailsComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
