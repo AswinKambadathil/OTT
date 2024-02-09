@@ -6,11 +6,12 @@ import { MainCarouselComponent } from './mCarousel/main-carousel/main-carousel.c
 import { ContinueWatchComponent } from './ContinueWatch/continue-watch/continue-watch.component';
 import { NavigationbarComponent } from './NavigationBar/navigationbar/navigationbar.component';
 import { DetailviewComponent } from './DetailView/detailview/detailview.component';
+import { CastdetailsComponent } from './CastDetails/castdetails/castdetails.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet,LoginScreenComponent,MainCarouselComponent,ContinueWatchComponent,NavigationbarComponent,DetailviewComponent],
+  imports: [CommonModule, RouterOutlet,LoginScreenComponent,MainCarouselComponent,ContinueWatchComponent,NavigationbarComponent,DetailviewComponent,CastdetailsComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

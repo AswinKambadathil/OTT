@@ -48,7 +48,7 @@ export class DetailviewComponent {
     },
     {
       id: 4,
-      imageUrl: 'assets/Login/Movies/kantara-Banner.jpg',
+      imageUrl: 'assets/Login/Movies/kantara-Name.jpg',
       description: 'Movie',
       title: '#1 in Trending',
       discriptUrl: 'assets/Login/Movies/ozler-name.jpeg',
