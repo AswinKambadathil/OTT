@@ -1,0 +1,38 @@
+<div class="episodeWrap">
+  <div class="episodeSelect">
+    <div class="episodeHeading" (click)="displayStyle()">
+      <div>{{ Episodes }}</div>
+      <img src="assets/Login/Logos/arrow_drop_down.svg" alt="" />
+    </div>
+    <div
+      class="episodeSelectDrop"
+      id="episodeSelectDrop"
+      (mouseleave)="nodisplayStyle()"
+    >
+      @for (item of imageArray; track $index) {
+      <div (click)="selectEpisode(item)">{{ item.episode }}</div>
+      }
+    </div>
+  </div>
+  <div class="episodeDetailWrap">
+    @for (item of imageArray1[Episodes]; track item) {
+    <div class="episodeDetail">
+      <div class="episodeId">{{ item.id }}</div>
+      <div class="episodeImg">
+        <img src="{{ item.imageUrl }}" alt="" />
+      </div>
+      <div class="episodeContent">
+        <div class="episodeNum">{{ item.episode }}</div>
+        <div class="episodeName">{{ item.name }}</div>
+        <div class="episodeBrief">
+          {{ !item?.isFavorite ? item.brief : sliceText(item.brief, 0, 81) }}
+          <span (click)="showMore(item)">{{
+            !item?.isFavorite ? "Show Less" : "Show More"
+          }}</span>
+        </div>
+        <div class="episodeTime">{{ item.time }}</div>
+      </div>
+    </div>
+    }
+  </div>
+</div>
