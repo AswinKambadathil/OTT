@@ -99,8 +99,11 @@ export class LoginScreenComponent implements OnInit{
   }
 
 
-   validateCase1(){
-        return this.userform1.invalid
+  validateCase1(){
+    const mobnoControl = this.userform1.get('mobno');
+    const mobnoValue = mobnoControl ? mobnoControl.value : '';
+
+  return !mobnoValue || mobnoValue.length !== 10 || this.userform1.invalid;
   }
 
 

@@ -12,15 +12,16 @@
 
 .episodeSelect{
     width: 30%;
+    display: inline;
     position: relative;
     .episodeSelectDrop{
         display: none;
         position: absolute;
+        background-color: grey;
         padding: 10px;
         border-radius: 8px;
         width: 30%;
         font-size: 25px;
-        backdrop-filter: blur(20px);
         div{
             border-bottom: 2px solid black;
             padding: 10px;
@@ -29,6 +30,7 @@
     .episodeHeading{
         font-size: 25px;
         display: flex;
+        background-color: gray;
         width: 30%;
         justify-content: space-between;
         padding: 10px;
