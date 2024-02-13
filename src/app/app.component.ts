@@ -7,11 +7,16 @@ import { ContinueWatchComponent } from './ContinueWatch/continue-watch/continue-
 import { DetailviewComponent } from './DetailView/detailview/detailview.component';
 import { CastdetailsComponent } from './CastDetails/castdetails/castdetails.component';
 import { EpisodeDetailsComponent } from './EpisodeDetails/episode-details/episode-details.component';
+import { ChoosePlanComponent } from './choose-plan/choose-plan.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ProfilepageComponent } from './profilepage/profilepage.component';
+import { WelcomescreenComponent } from './welcomescreen/welcomescreen.component';
+import { ChooseLanguageComponent } from './choose-language/choose-language.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet,LoginScreenComponent,MainCarouselComponent,ContinueWatchComponent,DetailviewComponent,CastdetailsComponent],
+  imports: [CommonModule,RouterOutlet,LoginScreenComponent,MainCarouselComponent,ContinueWatchComponent,WelcomescreenComponent,ChooseLanguageComponent,ChoosePlanComponent,DetailviewComponent,ChoosePlanComponent,HttpClientModule,ProfilepageComponent,CastdetailsComponent,EpisodeDetailsComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
