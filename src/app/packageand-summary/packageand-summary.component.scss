@@ -1,9 +1,8 @@
-.main-container{
+.summary-container{
     width: 100vw;
     height: 100%;
     background: black;
     overflow: hidden;
-    // background-image:linear-gradient(to left bottom,red , transparent)
     position: relative;
 }
 .shadow1 {
@@ -26,9 +25,8 @@
     position: absolute;
     top: -83px;
     right: -205px;
-    // overflow: hidden;
 }
-.choose-plan1 {
+.package-summary {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
@@ -40,7 +38,6 @@
     flex-wrap: nowrap;
     align-content: center;
     gap: 25px;
-    // height: 100%;
 }
 .header-top {
     width: 100%;
@@ -53,118 +50,115 @@
 .logo {
     width: 120px;
 }
-.heading2{
-    width: 100px;
-    width: 100%;
-    display: flex;
-    gap: 5px;
-}
-.heading1 h1 {
+.heading p {
+    font-size: 20px;
     color: #fff;
+    font-weight: bold;
 }
-.subscription-plan{
-    display: flex;
+.heading span{
+    color: #E50914;
+}
+.order{
     width: 100%;
-    gap: 30px;
-}
-.subscription-type{
-    width: 20%;
-}
-#specifyColor{
-    accent-color: red;
-}
-.screen{
-    color: #fff;
     display: flex;
-    gap: 10px;
-}
-.totalNoscreen{
-    display: flex;
-    gap: 10px;
-}
-.sc{
-    display: flex;
-    gap: 10px;
-}
-.sc input{
-    cursor: pointer;
-}
-.months{
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-.month {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100px;
-    height: 40px;
-    border-radius: 5px;
-    cursor: pointer;
-    color: black; 
-}
-
-.selected {
-    color: white; 
-}
-.packss{
-    display: flex;
-    width: 100%;
     justify-content: space-between;
 }
-.packs{
+.package{
+    width: 70%;
+    height: 300px;
+    border-radius: 10px;
+    border: 1px solid #F5F5F5;
     display: flex;
+    flex-direction: column;
+    padding: 10px;
+    justify-content: space-between;
+}
+.package{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+.pack span{
+    font-size: 20px;
+    color: #fff;
+    font-weight: bold;
+}
+.ottchannels{
+    display: flex;
+    overflow: scroll;
+    gap: 15px;
+    padding-top: 10px;
     
 }
-.pack{
-    width: 300px;
+.channel-icon svg{
+    width: 80px;
+    height: 80px;
+}
+.pack1{
+    padding-top: 30px;
+    span{
+        font-size: 20px;
+        color: #fff;
+        font-weight: bold;
+    }
+}
+.summary{
+    width: 30%;
     height: 300px;
     border-radius: 10px;
     // border: 1px solid #F5F5F5;
     display: flex;
     flex-direction: column;
-    padding: 10px;
-    justify-content: space-between;
-    cursor: pointer;
+    padding: 20px 40px;
+    gap:10px
+    // justify-content: space-between;
 }
-.packNo{
-    display: flex;
-    gap: 10px;
-    font-size: 30px;
-}
-.op{
-    display: flex;
-    justify-content: space-between;
-}
-.ottchannels{
-    display: flex;
-    overflow: scroll;
-    gap: 7px;
-    
-}
-.channel-icon svg{
-    width: 40px;
-    height: 40px;
-}
-.rates{
-    display: flex;
-    justify-content: space-between;
-}
-.rate{
+.amount{
     width: 100%;
-    border-top: 1px solid #F5F5F5;
-}
-.discount{
-    color: #00A917;
     display: flex;
-    gap: 3px;
-    span{
-
-        font-size: small;
-        font-size: 500;
-    }
+    justify-content: center;
+}
+.amount span{
+    font-size: 70px;
+    font-weight: bold;
+    color: #fff;
+}
+.apply-coupon{
+    width: 100%;
+    height: 10px;
+    display: flex;
+    background-color:transparent;
+    padding: 20px 30px 20px 8px;
+    border-radius: 8px;
+    flex-wrap: wrap;
+    border: 1px solid #F5F5F5;
+    align-content: center;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  .apply-coupon input{
+    width: 100%;
+    border: none;
+    background: transparent;
+    color: #fff;
+    outline: none;
+  }
+  .applay-code{
+    position: relative;
+  }
+  .coupon-code{
+    width: 106px;
+    position: absolute;
+    top: 0px;
+    left: 5px;
+    padding-left: 2px;
+    pointer-events: none;
+  }
+  .input-text:focus +.coupon-code, .input-text:not(:placeholder-shown) + .coupon-code{
+     top: -23px;
+    color: rgba($color: #fff, $alpha: 0.8);
+    background-color: black;
+    padding: 0 15px;
 }
 .proceed {
     width: 100%;
@@ -184,7 +178,7 @@
 }
 
 .proceed button {
-    width: 10%;
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
     height: 40px;

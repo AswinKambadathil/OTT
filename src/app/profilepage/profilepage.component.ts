@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule,HttpClientModule],
   templateUrl: './profilepage.component.html',
   styleUrl: './profilepage.component.scss',
+  
 })
 export class ProfilepageComponent implements OnInit {
   id: any = '';

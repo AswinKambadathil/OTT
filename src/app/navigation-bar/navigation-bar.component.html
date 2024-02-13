@@ -1,0 +1,125 @@
+<div class="navigation-bar">
+  <div class="header-top">
+    <img src="/assets/onnet+logo+white@2x.png" class="logo" />
+    <div class="home"><span>Home</span></div>
+    <div class="movies"><span>Movies</span></div>
+    <div class="shows"><span>Shows</span></div>
+    <div class="epg"><span>EPG</span></div>
+  </div>
+  <div class="profile-section">
+    <div class="search"><img src="/assets/zoom.svg" alt="" /></div>
+    <div class="input"><input type="text" placeholder="Search..." /></div>
+    <div class="notifiction-icon">
+      <img src="/assets/notification-icon.svg" />
+    </div>
+    <div class="squircle">
+      <svg
+        viewBox="0 0 160 160"
+        xmlns="http://www.w3.org/2000/svg"
+        version="1.1"
+        fill="#f60f0f"
+      >
+        <path
+          d="
+                M 0 80
+                C 0 20, 20 0, 80 0
+                S 160 20, 160 80, 140 160
+                80 160, 0 140, 0 80
+                "
+          transform="
+                rotate(
+                0,
+                80,
+                80
+                )
+                translate(
+                0,
+                0
+                )
+                "
+        ></path>
+      </svg>
+      <div class="firsteye">
+        <img id="firsteye" src="/assets/eye.svg" />
+      </div>
+      <div class="secondeye">
+        <img id="secondeye" src="/assets/eye.svg" />
+      </div>
+      <div class="smile">
+        <img id="smile" src="/assets/smile.svg" />
+      </div>
+    </div>
+   
+    <div class="drop-down" (click)=" dropdown()">
+      <img src="/assets/arrow_drop_down.svg" alt=""   />
+      @if (isPtofile) {
+      <div class="userprofile-login">
+        <div class="profile_screen">
+          <div class="dropdown">
+            @for (profile of profiles; track profile){
+            <div class="squircle">
+              <svg
+                viewBox="0 0 160 160"
+                xmlns="http://www.w3.org/2000/svg"
+                version="1.1"
+                fill="#f60f0f"
+              >
+                <path
+                  d="
+                              M 0 80
+                              C 0 20, 20 0, 80 0
+                              S 160 20, 160 80, 140 160
+                              80 160, 0 140, 0 80
+                              "
+                  transform="
+                              rotate(
+                              0,
+                              80,
+                              80
+                              )
+                              translate(
+                              0,
+                              0
+                              )
+                              "
+                ></path>
+              </svg>
+              <div class="firsteye">
+                <img id="firsteye" src="/assets/eye.svg" />
+              </div>
+              <div class="secondeye">
+                <img id="secondeye" src="/assets/eye.svg" />
+              </div>
+              <div class="smile">
+                <img id="smile" src="/assets/smile.svg" />
+              </div>
+              <p style="color: #707070; text-align: center">
+                {{ profile.name }}
+              </p>
+
+              @if (profile.ifprofilelock) {
+              <div class="lock-icon">
+                <i class="fas fa-lock" style="color: #707070"></i>
+              </div>
+              }
+            </div>
+            }
+          </div>
+          <div class="dropdown2">
+            <div class="pen">
+              <i class="fa-solid fa-pen"></i>
+            </div>
+            <button class="manageprofile">Manage Profiles</button>
+          </div>
+          <div class="proceed">
+            <button class="get-started-btn">
+                Sign Out
+            </button>
+        </div>
+        </div>
+      </div>
+    }
+    </div>
+  
+  </div>
+</div>

@@ -7,11 +7,13 @@ import { ChoosePlanComponent } from './choose-plan/choose-plan.component';
 import { ChoosePlan1Component } from './choose-plan1/choose-plan1.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ProfilepageComponent } from './profilepage/profilepage.component';
+import { ApiServiceService } from './api-service.service';
+import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet,WelcomescreenComponent,ChooseLanguageComponent,ChoosePlanComponent,ChoosePlan1Component,HttpClientModule,ProfilepageComponent],
+  imports: [CommonModule, RouterOutlet,WelcomescreenComponent,ChooseLanguageComponent,ChoosePlanComponent,ChoosePlan1Component,HttpClientModule,ProfilepageComponent,NavigationBarComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

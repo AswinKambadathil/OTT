@@ -6,11 +6,13 @@ import { ChoosePlanComponent } from './choose-plan/choose-plan.component';
 import { Component } from '@angular/core';
 import { ChoosePlan1Component } from './choose-plan1/choose-plan1.component';
 import { ProfilepageComponent } from './profilepage/profilepage.component';
+import { PackageandSummaryComponent } from './packageand-summary/packageand-summary.component';
 export const routes: Routes = [
     welcomescreen_router,
     {path:'',redirectTo:'/welcome',pathMatch:'full'},
     {path:'language',component:ChooseLanguageComponent},
     {path:'chooseplan',component:ChoosePlanComponent},
     {path:'chooseplan1',component:ChoosePlan1Component},
-    {path:'profile',component:ProfilepageComponent}
+    {path:'profile',component:ProfilepageComponent},
+    {path:'summary',component:PackageandSummaryComponent}
 ];
