@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-
+import { Component,inject } from '@angular/core';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-choose-plan',
   standalone: true,
@@ -9,6 +9,7 @@ import { Component } from '@angular/core';
 })
 export class ChoosePlanComponent {
 
+  private router = inject(Router)
   ott = [{id:1,background:false},{id:2,background:false},{id:3,background:false},{id:4,background:false},{id:5,background:false},{id:6,background:false},
     {id:7,background:false},{id:8,background:false},{id:9,background:false},{id:10,background:false},{id:11,background:false},{id:12,background:false},
     {id:13,background:false},{id:14,background:false},{id:15,background:false},{id:16,background:false},{id:17,background:false},{id:18,background:false},
@@ -20,4 +21,8 @@ export class ChoosePlanComponent {
       item.background = !item.background;
   }
 
+  finfPlan()
+{
+  this.router.navigate(['/chooseplan1']);
+}
 }
