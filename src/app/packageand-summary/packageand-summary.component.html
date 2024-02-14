@@ -1,0 +1,90 @@
+<div class="summary-container">
+    <div class="shadow1"></div>
+    <div class="shadow2"></div>
+    <div class="package-summary">
+        <div class="header-top">
+            <img src="/assets/onnet+logo+white@2x.png" class="logo" />
+        </div>
+        <div class="heading">
+            <p>You have selected "<span>Pack one</span>" for <span> 1 month(s)</span> to be watched on <span>1 screen(s)</span>.</p>
+        </div>
+        <div class="order">
+            <div class="package">
+                <div class="pack">
+                    <span>OTT Providers</span>
+                </div>
+                <div class="ottchannels">
+                    @for (item of channelIcon; track item) {
+                    <div class="channel-icon">
+                      <svg
+                        viewBox="0 0 160 160"
+                        xmlns="http://www.w3.org/2000/svg"
+                        version="1.1"
+                        fill="#707070"
+                      >
+                        <path
+                          d="
+                                                  M 0 80
+                                                  C 0 20, 20 0, 80 0
+                                                  S 160 20, 160 80, 140 160
+                                                  80 160, 0 140, 0 80
+                                                  "
+                          transform="
+                                                  rotate(0, 80, 80)
+                                                  translate(0, 0)
+                                                  "
+                        ></path>
+                      </svg>
+                    </div>
+                    }
+                </div>
+                <div class="pack1">
+                    <span>FTA Channels</span>
+                </div>
+                <div class="ottchannels">
+                    @for (item of channelIcon; track item) {
+                    <div class="channel-icon">
+                      <svg
+                        viewBox="0 0 160 160"
+                        xmlns="http://www.w3.org/2000/svg"
+                        version="1.1"
+                        fill="#707070"
+                      >
+                        <path
+                          d="
+                                                  M 0 80
+                                                  C 0 20, 20 0, 80 0
+                                                  S 160 20, 160 80, 140 160
+                                                  80 160, 0 140, 0 80
+                                                  "
+                          transform="
+                                                  rotate(0, 80, 80)
+                                                  translate(0, 0)
+                                                  "
+                        ></path>
+                      </svg>
+                    </div>
+                    }
+                </div> 
+            </div>
+            <div class="summary">
+                <div class="amount">
+                    <span>₹ 550</span>
+                </div>
+                <div class="apply-coupon">
+                    <div class="applay-code">
+                        <input type="text" class="input-text" placeholder=" ">
+                        <label class="coupon-code">
+                            Apply Coupon
+                        </label>
+                    </div>
+                </div>
+                <div class="proceed" (click)="proceed()">
+                    <button class="get-started-btn">
+                        Pay Now
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

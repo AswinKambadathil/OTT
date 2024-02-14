@@ -12,11 +12,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProfilepageComponent } from './profilepage/profilepage.component';
 import { WelcomescreenComponent } from './welcomescreen/welcomescreen.component';
 import { ChooseLanguageComponent } from './choose-language/choose-language.component';
+import { ChoosePlan1Component } from './choose-plan1/choose-plan1.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule,RouterOutlet,LoginScreenComponent,MainCarouselComponent,ContinueWatchComponent,WelcomescreenComponent,ChooseLanguageComponent,ChoosePlanComponent,DetailviewComponent,ChoosePlanComponent,HttpClientModule,ProfilepageComponent,CastdetailsComponent,EpisodeDetailsComponent],
+  imports: [CommonModule,RouterOutlet,LoginScreenComponent,MainCarouselComponent,ContinueWatchComponent,WelcomescreenComponent,ChooseLanguageComponent,ChoosePlanComponent,DetailviewComponent,ChoosePlanComponent,HttpClientModule,ProfilepageComponent,CastdetailsComponent,EpisodeDetailsComponent,ChoosePlan1Component],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
