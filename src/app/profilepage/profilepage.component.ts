@@ -7,6 +7,7 @@ import { Validators } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { ApiServiceService } from '../api-service.service';
 
 @Component({
   selector: 'app-profilepage',
@@ -14,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule,HttpClientModule],
   templateUrl: './profilepage.component.html',
   styleUrl: './profilepage.component.scss',
+  providers: [ApiServiceService],
   
 })
 export class ProfilepageComponent implements OnInit {
@@ -36,11 +38,23 @@ export class ProfilepageComponent implements OnInit {
   private router = inject(Router);
   private profilelogin = inject(FormBuilder);
   private formBuilder = inject(FormBuilder);
+  private profileService = inject(ApiServiceService)
 
   constructor( ) {}
+  // profiles: any[] = [];
 
   ngOnInit(): void {
-    console.log();
+    
+  //   this.profileService.getProfileList().subscribe({
+  //     next:(response) => {
+  //       this.profiles = response;
+  //       console.log(this.profiles);
+        
+  //     },
+  //     error:(error) => {
+  //       console.error('Error fetching profiles: ', error);
+  //     }
+  // });
     
     this.passwordForm = this.formBuilder.group({
       first: ['', Validators.required],
@@ -68,6 +82,8 @@ export class ProfilepageComponent implements OnInit {
     });
   }
   
+  
+
   profiles = [
     {
       id: 1,

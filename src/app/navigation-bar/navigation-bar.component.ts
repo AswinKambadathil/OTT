@@ -18,26 +18,43 @@ export class NavigationBarComponent {
       name: 'Athul',
       image: '/assets/profilelogo2.svg',
       ifprofilelock: true,
-      color: '#CE7AEC'
+      color: '#096CE6'
     },
     {
       id: 2,
       name: 'Aswin',
       image: '/assets/profilelogo.svg',
       ifprofilelock: false,
-      color: '#ECE47A'
+      color: '#073C4D'
     },
     {
       id: 3,
       name: 'Manoj',
       image: '/assets/profilelogo2.svg',
       ifprofilelock: false,
-      color:'blue'
+      color:'#E50914'
       
     },
   ];
 
+  pages = [
+    { id: 1, page: 'Home', isActive: false, background: false },
+    { id: 2, page: 'Movies', isActive: false, background: false },
+    { id: 3, page: 'Shows', isActive: false, background: false },
+    { id: 4, page: 'EPG', isActive: false, background: false }
+  ];
   dropdown(){
-    this.isPtofile = !this.isPtofile
+    // this.isPtofile = !this.isPtofile
+    let val = document.getElementById('userprofile-login') as HTMLDivElement
+    val.style.display = 'block'
+  }
+  toggleStyles(item:any){
+    item.isActive = !item.isActive;
+    item.background = !item.background;
+  }
+
+  noFocus(){
+    let val = document.getElementById('userprofile-login') as HTMLDivElement
+    val.style.display = 'none'
   }
 }

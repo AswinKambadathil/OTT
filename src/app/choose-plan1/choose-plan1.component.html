@@ -15,7 +15,7 @@
         <div class="totalNoscreen">
         @for (item of chooseScreen; track item) {
         <div class="screen">
-          <div class="sc"><input type="radio" id="specifyColor" name="screen" [(ngModel)]="selectedScreenId" [value]="item.id" />{{item.screen}}</div>
+          <div class="sc"><input type="radio" id="specifyColor" name="screen"  [value]="item.id" />{{item.screen}}</div>
         </div>
       }
     </div>

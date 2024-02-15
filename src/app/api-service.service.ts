@@ -1,31 +1,23 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApiServiceService {
-  selectedScreenId:any = null ;
+
 
   private http = inject(HttpClient)  
   constructor() {}
 
 
-  getProfilelis(): Observable<any> {
-    return this.http.get(
-      `https://app.pishow.tv/acms/subscriber/getProfilesListBySubscriber/630383ffbf448c47a0a81413`
-    );
+  getProfileList(): Observable<any[]> {
+    return this.http.get<any>('https://app.pishow.tv/acms/subscriber/getProfilesListBySubscriber/630383ffbf448c47a0a81413')
+      .pipe(
+        map(response => response.data) 
+      );
   }
 
-  setSelectedScreenId(id: number) {
-    this.selectedScreenId = id;
-    console.log("Selected Screen ID set to:", this.selectedScreenId);
-  }
-
-  getSelectedScreenId() {
-    console.log("Retrieving Selected Screen ID:", this.selectedScreenId);
-    return this.selectedScreenId;
-  }
 }

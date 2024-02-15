@@ -9,6 +9,7 @@ import { MainCarouselComponent } from './mCarousel/main-carousel/main-carousel.c
 import { LoginScreenComponent } from './Authentication/login-screen/login-screen.component';
 import { ContinueWatchComponent } from './ContinueWatch/continue-watch/continue-watch.component';
 import { welcomescreen_router } from './choose-language/choose-language.routes';
+import { PackageandSummaryComponent } from './packageand-summary/packageand-summary.component';
 export const routes: Routes = [
     {path:'login/maincarousel',component:MainCarouselComponent},
     {path:'login',component:LoginScreenComponent},
@@ -18,5 +19,6 @@ export const routes: Routes = [
     {path:'language',component:ChooseLanguageComponent},
     {path:'chooseplan',component:ChoosePlanComponent},
     {path:'chooseplan1',component:ChoosePlan1Component},
-    {path:'profile',component:ProfilepageComponent}
+    {path:'profile',component:ProfilepageComponent},
+    {path:'summary',component:PackageandSummaryComponent}
 ];
