@@ -84,8 +84,6 @@ export class LoginScreenComponent implements OnInit{
 
 
   onChange(mobno:string){
-    console.log(this.mobnum);
-    
     this.userform2.patchValue({
       mobno : mobno
     })
@@ -109,8 +107,7 @@ export class LoginScreenComponent implements OnInit{
   validateCase1(){
     const mobnoControl = this.userform1.get('mobno');
     const mobnoValue = mobnoControl ? mobnoControl.value : '';
-
-  return !mobnoValue || mobnoValue.length !== 10 || this.userform1.invalid;
+    return !mobnoValue || mobnoValue.length !== 10 || this.userform1.invalid;
   }
 
 

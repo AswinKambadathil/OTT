@@ -1,3 +1,7 @@
+# 0.0.4
+
+1.Completed EpisodeDetails
+
 # 0.0.3
 
 1.created carousel
