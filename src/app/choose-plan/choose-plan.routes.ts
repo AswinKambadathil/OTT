@@ -1,6 +1,6 @@
 import { Route } from "@angular/router";
 import { ChoosePlanComponent } from "./choose-plan.component";
-export const welcomescreen_router :Route= {
+export const ChoosePlan_router :Route= {
 loadComponent:()=> ChoosePlanComponent,
 path:'chooseplan'
 }
