@@ -1,19 +1,47 @@
-import { Component, Input } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Component, Input, OnInit, inject } from '@angular/core';
+import { catchError, finalize, map, switchMap } from 'rxjs';
+import { HttpWrapperService } from '../../utilities/interceptors/http-interceptor/http-wrapper.service';
 
 @Component({
   selector: 'app-continue-watch',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './continue-watch.component.html',
   styleUrl: './continue-watch.component.scss'
 })
-export class ContinueWatchComponent {
+export class ContinueWatchComponent implements OnInit {
   
   @Input() styleChange: "1stStyle" | "2ndStyle" = "1stStyle"
   @Input() label!:string
   arrowLeft = false
   arrowRight = true
+  private http = inject(HttpClient)
+  private httpWrapper = inject(HttpWrapperService)
 
+  ngOnInit(){
+  }
+
+  // createBody(){
+  //   return {}
+  // }
+
+  // funct(){
+    // //promise
+    // let bodyFetch = {}
+    // fetch('') //api is called
+    // bodyFetch = this.createBody()
+
+    // //observable
+    // let bodyObservable = {}
+    // let variable = this.http.post('',bodyObservable) //api is not called
+    // bodyObservable = this.createBody()
+    // variable.subscribe()
+    // let body = this.createBody()
+    // this.http.post('', body).subscribe()
+    // this.httpWrapper.get('').subscribe().unsubscribe()
+  // }
   
   imageArray = [
     {
@@ -164,7 +192,7 @@ export class ContinueWatchComponent {
 
 
   transformImgTwo() {
-    let mainImageWrap = document.getElementById("mainImageWrap2") as HTMLDivElement
+    let mainImageWrap = document.getElementById("'mainImageWrap'+label") as HTMLDivElement
     mainImageWrap.scrollLeft += 300
     this.arrowLeft = true
     if(mainImageWrap.scrollLeft + mainImageWrap.clientWidth+1 >= mainImageWrap.scrollWidth){
@@ -174,7 +202,7 @@ export class ContinueWatchComponent {
 
 
   transformImgleftTwo() {
-    let mainImageWrap = document.getElementById("mainImageWrap2") as HTMLDivElement
+    let mainImageWrap = document.getElementById("'mainImageWrap'+label") as HTMLDivElement
     mainImageWrap.scrollLeft -= 200
     this.arrowRight=true
     let leftscroll = mainImageWrap.scrollLeft -= 100

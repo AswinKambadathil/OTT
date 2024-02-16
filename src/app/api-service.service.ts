@@ -9,23 +9,23 @@ import { Observable } from 'rxjs';
 export class ApiServiceService {
   selectedScreenId:any = null ;
 
-  private http = inject(HttpClient)  
+  private http = inject(HttpClient) 
+
   constructor() {}
 
 
-  getProfilelis(): Observable<any> {
-    return this.http.get(
-      `https://app.pishow.tv/acms/subscriber/getProfilesListBySubscriber/630383ffbf448c47a0a81413`
-    );
+  getData(): Observable<any> {
+    const url = 'https://api.postman.com/collections/23825578-5e314afb-9f4c-4082-bbe3-c7e9fc28ac2b?access_key=PMAT-01HNYB81PCF7DD69XWSNM90V16';
+    return this.http.get(url);
   }
 
-  setSelectedScreenId(id: number) {
-    this.selectedScreenId = id;
-    console.log("Selected Screen ID set to:", this.selectedScreenId);
-  }
+  // setSelectedScreenId(id: number) {
+  //   this.selectedScreenId = id;
+  //   console.log("Selected Screen ID set to:", this.selectedScreenId);
+  // }
 
-  getSelectedScreenId() {
-    console.log("Retrieving Selected Screen ID:", this.selectedScreenId);
-    return this.selectedScreenId;
-  }
+  // getSelectedScreenId() {
+  //   console.log("Retrieving Selected Screen ID:", this.selectedScreenId);
+  //   return this.selectedScreenId;
+  // }
 }

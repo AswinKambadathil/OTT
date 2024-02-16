@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { OnInit } from '@angular/core';
+import { ApiServiceService } from '../../api-service.service';
 
 @Component({
   selector: 'app-main-carousel',
@@ -7,10 +8,27 @@ import { OnInit } from '@angular/core';
   imports: [],
   templateUrl: './main-carousel.component.html',
   styleUrl: './main-carousel.component.scss',
+  providers:[ApiServiceService],
   animations:[]
 })
 export class MainCarouselComponent implements OnInit{
-  ngOnInit():void{}
+
+  private httpDataService = inject(ApiServiceService)
+
+  ngOnInit():void{
+    this.getData()
+  }
+
+  getData() {
+    this.httpDataService.getData().subscribe((response: any) => {
+      console.log('Data:', response);
+
+    }, error => {
+      console.error('Error fetching data:', error);
+      
+    });
+  }
+
   imageArray = [
     {
       id : 1,
