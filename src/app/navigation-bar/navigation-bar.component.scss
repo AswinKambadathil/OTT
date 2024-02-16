@@ -18,17 +18,39 @@
     align-items: center;
     gap: 50px;
     padding-top: 20px;
-    div{
-        span{
-            text-decoration: underline;
-            text-decoration-color: #fff;
-            cursor: pointer;
-        }
-    }
+    
 }
+.home span {
+    font-weight: bold;
+    cursor: pointer;
+  }
+  .hover-underline-animation {
+    display: inline-block;
+    position: relative;
+    color: #0087ca;
+  }
+  
+  .hover-underline-animation:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #707070;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+  }
+  
+  .hover-underline-animation.underline-active:after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+  
 
 .logo {
-    width: 80px;
+    width: 100px;
 }
 .profile-section{
     display: flex;
@@ -61,8 +83,8 @@
   }
   .notifiction-icon img{
     width: 20px;
-
   }
+  .notifiction-icon{cursor: pointer;}
  .squircle{
     position: relative;
     display: flex;
@@ -120,14 +142,14 @@
     width: 230px;
   }
   .profile_screen{
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(0 , 0, 0, 0.5);
     border: 2px solid rgba(32, 32, 32, 0.25);
     border-radius: 2em;
     padding: 2em;
     height: fit-content;
     margin-top: 55px;
     -webkit-backdrop-filter: blur(12px);
-    backdrop-filter: blur(12px);
+    backdrop-filter: blur(5px);
     display: flex;
     flex-direction: column;
 }
@@ -148,10 +170,9 @@
 }
 .manageprofile{
     border: 1px solid #707070;
-    color: #707070;
+    color:#fff;
     background-color: transparent;
     cursor: pointer;
-    font-weight: 600;
     transition: bottom 0.3s ease-in-out;
     border: none;
 }
@@ -165,7 +186,7 @@
   }
   .fa-pen {
     font-size: 15px;
-    filter: invert(1);
+    // filter: invert(1);
     cursor: pointer;
   }
   .proceed {

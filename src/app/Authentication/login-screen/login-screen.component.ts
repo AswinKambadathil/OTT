@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component,  OnInit, inject } from '@angular/core';
 import { FormArray, FormGroup } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import { FormControl } from '@angular/forms';
@@ -15,10 +15,17 @@ import { CommonModule } from '@angular/common';
 })
 export class LoginScreenComponent implements OnInit{
 
+ 
+
+  constructor() { }
+
   ngOnInit(): void {
+
+
       this.initializeForm1()
       this.initializeForm2()
       this.initializeForm3()
+     
   }
 
   buttonColor(): string {
@@ -162,7 +169,6 @@ export class LoginScreenComponent implements OnInit{
       nextInput.focus();
     }
   }
-
-
+  
 }
 

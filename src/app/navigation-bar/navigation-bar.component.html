@@ -1,14 +1,23 @@
 <div class="navigation-bar">
   <div class="header-top">
     <img src="/assets/onnet+logo+white@2x.png" class="logo" />
-    <div class="home"><span>Home</span></div>
-    <div class="movies"><span>Movies</span></div>
-    <div class="shows"><span>Shows</span></div>
-    <div class="epg"><span>EPG</span></div>
+    @for (item of pages; track item) {
+      <div class="home">
+        <span class="hover-underline-animation" 
+      [class.underline-active]="item.isActive" 
+      [style.color]="item.background ? 'white' : '#707070'" 
+      (click)="toggleStyles(item)">
+  {{item.page}}
+</span>
+      </div>
+    }
   </div>
   <div class="profile-section">
-    <div class="search"><img src="/assets/zoom.svg" alt="" /></div>
-    <div class="input"><input type="text" placeholder="Search..." /></div>
+    <div style="display: flex;gap: 6px;">
+      <div class="search"><img src="/assets/zoom.svg" alt="" /></div>
+      <div class="input"><input type="text" placeholder="Search..." /></div>
+    </div>
+    
     <div class="notifiction-icon">
       <img src="/assets/notification-icon.svg" />
     </div>
@@ -52,17 +61,18 @@
    
     <div class="drop-down" (click)=" dropdown()">
       <img src="/assets/arrow_drop_down.svg" alt=""   />
-      @if (isPtofile) {
-      <div class="userprofile-login">
+      <!-- @if (isPtofile) { -->
+      <div class="userprofile-login" id="userprofile-login" (mouseleave)="noFocus()">
         <div class="profile_screen">
           <div class="dropdown">
             @for (profile of profiles; track profile){
             <div class="squircle">
+              <div style="display: flex; gap: 10px;">
               <svg
                 viewBox="0 0 160 160"
                 xmlns="http://www.w3.org/2000/svg"
                 version="1.1"
-                fill="#f60f0f"
+                [attr.fill]="profile.color"
               >
                 <path
                   d="
@@ -93,13 +103,14 @@
               <div class="smile">
                 <img id="smile" src="/assets/smile.svg" />
               </div>
-              <p style="color: #707070; text-align: center">
+              <p style="color: #f5f1f1; text-align: center">
                 {{ profile.name }}
               </p>
+            </div>
 
               @if (profile.ifprofilelock) {
               <div class="lock-icon">
-                <i class="fas fa-lock" style="color: #707070"></i>
+                <i class="fas fa-lock" style="color: #fff"></i>
               </div>
               }
             </div>
@@ -118,7 +129,7 @@
         </div>
         </div>
       </div>
-    }
+    <!-- } -->
     </div>
   
   </div>

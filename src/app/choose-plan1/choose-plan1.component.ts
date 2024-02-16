@@ -99,13 +99,13 @@ packageSelect(item: any) {
 }
 
 proceed(index: number) {
-  if (index !== -1) {
-    this.servicee.setSelectedScreenId(index);
-    // console.log(this.servicee.setSelectedScreenId(index));
+  // if (index !== -1) {
+  //   this.servicee.setSelectedScreenId(index);
+  //   // console.log(this.servicee.setSelectedScreenId(index));
     
-    this.router.navigate(['/summary']);
-  } else {
-    console.error('No screen selected');
-  }
+  //   this.router.navigate(['/summary']);
+  // } else {
+  //   console.error('No screen selected');
+  // }
 }
 }
