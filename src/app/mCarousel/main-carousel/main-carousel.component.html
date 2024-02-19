@@ -1,51 +1,75 @@
 <div class="main">
-    @for (item of imageArray; track item) {
-        <div class="wrap">     
-                <div class="detail">
-                    <div class="discription">{{item.description}}</div>
-                    <div class="title">{{item.title}}</div>
-                    <div class="header">
-                        <img [src]="item.discriptUrl" alt=""/>
-                    </div>
-                    <div class="logoWrap">
-                        <div class="logo">
-                            <img [src]="item.logoUrl" alt="">
-                        </div>
-                        <div class="logoWrite">
-                            Included with your pack
-                        </div>
-                    </div>
-                    <div class="playWrap">
-                        <div class="playButton">
-                            <img src="assets/Login/Logos/Path 51.svg" alt="">
-                        </div>
-                        <div class="playWrite">
-                            Play
-                        </div>
-                        <div class="favorite" (click)="myFavorite(item)">
-                            @if(item.isFavorite){
-                                <svg xmlns="http://www.w3.org/2000/svg" width="26.091" height="23.706" viewBox="0 0 26.091 23.706">
-                                    <g id="favorite" transform="translate(-0.921 -4.004)">
-                                      <path id="Path_52" data-name="Path 52" d="M24.093,6.944A6.55,6.55,0,0,0,14,7.957a6.55,6.55,0,1,0-10.089,8.25L14,26.3,24.093,16.207A6.55,6.55,0,0,0,24.093,6.944Z" transform="translate(0 0)" fill="#fff" stroke="#f7f7f7" stroke-linecap="square" stroke-width="2"/>
-                                    </g>
-                                  </svg>                                       
+  @for (item of imageArray; track item) {
+  <div class="wrap">
+    <div class="detail">
+      <div class="discription">{{ item.description }}</div>
+      <div class="title">{{ item.title }}</div>
+      <div class="header">
+        <img [src]="item.discriptUrl" alt="" />
+      </div>
+      <div class="logoWrap">
+        <div class="logo">
+          <img [src]="item.logoUrl" alt="" />
+        </div>
+        <div class="logoWrite">Included with your pack</div>
+      </div>
+      <div class="playWrap">
+        <div class="playButton">
+          <img src="assets/Login/Logos/Path 51.svg" alt="" />
+        </div>
+        <div class="playWrite">Play</div>
+        <div class="favorite" (click)="myFavorite(item)">
+          @if(item.isFavorite){
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="26.091"
+            height="23.706"
+            viewBox="0 0 26.091 23.706"
+          >
+            <g id="favorite" transform="translate(-0.921 -4.004)">
+              <path
+                id="Path_52"
+                data-name="Path 52"
+                d="M24.093,6.944A6.55,6.55,0,0,0,14,7.957a6.55,6.55,0,1,0-10.089,8.25L14,26.3,24.093,16.207A6.55,6.55,0,0,0,24.093,6.944Z"
+                transform="translate(0 0)"
+                fill="#fff"
+                stroke="#f7f7f7"
+                stroke-linecap="square"
+                stroke-width="2"
+              />
+            </g>
+          </svg>
 
-                            }@else {
-                                <svg xmlns="http://www.w3.org/2000/svg" width="26.091" height="23.706" viewBox="0 0 26.091 23.706">
-                                    <g id="favorite" transform="translate(-0.921 -4.004)">
-                                      <path id="Path_52" data-name="Path 52" d="M24.093,6.944A6.55,6.55,0,0,0,14,7.957a6.55,6.55,0,1,0-10.089,8.25L14,26.3,24.093,16.207A6.55,6.55,0,0,0,24.093,6.944Z" transform="translate(0 0)" fill="#f00" stroke="#f00" stroke-linecap="square" stroke-width="2"/>
-                                    </g>
-                                  </svg>
-                            }
-                        </div>
-                        <div class="exclema">
-                            <img src="assets/Login/Logos/i.svg" alt="">
-                        </div>
-                    </div>
-                </div>
-                <div class="mainImg">
-                    <img [src]="item.imageUrl" alt=""/>
-                </div>
-            </div> 
-    }
+          }@else {
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="26.091"
+            height="23.706"
+            viewBox="0 0 26.091 23.706"
+          >
+            <g id="favorite" transform="translate(-0.921 -4.004)">
+              <path
+                id="Path_52"
+                data-name="Path 52"
+                d="M24.093,6.944A6.55,6.55,0,0,0,14,7.957a6.55,6.55,0,1,0-10.089,8.25L14,26.3,24.093,16.207A6.55,6.55,0,0,0,24.093,6.944Z"
+                transform="translate(0 0)"
+                fill="#f00"
+                stroke="#f00"
+                stroke-linecap="square"
+                stroke-width="2"
+              />
+            </g>
+          </svg>
+          }
+        </div>
+        <div class="exclema">
+          <img src="assets/Login/Logos/i.svg" alt="" />
+        </div>
+      </div>
+    </div>
+    <div class="mainImg">
+      <img [src]="item.imageUrl" alt="" />
+    </div>
+  </div>
+  }
 </div>

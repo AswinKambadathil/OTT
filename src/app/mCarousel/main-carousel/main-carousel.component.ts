@@ -104,12 +104,12 @@ export class MainCarouselComponent implements OnInit{
 
   MainCarousel(){
     this.mainCarousel.getProfileList().subscribe({
-      next:(response) => {
+      next:(response: any[]) => {
         this.imageArray1 = response;
         console.log(this.imageArray1);
         
       },
-      error:(error) => {
+      error:(error: any) => {
         console.error('Error fetching profiles: ', error);
       }
   })}
