@@ -9,6 +9,7 @@ import { MainCarouselComponent } from './mCarousel/main-carousel/main-carousel.c
 import { LoginScreenComponent } from './Authentication/login-screen/login-screen.component';
 import { ContinueWatchComponent } from './ContinueWatch/continue-watch/continue-watch.component';
 import { PackageandSummaryComponent } from './packageand-summary/packageand-summary.component';
+import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 export const routes: Routes =
  [
     {path:'welcome',component:WelcomescreenComponent},
@@ -19,5 +20,6 @@ export const routes: Routes =
     {path:'chooseplan',component:ChoosePlanComponent},
     {path:'chooseplan1',component:ChoosePlan1Component},
     {path:'profile',component:ProfilepageComponent},
-    {path:'summary',component:PackageandSummaryComponent}
+    {path:'summary',component:PackageandSummaryComponent},
+    {path:'navbar',component:NavigationBarComponent}
 ];
