@@ -41,19 +41,19 @@ export class ProfilepageComponent implements OnInit {
   private profileService = inject(ApiServiceService)
 
   constructor( ) {}
-  // profiles: any[] = [];
+  profiles1: any[] = [];
 
   ngOnInit(): void {
     
-  //   this.profileService.getProfileList().subscribe({
-  //     next:(response) => {
-  //       this.profiles = response;
-  //       console.log(this.profiles);
+    // this.profileService.getProfileList().subscribe({
+    //   next:(response) => {
+    //     this.profiles1 = response;
+    //     console.log(this.profiles1);
         
-  //     },
-  //     error:(error) => {
-  //       console.error('Error fetching profiles: ', error);
-  //     }
+    //   },
+    //   error:(error) => {
+    //     console.error('Error fetching profiles: ', error);
+    //   }
   // });
     
     this.passwordForm = this.formBuilder.group({
@@ -205,7 +205,7 @@ export class ProfilepageComponent implements OnInit {
       sixth = this.passwordForm.get('sixth')?.value,
       seventh = this.passwordForm.get('seventh')?.value,
       eighth = this.passwordForm.get('eighth')?.value;
-    // console.log({first,second, third, fourth, fifth,sixth, seventh, eighth});
+    
     if (first != fifth) {
       return true;
     }

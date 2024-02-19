@@ -44,7 +44,7 @@ export class NavigationBarComponent {
     { id: 4, page: 'EPG', isActive: false, background: false }
   ];
   dropdown(){
-    // this.isPtofile = !this.isPtofile
+    this.isPtofile = !this.isPtofile
     let val = document.getElementById('userprofile-login') as HTMLDivElement
     val.style.display = 'block'
   }

@@ -1,16 +1,31 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { OnInit } from '@angular/core';
+import { ApiServiceService } from '../../api-service.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-main-carousel',
   standalone: true,
-  imports: [],
+  imports: [HttpClientModule],
   templateUrl: './main-carousel.component.html',
   styleUrl: './main-carousel.component.scss',
-  animations:[]
+  providers:[ApiServiceService],
+  animations:[],
+  
 })
 export class MainCarouselComponent implements OnInit{
-  ngOnInit():void{}
+
+  private mainCarousel = inject(ApiServiceService)
+  
+  constructor(){}
+
+  ngOnInit():void{
+    this.MainCarousel
+  }
+
+  imageArray1: any[] = [];
+
+  
   imageArray = [
     {
       id : 1,
@@ -84,6 +99,19 @@ export class MainCarouselComponent implements OnInit{
 
   myFavorite(item:any){
     item.isFavorite = !item.isFavorite
+    
   }
+
+  MainCarousel(){
+    this.mainCarousel.getProfileList().subscribe({
+      next:(response) => {
+        this.imageArray1 = response;
+        console.log(this.imageArray1);
+        
+      },
+      error:(error) => {
+        console.error('Error fetching profiles: ', error);
+      }
+  })}
 
 }

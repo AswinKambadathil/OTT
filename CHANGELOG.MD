@@ -1,3 +1,8 @@
+# 0.0.5
+
+1.Api service created
+2.Api Connected
+
 # 0.0.4
 
 1.Completed EpisodeDetails

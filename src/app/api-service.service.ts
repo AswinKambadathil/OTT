@@ -1,4 +1,4 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable, map } from 'rxjs';
 
@@ -14,10 +14,11 @@ export class ApiServiceService {
 
 
   getProfileList(): Observable<any[]> {
-    return this.http.get<any>('https://app.pishow.tv/acms/subscriber/getProfilesListBySubscriber/630383ffbf448c47a0a81413')
-      .pipe(
-        map(response => response.data) 
-      );
+    const requestData = {
+      pageName: 'Home'
+    };
+   
+    return this.http.post<any[]>('https://app.pishow.tv/acms/contents/getTvAppHomePageContentsInfoList', requestData);
   }
 
 }
