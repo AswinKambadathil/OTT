@@ -3,24 +3,48 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, Input, OnInit, inject } from '@angular/core';
 import { catchError, finalize, map, switchMap } from 'rxjs';
 import { HttpWrapperService } from '../../utilities/interceptors/http-interceptor/http-wrapper.service';
+import { ApiServiceService } from '../../api-service.service';
 
 @Component({
   selector: 'app-continue-watch',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './continue-watch.component.html',
-  styleUrl: './continue-watch.component.scss'
+  styleUrl: './continue-watch.component.scss',
+  providers:[ApiServiceService]
 })
 export class ContinueWatchComponent implements OnInit {
   
   @Input() styleChange: "1stStyle" | "2ndStyle" = "1stStyle"
   @Input() label!:string
+  id!:string
   arrowLeft = false
   arrowRight = true
-  private http = inject(HttpClient)
-  private httpWrapper = inject(HttpWrapperService)
+  // private http = inject(HttpClient)
+  // private httpWrapper = inject(HttpWrapperService)
+  private continue = inject(ApiServiceService)
 
   ngOnInit(){
+    this.removeSpacesFromLabel()
+    this.getContinueWatch()
+  }
+
+  removeSpacesFromLabel(){
+    this.id = this.label.split(" ").join("");
+  }
+
+
+  getContinueWatch() {
+    this.continue.getContinueWatch().subscribe({
+      next: (response: any) => {
+        // console.log(response);
+        this.imageArra = response
+        console.log(this.imageArra);
+       },
+      error: (error: any) => {
+        console.error('Error fetching data:', error);
+      }
+    });
   }
 
   // createBody(){
@@ -43,6 +67,8 @@ export class ContinueWatchComponent implements OnInit {
     // this.httpWrapper.get('').subscribe().unsubscribe()
   // }
   
+
+  imageArra:any = []
   imageArray = [
     {
       id : 1,
@@ -171,7 +197,7 @@ export class ContinueWatchComponent implements OnInit {
 
 
   transformImg() {
-    let mainImageWrap = document.getElementById("mainImageWrap") as HTMLDivElement
+    let mainImageWrap = document.getElementById(this.id) as HTMLDivElement
     mainImageWrap.scrollLeft += 300
     this.arrowLeft = true
     if(mainImageWrap.scrollLeft + mainImageWrap.clientWidth+1 >= mainImageWrap.scrollWidth){
@@ -181,28 +207,7 @@ export class ContinueWatchComponent implements OnInit {
 
 
   transformImgleft() {
-    let mainImageWrap = document.getElementById("mainImageWrap") as HTMLDivElement
-    mainImageWrap.scrollLeft -= 200
-    this.arrowRight=true
-    let leftscroll = mainImageWrap.scrollLeft -= 100
-    if(leftscroll<=0){
-      this.arrowLeft = false
-    }
-  }
-
-
-  transformImgTwo() {
-    let mainImageWrap = document.getElementById("'mainImageWrap'+label") as HTMLDivElement
-    mainImageWrap.scrollLeft += 300
-    this.arrowLeft = true
-    if(mainImageWrap.scrollLeft + mainImageWrap.clientWidth+1 >= mainImageWrap.scrollWidth){
-      this.arrowRight = false
-    }
-  }
-
-
-  transformImgleftTwo() {
-    let mainImageWrap = document.getElementById("'mainImageWrap'+label") as HTMLDivElement
+    let mainImageWrap = document.getElementById(this.id) as HTMLDivElement
     mainImageWrap.scrollLeft -= 200
     this.arrowRight=true
     let leftscroll = mainImageWrap.scrollLeft -= 100

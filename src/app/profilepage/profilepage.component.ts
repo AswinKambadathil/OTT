@@ -8,6 +8,13 @@ import { RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { ApiServiceService } from '../api-service.service';
+interface Profile {
+  id: number;
+  name: string;
+  image: string;
+  ifprofilelock: boolean;
+  color: string;
+}
 
 @Component({
   selector: 'app-profilepage',
@@ -38,7 +45,7 @@ export class ProfilepageComponent implements OnInit {
   private router = inject(Router);
   private profilelogin = inject(FormBuilder);
   private formBuilder = inject(FormBuilder);
-  private profileService = inject(ApiServiceService)
+  private httpDataService = inject(ApiServiceService)
 
   constructor( ) {}
   // profiles: any[] = [];
@@ -55,6 +62,8 @@ export class ProfilepageComponent implements OnInit {
   //       console.error('Error fetching profiles: ', error);
   //     }
   // });
+
+  
     
     this.passwordForm = this.formBuilder.group({
       first: ['', Validators.required],
@@ -80,34 +89,61 @@ export class ProfilepageComponent implements OnInit {
       isprofileLock: [false],
       color:[''],
     });
+
+    this.getProfile()
   }
   
   
 
-  profiles = [
-    {
-      id: 1,
-      name: 'Athul',
-      image: '/assets/profilelogo2.svg',
-      ifprofilelock: false,
-      color: '#CE7AEC'
-    },
-    {
-      id: 2,
-      name: 'Aswin',
-      image: '/assets/profilelogo.svg',
-      ifprofilelock: false,
-      color: '#ECE47A'
-    },
-    {
-      id: 3,
-      name: 'Manoj',
-      image: '/assets/profilelogo2.svg',
-      ifprofilelock: false,
-      color:'blue'
+  getProfile() {
+    this.httpDataService.getProfile().subscribe({
+      next: (response: any) => {
+        console.log('Data:', response);
+        let color = ["#CE7AEC", "#ECE47A", "blue"];
+        this.profiles = response.data.map((item: any) => ({
+          id: item.id,
+          name: item.profileName,
+          image: item.profileAvatar,
+          ifprofilelock: item.profilePin === 0 ? false : true,
+          color: color[Math.floor(Math.random() * color.length)]
+        }));
+      },
+      error: (error: any) => {
+        console.error('Error fetching data:', error);
+      }
+    });
+  }
+
+  
+  prof= []
+  profiles : Profile[]= []
+  
+  
+
+  // profiles = [
+  //   {
+  //     id: 1,
+  //     name: 'Athul',
+  //     image: '/assets/profilelogo2.svg',
+  //     ifprofilelock: false,
+  //     color: '#CE7AEC'
+  //   },
+  //   {
+  //     id: 2,
+  //     name: 'Aswin',
+  //     image: '/assets/profilelogo.svg',
+  //     ifprofilelock: false,
+  //     color: '#ECE47A'
+  //   },
+  //   {
+  //     id: 3,
+  //     name: 'Manoj',
+  //     image: '/assets/profilelogo2.svg',
+  //     ifprofilelock: false,
+  //     color:'blue'
       
-    },
-  ];
+  //   },
+  // ];
 
   editProfile() {
     this.isEdit = !this.isEdit;
@@ -251,19 +287,13 @@ export class ProfilepageComponent implements OnInit {
       this.isprofileEdit = false;
       this.ifCond = true;
       this.isEdit = true;
-
       this.profiles.push(newProfile);
-
       this.editProfileForm.reset();
       this.isAddProfile = false;
     } else if (!this.isAddProfile && this.editProfileForm.valid) {
       const editedProfileId = this.editProfileForm.value.id;
       const editedProfileName = this.editProfileForm.value.name;
       const editedProfileLockStatus = this.editProfileForm.value.isprofileLock;
-      
-      console.log(editedProfileId,editedProfileLockStatus);
-      
-
       const editedProfileIndex = this.profiles.findIndex(
         (profile) => profile.id === editedProfileId
       );
@@ -299,3 +329,5 @@ export class ProfilepageComponent implements OnInit {
     this.isprofile_login = false;
   }
 }
+
+

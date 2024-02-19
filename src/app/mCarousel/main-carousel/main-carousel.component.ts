@@ -16,18 +16,10 @@ export class MainCarouselComponent implements OnInit{
   private httpDataService = inject(ApiServiceService)
 
   ngOnInit():void{
-    this.getData()
+    this.postHome()
   }
 
-  getData() {
-    this.httpDataService.getData().subscribe((response: any) => {
-      console.log('Data:', response);
-
-    }, error => {
-      console.error('Error fetching data:', error);
-      
-    });
-  }
+  
 
   imageArray = [
     {
@@ -98,6 +90,32 @@ export class MainCarouselComponent implements OnInit{
       isFavorite: 'false'
     }
   ];
+
+
+  imageArra = []
+
+
+  postHome() {
+    this.httpDataService.postHome({pageName: 'home'}).subscribe({
+      next: (response: any) => {
+        console.log('Data:', response);
+        this.imageArra = response
+        console.log(this.imageArra);
+        
+      //   let color = ["#CE7AEC", "#ECE47A", "blue"];
+      //   this.imageArra = response.data.map((item: any) => ({
+      //     id: item.id,
+      //     name: item.profileName,
+      //     image: item.profileAvatar,
+      //     ifprofilelock: item.profilePin === 0 ? false : true,
+      //     color: color[Math.floor(Math.random() * color.length)]
+      //   }));
+       },
+      error: (error: any) => {
+        console.error('Error fetching data:', error);
+      }
+    });
+  }
 
 
   myFavorite(item:any){

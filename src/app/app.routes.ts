@@ -11,7 +11,7 @@ import { ContinueWatchComponent } from './ContinueWatch/continue-watch/continue-
 import { PackageandSummaryComponent } from './packageand-summary/packageand-summary.component';
 export const routes: Routes =
  [
-    {path:'',redirectTo:'/welcome',pathMatch:'full',component:WelcomescreenComponent},
+    {path:'welcome',component:WelcomescreenComponent},
     {path:'login/maincarousel',component:MainCarouselComponent},
     {path:'login',component:LoginScreenComponent},
     {path:'login/continuewatch',component:ContinueWatchComponent},

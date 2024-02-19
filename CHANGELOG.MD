@@ -1,3 +1,7 @@
+# 0.0.6
+
+1.Api called for ContinueWatch  component and some id error fixed
+
 # 0.0.5
 
 1.Api called
