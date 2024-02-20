@@ -13,27 +13,48 @@
           <span style="color: #fff">Type</span>
         </div>
         <div class="totalNoscreen">
-        @for (item of chooseScreen; track item) {
-        <div class="screen">
-          <div class="sc"><input type="radio" id="specifyColor" name="screen"  [value]="item.id" />{{item.screen}}</div>
+          @for (group of choose2; track group) { @if (group.chooseScreen) { @for
+          (item of group.chooseScreen; track item) {
+          <div class="screen">
+            <div class="sc">
+              <input
+                type="radio"
+                id="specifyColor"
+                name="screen"
+                [value]="item.id"
+              />
+              {{ item.screen }}
+            </div>
+          </div>
+          } } }
         </div>
-      }
-    </div>
       </div>
-    
+      @for (group of choose2; track $index) { @if (group.choosePlan) {
       <div class="months">
-        @for (item of choosePlan; track $index) {
-        <div class="month" [style.background]="item?.background ? '#E50914' : '#fff'"
-        [class.selected]="item?.background" (click)="planselect(item)">{{ item.plan }}</div>
+        @for (item of group.choosePlan; track item) {
+        <div
+          class="month"
+          [style.background]="item?.background ? '#E50914' : '#fff'"
+          [class.selected]="item?.background"
+          (click)="planselect(item)"
+        >
+          {{ item.plan }}
+        </div>
         }
       </div>
-      
+      } }
     </div>
     <div class="packss">
       @for (items of pack; track $index) { @for (item of items.pack; track
       $index) {
-      <div class="packs" >
-        <div class="pack" [style.border]="item?.selectPack ? '1px solid #E50914' : '1px solid #F5F5F5'" (click)="packageSelect(item)">
+      <div class="packs">
+        <div
+          class="pack"
+          [style.border]="
+            item?.selectPack ? '1px solid #E50914' : '1px solid #F5F5F5'
+          "
+          (click)="packageSelect(item)"
+        >
           <div class="packNo">
             <span style="color: #fff">Pack</span
             ><span style="color: #fff; font-weight: bold">{{
@@ -73,13 +94,14 @@
             </div>
             }
           </div>
+
           <div class="op">
             <span style="color: #fff; font-weight: 500">FTA Channels</span
-            ><span style="color: #707070; font-weight: 500">9 Providers</span>
+            ><span style="color: #707070; font-weight: 500">{{ftaChannelsData.length}} Providers</span>
           </div>
 
           <div class="ottchannels">
-            @for (item of channelIcon; track item) {
+            @for (item of ftaChannelsData; track item) {
             <div class="channel-icon">
               <svg
                 viewBox="0 0 160 160"
@@ -87,18 +109,33 @@
                 version="1.1"
                 fill="#707070"
               >
-                <path
-                  d="
-                                                M 0 80
-                                                C 0 20, 20 0, 80 0
-                                                S 160 20, 160 80, 140 160
-                                                80 160, 0 140, 0 80
-                                                "
-                  transform="
-                                                rotate(0, 80, 80)
-                                                translate(0, 0)
-                                                "
-                ></path>
+              <rect
+               width="100%"
+                height="100%"
+                fill="#fff" 
+                clip-path="url(#circleClip)"
+              />
+                <clipPath id="circleClip">
+                  <path
+                    d="
+            M 0 80
+            C 0 20, 20 0, 80 0
+            S 160 20, 160 80, 140 160
+            80 160, 0 140, 0 80ipol
+          "
+                    transform="rotate(0, 80, 80)"
+                  ></path>
+                </clipPath>
+                <image
+                  *ngIf="item.channelLogoUrl"
+                  [attr.xlink:href]="
+                    'https://epg.pishow.tv/bucket/images/' + item.channelLogoUrl
+                  "
+                  background = "red"
+                  clip-path="url(#circleClip)"
+                  height="160"
+                  width="160"
+                />
               </svg>
             </div>
             }
@@ -121,12 +158,11 @@
           </div>
         </div>
       </div>
+
       } }
     </div>
-    <div class="proceed" (click)="proceed(selectedScreenId)">
-        <button class="get-started-btn">
-            Proceed
-        </button>
+    <div class="proceed" (click)="proceed()">
+      <button class="get-started-btn">Proceed</button>
     </div>
   </div>
 </div>

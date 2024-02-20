@@ -1,3 +1,6 @@
+# 0.0.6
+1.FTA channels Added
+
 # 0.0.5
 
 1.Api service created

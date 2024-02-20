@@ -42,28 +42,43 @@
                     <span>FTA Channels</span>
                 </div>
                 <div class="ottchannels">
-                    @for (item of channelIcon; track item) {
+                    @for (item of ftaChannelsData; track item) {
                     <div class="channel-icon">
-                      <svg
+                        <svg
                         viewBox="0 0 160 160"
                         xmlns="http://www.w3.org/2000/svg"
                         version="1.1"
                         fill="#707070"
                       >
-                        <path
-                          d="
-                                                  M 0 80
-                                                  C 0 20, 20 0, 80 0
-                                                  S 160 20, 160 80, 140 160
-                                                  80 160, 0 140, 0 80
-                                                  "
-                          transform="
-                                                  rotate(0, 80, 80)
-                                                  translate(0, 0)
-                                                  "
-                        ></path>
+                      <rect
+               width="100%"
+                height="100%"
+                fill="#fff" 
+                clip-path="url(#circleClip)"
+              />
+                        <clipPath id="circleClip">
+                          <path
+                            d="
+                    M 0 80
+                    C 0 20, 20 0, 80 0
+                    S 160 20, 160 80, 140 160
+                    80 160, 0 140, 0 80ipol
+                  "
+                            transform="rotate(0, 80, 80)"
+                          ></path>
+                        </clipPath>
+                        <image
+                          *ngIf="item.channelLogoUrl"
+                          [attr.xlink:href]="
+                            'https://epg.pishow.tv/bucket/images/' + item.channelLogoUrl
+                          "
+                          clip-path="url(#circleClip)"
+                          height="160"
+                          width="160"
+                        />
                       </svg>
                     </div>
+                    
                     }
                 </div> 
             </div>
