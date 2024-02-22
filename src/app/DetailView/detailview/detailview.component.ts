@@ -1,18 +1,44 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
+import { ApiServiceService } from '../../api-service.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-detailview',
   standalone: true,
   imports: [],
   templateUrl: './detailview.component.html',
-  styleUrl: './detailview.component.scss'
+  styleUrl: './detailview.component.scss',
+  providers:[ApiServiceService]
 })
-export class DetailviewComponent {
+export class DetailviewComponent implements OnInit{
+  ngOnInit(): void {
+    this.postHome()
+    
+  }
+  private httpDataService = inject(ApiServiceService)
+  private route = inject(ActivatedRoute)
+  id : any
+
+  postHome(){
+    this.httpDataService.postHome({pageName:'Home'}).subscribe({
+      next: (response: any) => {
+        this.route.paramMap.subscribe(params =>{
+          this.id = params.get('id'); 
+        });
+        this.imageArray = response
+        console.log(response);
+        
+      },
+      error: (error: any) => {
+        console.error('Error fetching data:', error);
+      }
+    });
+  }
 
 
-  id = 4
-
-  imageArray = [
+  
+  imageArray:any = []
+  imageArra = [
     {
       id: 1,
       imageUrl: 'assets/Login/Movies/kantara-Banner.jpg',

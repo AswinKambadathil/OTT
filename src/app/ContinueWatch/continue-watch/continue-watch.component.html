@@ -12,7 +12,7 @@
     </div>
     }
     <div class="mainImageWrap" [id]="id">
-      @for (item of imageArra; track $index) {
+      @for (item of imageArray; track $index) {
       <div class="imageWrap">
         <img [src]="item.discriptUrl" alt="" />
       </div>
@@ -44,7 +44,7 @@
     }
     <div class="mainImageWrap" [id]="id">
       <ul class="portImg">
-        @for (item of imageArra; track $index) {
+        @for (item of imageArray; track $index) {
         <li>
           <div
             class="portimageWrap"

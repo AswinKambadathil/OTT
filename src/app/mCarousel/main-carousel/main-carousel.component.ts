@@ -1,6 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { ApiServiceService } from '../../api-service.service';
+import { routes } from '../../app.routes';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main-carousel',
@@ -14,14 +16,25 @@ import { ApiServiceService } from '../../api-service.service';
 export class MainCarouselComponent implements OnInit{
 
   private httpDataService = inject(ApiServiceService)
+  private router = inject(Router)
 
   ngOnInit():void{
     this.postHome()
   }
+  imageArray:any = []
 
-  
+  postHome(){
+    this.httpDataService.postHome({pageName:'Home'}).subscribe({
+      next: (response: any) => { 
+        this.imageArray = response
+      },
+      error: (error: any) => {
+        console.error('Error fetching data:', error);
+      }
+    });
+  }
 
-  imageArray = [
+  imageArra = [
     {
       id : 1,
       imageUrl: 'assets/Login/Movies/kantara-Banner.jpg',
@@ -92,34 +105,40 @@ export class MainCarouselComponent implements OnInit{
   ];
 
 
-  imageArra = []
+  
 
 
-  postHome() {
-    this.httpDataService.postHome({pageName: 'home'}).subscribe({
-      next: (response: any) => {
-        console.log('Data:', response);
-        this.imageArra = response
-        console.log(this.imageArra);
+  // postHome() {
+  //   this.httpDataService.postHome({pageName: 'home'}).subscribe({
+  //     next: (response: any) => {
+  //       console.log('Data:', response);
+  //       this.imageArra = response
+  //       console.log(this.imageArra);
         
-      //   let color = ["#CE7AEC", "#ECE47A", "blue"];
-      //   this.imageArra = response.data.map((item: any) => ({
-      //     id: item.id,
-      //     name: item.profileName,
-      //     image: item.profileAvatar,
-      //     ifprofilelock: item.profilePin === 0 ? false : true,
-      //     color: color[Math.floor(Math.random() * color.length)]
-      //   }));
-       },
-      error: (error: any) => {
-        console.error('Error fetching data:', error);
-      }
-    });
-  }
+  //     //   let color = ["#CE7AEC", "#ECE47A", "blue"];
+  //     //   this.imageArra = response.data.map((item: any) => ({
+  //     //     id: item.id,
+  //     //     name: item.profileName,
+  //     //     image: item.profileAvatar,
+  //     //     ifprofilelock: item.profilePin === 0 ? false : true,
+  //     //     color: color[Math.floor(Math.random() * color.length)]
+  //     //   }));
+  //      },
+  //     error: (error: any) => {
+  //       console.error('Error fetching data:', error);
+  //     }
+  //   });
+  // }
 
 
   myFavorite(item:any){
     item.isFavorite = !item.isFavorite
+  }
+  
+  playVideo(id:any){
+    console.log("hi", id);
+    this.router.navigate(["detailView",id])
+    
   }
 
 }
