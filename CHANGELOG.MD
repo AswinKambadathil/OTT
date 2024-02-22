@@ -1,3 +1,8 @@
+# 0.0.7
+
+1.New Api updated for main carousel
+
+
 # 0.0.6
 
 1.Api called for ContinueWatch  component and some id error fixed
