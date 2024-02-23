@@ -5,7 +5,7 @@
       <h1>Who's watching?</h1>
       <div class="profiles">
           <div class="profile-pic">
-            @for (profile of profiles; track profile){
+            @for (profile of profiles1; track profile){
             <div class="squircle" (click)="profileLogin(profile)">
               <!-- <svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg" version="1.1" 
                     [attr.fill]="profile.color" 
@@ -26,7 +26,7 @@
                 [className]="isEdit ? 'visible' : ''"
                 [src]="profile.image"
               />
-              <div class="firsteye">
+              <!-- <div class="firsteye">
                 <img
                   id="firsteye"
                   [className]="isEdit ? 'visible' : ''"
@@ -46,12 +46,12 @@
                   [className]="isEdit ? 'visible' : ''"
                   src="/assets/smile.svg"
                 />
-              </div>
+              </div> -->
               <p style="color: #707070; text-align: center; margin-top: 1rem; margin-bottom: 0;">
                 {{ profile.name }}
               </p>
   
-              @if (profile.ifprofilelock) {
+              @if (profile.isprofileLock !==0) {
                 <div class="lock-icon">
                   <i class="fas fa-lock" style="color: #707070"></i>
                 </div>
@@ -64,7 +64,7 @@
             </div>
           }
           @if (isAddnewprofile) {
-            <div class="addProfile" (click)="Addnewprofile(profiles)">
+            <div class="addProfile" (click)="Addnewprofile(profiles1)">
               <img src="/assets/addprofile.svg"/>
                 <div class="add-icon">
                   <i class="fa-solid fa-plus" style="color: #525252"></i>
@@ -247,7 +247,7 @@
       <div class="profile_screen">
         <div class="profile-pin">
          
-          <form [formGroup]="profileLoginform" (ngSubmit)="onSubmit()">
+          <form [formGroup]="profileLoginform">
             <nav>
               <button class="close-btn" (click)="profile_close()">X</button>
             </nav>
@@ -264,35 +264,37 @@
                   type="text"
                   oninput="this.value = this.value.replace(/[^0-9]/,'' )"
                   maxlength="1"
-                  (input)="onInputChange(pro1, pro2)"
+                  (input)="onInputChange(pro1, pro2)" formControlName="first"
                 />
                 <input
                   #pro2
                   type="text"
                   oninput="this.value = this.value.replace(/[^0-9]/,'')"
                   maxlength="1"
-                  (input)="onInputChange(pro2, pro3)"
+                  (input)="onInputChange(pro2, pro3)" formControlName="second"
                 />
                 <input
                   #pro3
                   type="text"
                   oninput="this.value = this.value.replace(/[^0-9]/,'')"
                   maxlength="1"
-                  (input)="onInputChange(pro3, pro4)"
+                  (input)="onInputChange(pro3, pro4)" formControlName="third"
                 />
                 <input
                   #pro4
                   type="text"
                   oninput="this.value = this.value.replace(/[^0-9]/,'')"
-                  maxlength="1"
+                  maxlength="1" formControlName="fourth"
                 />
               </div>
               <div class="text3">
                 <p (click)="forgotPassword(editProfileForm.value.id)">Forgot PIN?</p>
               </div>
             </div>
-          </form>
-        
+          </form> 
+          <button class="profileedit-save" (click)="onSubmit()">
+            <span style="font-weight: bold">Login</span>
+          </button>
         </div>
       </div>
     </div>

@@ -8,13 +8,6 @@ import { RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { ApiServiceService } from '../api-service.service';
-interface Profile {
-  id: number;
-  name: string;
-  image: string;
-  ifprofilelock: boolean;
-  color: string;
-}
 
 @Component({
   selector: 'app-profilepage',
@@ -45,25 +38,14 @@ export class ProfilepageComponent implements OnInit {
   private router = inject(Router);
   private profilelogin = inject(FormBuilder);
   private formBuilder = inject(FormBuilder);
-  private httpDataService = inject(ApiServiceService)
+  private profileService = inject(ApiServiceService)
 
   constructor( ) {}
   profiles1: any[] = [];
 
   ngOnInit(): void {
     
-    // this.profileService.getProfileList().subscribe({
-    //   next:(response) => {
-    //     this.profiles1 = response;
-    //     console.log(this.profiles1);
-        
-    //   },
-    //   error:(error) => {
-    //     console.error('Error fetching profiles: ', error);
-    //   }
-  // });
-
-  
+    this.getProfileDetails();
     
     this.passwordForm = this.formBuilder.group({
       first: ['', Validators.required],
@@ -76,47 +58,20 @@ export class ProfilepageComponent implements OnInit {
       eighth: ['', Validators.required],
     });
 
-    this.profileLoginform = this.profilelogin.group({
+    this.profileLoginform = this.formBuilder.group({
       first: ['', Validators.required],
       second: ['', Validators.required],
       third: ['', Validators.required],
       fourth: ['', Validators.required],
     });
-
     this.editProfileForm = this.formBuilder.group({
       id: [''],
       name: ['', Validators.required],
       isprofileLock: [false],
       color:[''],
-    });
-
-    this.getProfile()
-  }
-  
-  
-
-  getProfile() {
-    this.httpDataService.getProfile().subscribe({
-      next: (response: any) => {
-        console.log('Data:', response);
-        let color = ["#CE7AEC", "#ECE47A", "blue"];
-        this.profiles = response.data.map((item: any) => ({
-          id: item.id,
-          name: item.profileName,
-          image: item.profileAvatar,
-          ifprofilelock: item.profilePin === 0 ? false : true,
-          color: color[Math.floor(Math.random() * color.length)]
-        }));
-      },
-      error: (error: any) => {
-        console.error('Error fetching data:', error);
-      }
+      kidsSafe:[false]
     });
   }
-
-  
-  prof= []
-  profiles : Profile[]= []
   
   
 
@@ -162,14 +117,14 @@ export class ProfilepageComponent implements OnInit {
 
     if (this.isAddProfile) {
       const newProfile = {
-        id: this.profiles.length + 1,
+        id: this.profiles1.length + 1,
         name: this.editProfileForm.value.name,
         image: '/assets/profilelogo.svg',
         ifprofilelock: this.editProfileForm.value.isprofileLock,
         color:this.editProfileForm.value.color
       };
 
-      this.profiles.push(newProfile);
+      this.profiles1.push(newProfile);
       this.editProfileForm.reset();
       this.isAddProfile = false;
       this.isprofile_login = false;
@@ -184,7 +139,7 @@ export class ProfilepageComponent implements OnInit {
       // this.editProfileForm.get('name')?.setValidators([Validators.required]);
       // this.editProfileForm.get('name')?.updateValueAndValidity();
 
-      if (this.editProfileForm.value.isprofileLock) {
+      if (this.editProfileForm.value.isprofileLock !==0) {
         this.isprofile_login = true;
       } else {
         this.isprofileEdit = true;
@@ -256,11 +211,27 @@ export class ProfilepageComponent implements OnInit {
     }
     return false || this.passwordForm.invalid;
   }
+  
 
   onSubmit() {
-    console.log(this.profileLoginform.value);
-    this.router.navigate(['/welcome']);
+    const enteredPin = this.profileLoginform.get('first')?.value +
+                       this.profileLoginform.get('second')?.value +
+                       this.profileLoginform.get('third')?.value +
+                       this.profileLoginform.get('fourth')?.value;
+   
+    
+    console.log('Entered PIN:', enteredPin);
+  
+    const foundProfile = this.profiles1.find(profile => parseInt(enteredPin, 10) === profile.isprofileLock); //profile.isprofileLock
+  
+    if (foundProfile) {
+      console.log('Login successful');
+      this.router.navigate(['/login/maincarousel'])
+    } else {
+      console.log('Incorrect PIN entered');
+    }
   }
+  
 
   reset(profile: any) {
     console.log('Profile PIN reset for:', this.editProfileForm.value.id);
@@ -278,7 +249,7 @@ export class ProfilepageComponent implements OnInit {
   profileedit() {
     if (this.isAddProfile && this.editProfileForm.valid) {
       const newProfile = {
-        id: this.profiles.length + 1,
+        id: this.profiles1.length + 1,
         name: this.editProfileForm.value.name,
         image: '/assets/profilelogo.svg',
         ifprofilelock: this.editProfileForm.value.isprofileLock,
@@ -287,19 +258,25 @@ export class ProfilepageComponent implements OnInit {
       this.isprofileEdit = false;
       this.ifCond = true;
       this.isEdit = true;
-      this.profiles.push(newProfile);
+
+      this.profiles1.push(newProfile);
+
       this.editProfileForm.reset();
       this.isAddProfile = false;
     } else if (!this.isAddProfile && this.editProfileForm.valid) {
       const editedProfileId = this.editProfileForm.value.id;
       const editedProfileName = this.editProfileForm.value.name;
       const editedProfileLockStatus = this.editProfileForm.value.isprofileLock;
-      const editedProfileIndex = this.profiles.findIndex(
+      
+      console.log(editedProfileId,editedProfileLockStatus);
+      
+
+      const editedProfileIndex = this.profiles1.findIndex(
         (profile) => profile.id === editedProfileId
       );
       if (editedProfileIndex !== -1) {
-        this.profiles[editedProfileIndex].name = editedProfileName;
-        this.profiles[editedProfileIndex].ifprofilelock =
+        this.profiles1[editedProfileIndex].name = editedProfileName;
+        this.profiles1[editedProfileIndex].ifprofilelock =
           editedProfileLockStatus;
       }
 
@@ -310,11 +287,13 @@ export class ProfilepageComponent implements OnInit {
   }
 
   profileLogin(selectedProfile: any) {   
-    if (selectedProfile.ifprofilelock) {
+    if (selectedProfile.isprofileLock !==0) {
       
       this.isprofile_login = true;
     } else {
       this.isprofile_login = false;
+      this.router.navigate(['login/maincarousel'])
+
     }
   }
 
@@ -328,6 +307,23 @@ export class ProfilepageComponent implements OnInit {
     this.ispassword = true;
     this.isprofile_login = false;
   }
+
+  getProfileDetails(){
+    this.profileService.getProfileList().subscribe({
+      next:(response) => {
+       
+        this.profiles1 = response.map((item:any) =>({
+          id:item.id,
+          name:item.profileName,
+          isprofileLock:item.profilePin,
+          image:item.profileAvatar,
+          kidsSafe:item.kidsSafe
+        }))
+        
+      },
+      error:(error) => {
+        console.error('Error fetching profiles: ', error);
+      }
+  });
+  }
 }
-
-

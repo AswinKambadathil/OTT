@@ -21,7 +21,7 @@ export const routes: Routes =
     {path:'chooseplan',component:ChoosePlanComponent},
     {path:'chooseplan1',component:ChoosePlan1Component},
     {path:'profile',component:ProfilepageComponent},
-    {path:'summary',component:PackageandSummaryComponent},
+    {path:'summary/:id',component:PackageandSummaryComponent},
     {path:'navbar',component:NavigationBarComponent},
     {path:'detailView/:id', component:DetailviewComponent}
 ];
