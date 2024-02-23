@@ -85,5 +85,8 @@ export class ApiServiceService {
     );
   }
   
+  // addNewProfile():Observable<any[]>{
+  //   return this.http.post('https://app.pishow.tv/acms/subscriberProfiles/saveSubscriberProfilesInfo',)
+  // }
 
 }

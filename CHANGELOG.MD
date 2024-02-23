@@ -1,3 +1,5 @@
+# 0.0.9
+1. Profile Login Created
 # 0.0.8
 1. OTT Providers Added
 2. Created routes to Summary Page
