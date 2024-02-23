@@ -24,7 +24,7 @@ export class MainCarouselComponent implements OnInit{
   imageArray:any = []
 
   postHome(){
-    this.httpDataService.postHome({pageName:'Home'}).subscribe({
+    this.httpDataService.postBanner({pageName:'Home'}).subscribe({
       next: (response: any) => { 
         this.imageArray = response
       },

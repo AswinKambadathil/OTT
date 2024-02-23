@@ -20,7 +20,7 @@ export class DetailviewComponent implements OnInit{
   id : any
 
   postHome(){
-    this.httpDataService.postHome({pageName:'Home'}).subscribe({
+    this.httpDataService.postBanner({pageName:'Home'}).subscribe({
       next: (response: any) => {
         this.route.paramMap.subscribe(params =>{
           this.id = params.get('id'); 

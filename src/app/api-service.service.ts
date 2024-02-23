@@ -21,7 +21,7 @@ export class ApiServiceService {
       return this.http.get(url);
     }
   
-    postHome(body: {pageName: string;}): Observable<any> {
+    postBanner(body: {pageName: string;}): Observable<any> {
       const url = 'https://app.pishow.tv/acms/contents/getTvAppHomePageContentsInfoList';
       return this.http.post(url,body).pipe(map((response:any)=>{
         let arrayList = []
@@ -32,6 +32,15 @@ export class ApiServiceService {
         }
         return arrayList
       }))
+    }
+
+    postContinue(body: {pageName: string;}): Observable<any> {
+      const url = 'https://app.pishow.tv/acms/contents/getTvAppHomePageContentsInfoList';
+      return this.http.post(url,body).pipe(map((response:any)=>{
+        let arrayList = []
+        arrayList.push(...response.data.categoryList)
+    return arrayList
+  }))
     }
   
   }
