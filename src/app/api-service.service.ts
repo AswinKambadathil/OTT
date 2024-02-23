@@ -7,6 +7,9 @@ import { Observable, map } from 'rxjs';
   providedIn: 'root',
 })
 export class ApiServiceService {
+  postHome(arg0: { pageName: string; }) {
+    throw new Error('Method not implemented.');
+  }
   selectedScreenId:any = null ;
 
   private http = inject(HttpClient) 
