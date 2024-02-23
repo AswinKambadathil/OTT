@@ -45,16 +45,7 @@ export class ProfilepageComponent implements OnInit {
 
   ngOnInit(): void {
     
-    // this.profileService.getProfileList().subscribe({
-    //   next:(response) => {
-    //     this.profiles1 = response;
-    //     console.log(this.profiles1);
-        
-    //   },
-    //   error:(error) => {
-    //     console.error('Error fetching profiles: ', error);
-    //   }
-  // });
+    this.getProfileDetails();
     
     this.passwordForm = this.formBuilder.group({
       first: ['', Validators.required],
@@ -297,5 +288,18 @@ export class ProfilepageComponent implements OnInit {
     console.log('Forgot password for:', this.editProfileForm.value.id);
     this.ispassword = true;
     this.isprofile_login = false;
+  }
+
+  getProfileDetails(){
+    this.profileService.getProfileList().subscribe({
+      next:(response) => {
+        this.profiles1 = response;
+        console.log(this.profiles1);
+        
+      },
+      error:(error) => {
+        console.error('Error fetching profiles: ', error);
+      }
+  });
   }
 }

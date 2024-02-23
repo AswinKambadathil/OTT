@@ -1,3 +1,10 @@
+# 0.0.8
+1. OTT Providers Added
+2. Created routes to Summary Page
+
+# 0.0.6
+1.FTA channels Added
+
 # 0.0.5
 
 1.Api service created
