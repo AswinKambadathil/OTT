@@ -17,11 +17,13 @@ export class ChoosePlan1Component {
   private servicee = inject(ApiServiceService);
 red: any;
   constructor() {}
+  id:any
 
   ngOnInit(): any {
     this.selectPack();
-    this.selectPlan();
+    // this.selectPlan();
     this.fetchFTAChannels();
+    this.providers();
   }
 
   // chooseScreen = [{id:1,screen:'1 Screen'},{id:2,screen:'2 Screen'}];
@@ -47,89 +49,35 @@ red: any;
   //   }
   // ];
 
-  channelIcon = [
-    { id: 1 },
-    { id: 2 },
-    { id: 3 },
-    { id: 4 },
-    { id: 5 },
-    { id: 6 },
-    { id: 7 },
-    { id: 8 },
-    { id: 9 },
-  ];
 
-  // pack = [{
 
-  //     pack: [
-  //       {
-  //         id:1,
-  //         month:'One',
-  //         match:'100',
-  //         price:'550',
-  //         discount:'7.5',
-  //         selectPack:false
-  //       },
 
-  //     ],
-  // },
-  //   {
-  //     pack:[
-  //       {
-  //         id:2,
-  //         month:'Two',
-  //         match:'93',
-  //         price:'580',
-  //         discount:'8.5',
-  //         selectPack:false,
-  //       }
-  //     ]
-  //   },
-  //   {
-  //     pack:[
-  //       {
-  //         id:3,
-  //         month:'Three',
-  //         match:'84',
-  //         price:'625',
-  //         discount:'11.5',
-  //         selectPack:false
-  //       }
-  //     ]
-  //   },
-  // ];
 
-  planselect(item: any) {
-    this.choose2.forEach((group) => {
-      if (group.choosePlan) {
-        group.choosePlan.forEach((plan: { id: any; background: boolean }) => {
-          if (plan.id !== item.id) {
-            plan.background = false;
-          }
-        });
-      }
-    });
-    item.background = !item.background;
+  packageSelect(item1: any) {
+    this.pack.forEach(item => {
+      item.packageStatus = item.id === item1 ? 0 : 1;
+      
+  });
+  console.log(item1);
+
+  this.id = item1
+
+    // item.packageStatus = item.packageStatus === 1 ? 0 : 1;
+    // console.log(this.pack);
+    
   }
 
-  packageSelect(item: any) {
-    this.pack.forEach((plan) => {
-      plan.pack.forEach((packItem: { id: any; selectPack: boolean }) => {
-        if (packItem.id !== item.id) {
-          packItem.selectPack = false;
-        }
-      });
-    });
-    item.selectPack = !item.selectPack;
-  }
+  
 
   pack: any[] = [];
 
   selectPack(): void {
-    this.servicee.getPack().subscribe({
+    this.servicee.getPacks().subscribe({
       next: (response) => {
         this.pack = response;
-        // console.log(response);
+        console.log(this.pack);
+        
+       
       },
       error: (error) => {
         console.error('Error fetching languages: ', error);
@@ -137,33 +85,55 @@ red: any;
     });
   }
 
-  choose2: any[] = [];
 
-  selectPlan(): void {
-    this.servicee.getPlan().subscribe({
-      next: (response) => {
-        this.choose2 = response;
-        // console.log(response);
-      },
-      error: (error) => {
-        console.error('Error fetching languages: ', error);
-      },
-    });
-  }
 
-  proceed() {
-  }
+  // choose2: any[] = [];
+
+  // selectPlan(): void {
+  //   this.servicee.getPlan().subscribe({
+  //     next: (response) => {
+  //       this.choose2 = response;
+  //       // console.log(response);
+  //     },
+  //     error: (error) => {
+  //       console.error('Error fetching languages: ', error);
+  //     },
+  //   });
+  // }
+
   ftaChannelsData: any[] =[];
+
   fetchFTAChannels() {
     this.servicee.ftaChannels().subscribe({
       next:(response)=>{
         this.ftaChannelsData = response;
-        console.log(this.ftaChannelsData.length);
+        
       },
       error:(error) =>{
         console.log('Error fetching FTA channels:', error);
         
       },
     });
+  }
+
+  ProviderChannelList:any[]= [];
+  providers(){
+    this.servicee.providerschannel().subscribe({
+      next:(response)=>{
+        this.ProviderChannelList = response;
+        console.log(this.ProviderChannelList);
+        
+      },
+      error:(error) =>{
+        console.log('Error fetching Providers:', error);
+        
+      }
+    })
+  }
+  proceed() {
+    
+    this.router.navigate(['/summary',this.id])
+    // console.log(this.id);
+    
   }
 }

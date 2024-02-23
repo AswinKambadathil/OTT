@@ -5,7 +5,7 @@
       <h1>Who's watching?</h1>
       <div class="profiles">
           <div class="profile-pic">
-            @for (profile of profiles; track profile){
+            @for (profile of profiles1; track profile){
             <div class="squircle" (click)="profileLogin(profile)">
               <!-- <svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg" version="1.1" 
                     [attr.fill]="profile.color" 
@@ -24,7 +24,7 @@
                 </svg> -->
               <img
                 [className]="isEdit ? 'visible' : ''"
-                [src]="profile.image"
+                [src]="profile.profileAvatar"
               />
               <div class="firsteye">
                 <img
@@ -48,7 +48,7 @@
                 />
               </div>
               <p style="color: #707070; text-align: center; margin-top: 1rem; margin-bottom: 0;">
-                {{ profile.name }}
+                {{ profile.profileName }}
               </p>
   
               @if (profile.ifprofilelock) {

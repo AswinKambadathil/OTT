@@ -1,5 +1,5 @@
 import { Component, inject,OnInit } from '@angular/core';
-import { Router} from '@angular/router';
+import { ActivatedRoute, Router} from '@angular/router';
 import { ApiServiceService } from '../api-service.service';
 import { CommonModule } from '@angular/common';
 @Component({
@@ -15,25 +15,19 @@ export class PackageandSummaryComponent  {
   selectedScreenId: any;
 
   private router = inject(Router);
-  private servicee =  inject(ApiServiceService)
+  private servicee =  inject(ApiServiceService);
+  private routes = inject(ActivatedRoute)
+  id:any;
  
   constructor() { }
 
   ngOnInit(): any {
 
     this.fetchFTAChannels();
+    this.providers();
+    this.selectPack();
   }
-  channelIcon = [
-    { id: 1 },
-    { id: 2 },
-    { id: 3 },
-    { id: 4 },
-    { id: 5 },
-    { id: 6 },
-    { id: 7 },
-    { id: 8 },
-    { id: 9 },
-  ];
+  
   proceed(){
     this.router.navigate(['/language']);
   }
@@ -41,10 +35,12 @@ export class PackageandSummaryComponent  {
   ftaChannelsData: any[] =[];
 
   fetchFTAChannels() {
+  
     this.servicee.ftaChannels().subscribe({
       next:(response)=>{
         this.ftaChannelsData = response;
-        console.log(this.ftaChannelsData.length);
+
+        // console.log(this.ftaChannelsData);
       },
       error:(error) =>{
         console.log('Error fetching FTA channels:', error);
@@ -52,4 +48,41 @@ export class PackageandSummaryComponent  {
       },
     });
   }
+
+  ProviderChannelList:any[]= [];
+  providers(){
+    this.routes.paramMap.subscribe(paraMs =>{
+      this.id = paraMs.get('id')
+      // console.log(this.id);
+      
+    });
+    this.servicee.providerschannel().subscribe({
+      next:(response)=>{
+        this.ProviderChannelList = response;
+        // console.log(this.ProviderChannelList);
+        
+      },
+      error:(error) =>{
+        console.log('Error fetching Providers:', error);
+        
+      }
+    })
+  }
+
+  pack: any[] = [];
+
+  selectPack(): void {
+    this.servicee.getPacks().subscribe({
+      next: (response) => {
+        this.pack = response;
+        console.log(this.pack);
+        
+       
+      },
+      error: (error) => {
+        console.error('Error fetching languages: ', error);
+      },
+    });
+  }
+
 }
