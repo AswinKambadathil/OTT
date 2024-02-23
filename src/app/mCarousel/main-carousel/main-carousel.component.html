@@ -2,20 +2,20 @@
   @for (item of imageArray; track item) {
   <div class="wrap">
     <div class="detail">
-      <div class="discription">{{ item.description }}</div>
-      <div class="title">{{ item.title }}</div>
+      <div class="discription">{{ item.contentType }}</div>
+      <div class="title">{{ item.contentName }}</div>
       <div class="header">
-        <img [src]="item.discriptUrl" alt="" />
+        <img [src]="item.movieLogo" alt="" />
       </div>
       <div class="logoWrap">
         <div class="logo">
-          <img [src]="item.logoUrl" alt="" />
+          <img src="./assets/Login/Movies/Amazon-Prime-Video-Icon.png" alt="" />
         </div>
         <div class="logoWrite">Included with your pack</div>
       </div>
       <div class="playWrap">
         <div class="playButton">
-          <img src="assets/Login/Logos/Path 51.svg" alt="" />
+          <img src="assets/Login/Logos/Path 51.svg" alt="" (click)="playVideo(item.contentId)"/>
         </div>
         <div class="playWrite">Play</div>
         <div class="favorite" (click)="myFavorite(item)">
@@ -68,7 +68,7 @@
       </div>
     </div>
     <div class="mainImg">
-      <img [src]="item.imageUrl" alt="" />
+      <video [src]="item.contentPreview" autoplay muted></video>
     </div>
   </div>
   }

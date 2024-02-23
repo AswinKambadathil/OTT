@@ -7,11 +7,11 @@
       <img
         src="assets/Login/Chevron/chevron_right.svg"
         alt=""
-        (click)="transformImgleftTwo()"
+        (click)="transformImgleft()"
       />
     </div>
     }
-    <div class="mainImageWrap" [id]="'mainImageWrap'+label">
+    <div class="mainImageWrap" [id]="id">
       @for (item of imageArray; track $index) {
       <div class="imageWrap">
         <img [src]="item.discriptUrl" alt="" />
@@ -24,7 +24,7 @@
       <img
         src="assets/Login/Chevron/chevron_right.svg"
         alt=""
-        (click)="transformImgTwo()"
+        (click)="transformImg()"
       />
     </div>
     }
@@ -38,11 +38,11 @@
     <div class="arrowLeft">
       <img
         src="assets/Login/Chevron/chevron_right.svg"
-        (click)="transformImgleftTwo()"
+        (click)="transformImgleft()"
       />
     </div>
     }
-    <div class="mainImageWrap" id="'mainImageWrap'+label">
+    <div class="mainImageWrap" [id]="id">
       <ul class="portImg">
         @for (item of imageArray; track $index) {
         <li>
@@ -101,7 +101,7 @@
       <img
         src="assets/Login/Chevron/chevron_right.svg"
         alt=""
-        (click)="transformImgTwo()"
+        (click)="transformImg()"
       />
     </div>
     }

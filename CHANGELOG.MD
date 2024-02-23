@@ -2,8 +2,14 @@
 1. OTT Providers Added
 2. Created routes to Summary Page
 
+# 0.0.7
+
+1.New Api updated for main carousel
+
+
 # 0.0.6
-1.FTA channels Added
+
+1.Api called for ContinueWatch  component and some id error fixed
 
 # 0.0.5
 
