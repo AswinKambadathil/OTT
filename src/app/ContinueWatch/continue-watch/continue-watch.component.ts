@@ -29,16 +29,11 @@ export class ContinueWatchComponent implements OnInit {
   }
 
   postHome(){
-    this.continue.postHome({pageName:'Home'}).subscribe({
+    this.continue.postContinue({pageName:'Home'}).subscribe({
       next: (response: any) => {
-        console.log(response);
-        this.imageArray = response.map((item: any) => ({
-          id: item.contentId,
-          discriptUrl: item.bannerLandscapeImage,
-          description: item.contentType,
-          potrait: item.bannerPortraitImage,
-          name: item.contentName
-        }));
+        
+        this.imageArray=response
+        console.log(this.imageArray);
       },
       error: (error: any) => {
         console.error('Error fetching data:', error);

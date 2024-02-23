@@ -94,6 +94,34 @@ export class ApiServiceService {
         })
       );
     }
+    getProfile(): Observable<any> {
+      const url = 'https://app.pishow.tv/acms/subscriber/getProfilesListBySubscriber/630383ffbf448c47a0a81413';
+      return this.http.get(url);
+    }
+  
+    postBanner(body: {pageName: string;}): Observable<any> {
+      const url = 'https://app.pishow.tv/acms/contents/getTvAppHomePageContentsInfoList';
+      return this.http.post(url,body).pipe(map((response:any)=>{
+        let arrayList = []
+        for(let item of response.data.categoryList){
+          if (item.bannerInfo != null && Array.isArray(item.bannerInfo.bannerList)) {
+          arrayList.push(...item.bannerInfo.bannerList)
+          }
+        }
+        return arrayList
+      }))
+    }
+
+    postContinue(body: {pageName: string;}): Observable<any> {
+      const url = 'https://app.pishow.tv/acms/contents/getTvAppHomePageContentsInfoList';
+      return this.http.post(url,body).pipe(map((response:any)=>{
+        let arrayList = []
+        arrayList.push(...response.data.categoryList)
+    return arrayList
+  }))
+    }
+  
+
     
   
 }

@@ -12,9 +12,9 @@
     </div>
     }
     <div class="mainImageWrap" [id]="id">
-      @for (item of imageArray; track $index) {
+      @for (item of imageArray.featuredInfo.contentList; track $index) {
       <div class="imageWrap">
-        <img [src]="item.discriptUrl" alt="" />
+        <img [src]="item.landscapeUrl" alt="" />
       </div>
       }
     </div>
