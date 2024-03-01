@@ -1,0 +1,101 @@
+<div class="mainDetailWrap">
+  @for (data of defaultInfo; track $index) {
+    @for(item of data.categoryList; track $index){
+    @if (id == item.contentId) {
+  <div class="detailWrap">
+    <div class="imgWrap">
+      <div class="gradient"></div>
+      <video src="{{ item.contentPreview }}" alt="" class="banner" autoplay> </video>
+    </div>
+    <div class="detailContent">
+      <div class="logo">
+        <img src="./assets/Login/Movies/Amazon-Prime-Video-Icon.png" alt="" class="logoImg" />
+      </div>
+      <div class="trending">{{ item.contentType }}</div>
+      <div class="name">{{ item.contentName }}</div>
+      <div class="brief">{{ item.shortDesc }}</div>
+      <div class="rating">
+        <div class="imdb">{{ item.ageRating }}</div>
+        <div class="time">{{ item.duration }}</div>
+        <div class="year">{{ item.year }}</div>
+        <div class="ua">{{ item.ua }}</div>
+      </div>
+      <div class="category">
+        @for (items of item.contentGenre; track $index) {
+        <span>{{ items }}</span>
+        .
+        }
+      </div>
+      <div class="stream">
+        <div class="amazon">{{ item.amazon }}</div>
+        <div class="sony">{{ item.sony }}</div>
+        <div class="favorite" (click)="myFavorite(item)">
+          @if(item.isFavorite){
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="26.091"
+            height="23.706"
+            viewBox="0 0 26.091 23.706"
+          >
+            <g id="favorite" transform="translate(-0.921 -4.004)">
+              <path
+                id="Path_52"
+                data-name="Path 52"
+                d="M24.093,6.944A6.55,6.55,0,0,0,14,7.957a6.55,6.55,0,1,0-10.089,8.25L14,26.3,24.093,16.207A6.55,6.55,0,0,0,24.093,6.944Z"
+                transform="translate(0 0)"
+                fill="#fff"
+                stroke="#f7f7f7"
+                stroke-linecap="square"
+                stroke-width="2"
+              />
+            </g>
+          </svg>
+
+          }@else {
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="26.091"
+            height="23.706"
+            viewBox="0 0 26.091 23.706"
+          >
+            <g id="favorite" transform="translate(-0.921 -4.004)">
+              <path
+                id="Path_52"
+                data-name="Path 52"
+                d="M24.093,6.944A6.55,6.55,0,0,0,14,7.957a6.55,6.55,0,1,0-10.089,8.25L14,26.3,24.093,16.207A6.55,6.55,0,0,0,24.093,6.944Z"
+                transform="translate(0 0)"
+                fill="#f00"
+                stroke="#f00"
+                stroke-linecap="square"
+                stroke-width="2"
+              />
+            </g>
+          </svg>
+          }
+        </div>
+      </div>
+      <div class="stream">
+        <div class="aha">{{ item.aha }}</div>
+        <div class="disney">{{ item.disney }}</div>
+        <div class="exclema">
+          <img src="assets/Login/Logos/i.svg" alt="" />
+        </div>
+      </div>
+    </div>
+    <div class="relatedViews">
+      @if (item.description == 'Movie') {
+      <div class="related">
+        <div class="detail">Details</div>
+        <div class="relate">Related</div>
+      </div>
+      } @else{
+      <div class="related">
+        <div class="episode">Episodes</div>
+        <div class="detail">Details</div>
+        <div class="relate">Related</div>
+      </div>
+      }
+    </div>
+  </div>
+  } } }
+</div>

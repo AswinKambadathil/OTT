@@ -1,1 +1,335 @@
-<p>login-screen works!</p>
+<div class="mainWrap">
+  <div class="imagediv">
+    <div class="carousel">
+      <img src="assets/Login/TV/TV.png" alt="" />
+      <img src="/assets/onnet_logopng.png" alt="" />
+      <img src="assets/Login/TV/TV.png" alt="" />
+    </div>
+    <!-- <div class="dots-container">
+      <span class="dot"></span>
+    </div> -->
+  </div>
+
+  <div class="contentdiv">
+    <div class="headercontentdiv">
+      <button
+        class="logButton"
+        id="logButton"
+        (click)="mainLogin()"
+        [style.Color]="buttonColor()"
+      >
+        Login
+      </button>
+      <button
+        class="signButton"
+        (click)="mainSignup()"
+        [style.Color]="buttonColor1()"
+      >
+        Sign Up
+      </button>
+      <img
+        class="logoImg"
+        src="assets/Login/onnet+logo+white/onnet+logo+white.png"
+        alt=""
+      />
+    </div>
+
+    @if(getOtp){
+    <div class="bottomcontentdiv">
+      <form [formGroup]="userform1">
+        <div class="inputText0">
+          <input
+            formControlName="mobno"
+            class="inputText"
+            id="inputText3"
+            type="text"
+            placeholder=" "
+            maxlength="10"
+            [value]="mobnum"
+            oninput="this.value = this.value.replace(/[^0-9]/,'')"
+            (input)="onChange(userform1.get('mobno')?.value)"
+          />
+          @if(userform1.controls['mobno'].touched &&
+          userform1.controls['mobno'].invalid) {<span
+            >The Mobile Number is required.</span
+          >}
+          <label class="mobno">Mobile Number</label>
+        </div>
+      </form>
+
+      <div>
+        <button
+          class="otpButton"
+          [disabled]="validateCase1()"
+          (click)="buttonLoginF()"
+        >
+          Get OTP
+        </button>
+      </div>
+    </div>
+    } @if(signin||signup){
+    <div class="bottomcontentdiv">
+      <form [formGroup]="userform2">
+        <div class="inputText0">
+          <input
+            formControlName="mobno"
+            class="inputText"
+            type="text"
+            placeholder=" "
+          />
+          @if(userform2.controls['mobno'].touched &&
+          userform2.controls['mobno'].invalid) {<span
+            >The Mobile Number is required.</span
+          >}
+          <label class="mobno">Mobile Number</label>
+        </div>
+
+        <div class="otpresend">
+          <div class="resendOtp">Resend OTP</div>
+
+          <div class="otpDiv">
+            <input
+              #field1Input
+              required
+              formControlName="otp1"
+              type="text"
+              maxlength="1"
+              class="otpInput"
+              oninput="this.value = this.value.replace(/[^0-9]/,'')"
+              (input)="onInputChange(field1Input, field2Input)"
+            />
+
+            <input
+              #field2Input
+              required
+              formControlName="otp2"
+              type="text"
+              maxlength="1"
+              class="otpInput"
+              inputmode="numeric"
+              oninput="this.value = this.value.replace(/[^0-9]/,'')"
+              (input)="onInputChange(field2Input, field3Input)"
+            />
+
+            <input
+              #field3Input
+              required
+              formControlName="otp3"
+              type="text"
+              maxlength="1"
+              class="otpInput"
+              inputmode="numeric"
+              oninput="this.value = this.value.replace(/[^0-9]/,'')"
+              (input)="onInputChange(field3Input, field4Input)"
+            />
+
+            <input
+              #field4Input
+              required
+              formControlName="otp4"
+              type="text"
+              maxlength="1"
+              class="otpInput"
+              inputmode="numeric"
+              oninput="this.value = this.value.replace(/[^0-9]/,'')"
+              (input)="onInputChange(field4Input, field5Input)"
+            />
+
+            <input
+              #field5Input
+              required
+              formControlName="otp5"
+              type="text"
+              maxlength="1"
+              class="otpInput"
+              inputmode="numeric"
+              oninput="this.value = this.value.replace(/[^0-9]/,'')"
+              (input)="onInputChange(field5Input, field6Input)"
+            />
+
+            <input
+              #field6Input
+              required
+              formControlName="otp6"
+              type="text"
+              maxlength="1"
+              class="otpInput"    
+              inputmode="numeric"
+              oninput="this.value = this.value.replace(/[^0-9]/,'')"
+            />
+          </div>
+
+          @if(userform2.controls['otp1'].touched &&
+          userform2.controls['otp1'].invalid) {<span>The OTP is required.</span
+          >} @if(userform2.controls['otp2'].touched &&
+          userform2.controls['otp2'].invalid) {<span>The OTP is required.</span
+          >} @if(userform2.controls['otp3'].touched &&
+          userform2.controls['otp3'].invalid) {<span>The OTP is required.</span
+          >} @if(userform2.controls['otp4'].touched &&
+          userform2.controls['otp4'].invalid) {<span>The OTP is required.</span
+          >} @if(userform2.controls['otp5'].touched &&
+          userform2.controls['otp5'].invalid) {<span>The OTP is required.</span
+          >} @if(userform2.controls['otp6'].touched &&
+          userform2.controls['otp6'].invalid) {<span>The OTP is required.</span
+          >}
+        </div>
+      </form>
+
+      <div class="signedButton">
+        <button
+          class="otpButton"
+          [disabled]="validateCase2()"
+          (click)="buttonLoginS()"
+        >
+          {{ signCase }}
+        </button>
+      </div>
+
+      <div class="keepSignedWrap">
+        <input class="keepSigned" type="checkbox" />Keep me signed in
+      </div>
+    </div>
+    } @if (signUpF) {
+    <div class="bottomcontentdiv">
+      <form [formGroup]="userform3" class="signupForm">
+        <div class="inputdiv1">
+          <div class="inputText7">
+            <input
+              formControlName="mobno"
+              class="inputText"
+              type="text"
+              placeholder=" "
+            />
+            @if(userform3.controls['mobno'].touched &&
+            userform3.controls['mobno'].invalid) {<span
+              >The Mobile Number is required.</span
+            >}
+            <label class="mobno">Mobile Number</label>
+          </div>
+        </div>
+
+        <div class="inputdiv2">
+          <div class="inputText6">
+            <input
+              formControlName="fname"
+              class="inputText"
+              type="text"
+              placeholder="Joe Mon"
+            />
+            @if(userform3.controls['fname'].touched &&
+            userform3.controls['fname'].invalid) {<span
+              >The Firstname is required.</span
+            >}
+            <label class="mobno">Full Name</label>
+          </div>
+        </div>
+
+        <div class="inputdiv3">
+          <div class="inputText2">
+            <input
+              formControlName="email"
+              class="inputText"
+              type="text"
+              placeholder=" "
+              inputmode="email"
+            />
+            @if(userform3.controls['email'].touched &&
+            userform3.controls['email'].invalid) {<span
+              >The Email is required.</span
+            >}
+            <label class="mobno">Email Id</label>
+          </div>
+        </div>
+
+        <div class="genderDob">
+          <div class="inputText3">
+            <select formControlName="gender" class="inputText1">
+              <option class="null" selected disabled hidden>Gender</option>
+              <option value="male">Male</option>
+              <option value="male">Female</option>
+            </select>
+            @if(userform3.controls['gender'].touched &&
+            userform3.controls['gender'].invalid) {<span
+              >The Gender is required.</span
+            >}
+            <p class="mobno">Gender</p>
+          </div>
+
+          <div class="inputText4">
+            <input
+              formControlName="date"
+              class="inputText1"
+              type="date"
+              style="color: white"
+            />
+            @if(userform3.controls['date'].touched &&
+            userform3.controls['date'].invalid) {<span
+              >The DOB is required.</span
+            >}
+            <p class="mobno">DOB</p>
+          </div>
+        </div>
+
+        <div class="inputdiv4">
+          <div class="inputText5">
+            <div formControlName="state" class="inputText" type="text">
+              <div value="Andhra Pradesh">Andhra Pradesh</div>
+              <div value="Arunachal Pradesh">Arunachal Pradesh</div>
+              <div value="Assam">Assam</div>
+              <div value="Bihar">Bihar</div>
+              <div value="Chhattisgarh">Chhattisgarh</div>
+              <div value="Goa">Goa</div>
+              <div value="Gujarat">Gujarat</div>
+              <div value="Haryana">Haryana</div>
+              <div value="Himachal Pradesh">Himachal Pradesh</div>
+              <div value="Jharkhand">Jharkhand</div>
+              <div value="Karnataka">Karnataka</div>
+              <div value="Kerala">Kerala</div>
+              <div value="Madhya Pradesh">Madhya Pradesh</div>
+              <div value="Maharashtra">Maharashtra</div>
+              <div value="Manipur">Manipur</div>
+              <div value="Meghalaya">Meghalaya</div>
+              <div value="Mizoram">Mizoram</div>
+              <div value="Nagaland">Nagaland</div>
+              <div value="Odisha">Odisha</div>
+              <div value="Punjab">Punjab</div>
+              <div value="Rajasthan">Rajasthan</div>
+              <div value="Sikkim">Sikkim</div>
+              <div value="Tamil Nadu">Tamil Nadu</div>
+              <div value="Telangana">Telangana</div>
+              <div value="Tripura">Tripura</div>
+              <div value="Uttar Pradesh">Uttar Pradesh</div>
+              <div value="Uttarakhand">Uttarakhand</div>
+              <div value="West Bengal">West Bengal</div>
+              <div value="Andaman and Nicobar Islands">
+                Andaman and Nicobar Islands
+              </div>
+              <div value="Chandigarh">Chandigarh</div>
+              <div value="Dadra and Nagar Haveli and Daman and Diu">
+                Dadra and Nagar Haveli and Daman and Diu
+              </div>
+              <div value="Lakshadweep">Lakshadweep</div>
+              <div value="Delhi">Delhi</div>
+              <div value="Puducherry">Puducherry</div>
+            </div>
+            @if(userform3.get('state')?.touched &&
+            userform3.get('state')?.invalid) {<span>The State is required.</span
+            >}
+            <label class="mobno">State</label>
+          </div>
+        </div>
+
+        <div class="signupButton">
+          <button
+            class="otpButton"
+            [disabled]="validateCase3()"
+            (click)="buttonLoginT()"
+          >
+            Sign Up
+          </button>
+        </div>
+      </form>
+    </div>
+    }
+  </div>
+</div>

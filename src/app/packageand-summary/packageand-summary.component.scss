@@ -1,0 +1,195 @@
+.summary-container{
+    width: 100vw;
+    height: 100%;
+    background: black;
+    overflow: hidden;
+    position: relative;
+}
+.shadow1 {
+    border-radius: 50%;
+    width: 200px;
+    height: 275px;
+    background: radial-gradient(circle, #e50914 51%, transparent 94%);
+    box-shadow: 0 0 100px 40px #e50914;
+    position: absolute;
+    bottom: -83px;
+    left: -205px;
+}
+
+.shadow2 {
+    border-radius: 50%;
+    width: 200px;
+    height: 275px;
+    background: radial-gradient(circle, #e50914 51%, transparent 94%);
+    box-shadow: 0 0 100px 50px #e50914 !important;
+    position: absolute;
+    top: -83px;
+    right: -205px;
+}
+.package-summary {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-left: 100px;
+    margin-right: 100px;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+    align-content: center;
+    gap: 25px;
+}
+.header-top {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 20px;
+}
+
+.logo {
+    width: 120px;
+}
+.heading p {
+    font-size: 20px;
+    color: #fff;
+    font-weight: bold;
+}
+.heading span{
+    color: #E50914;
+}
+.order{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.package{
+    width: 74%;
+    height: 300px;
+    border-radius: 10px;
+    border: 1px solid #F5F5F5;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    justify-content: space-between;
+}
+.package{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+.pack span{
+    font-size: 20px;
+    color: #fff;
+    font-weight: bold;
+}
+.ottchannels{
+    display: flex;
+    overflow: scroll;
+    gap: 15px;
+    padding-top: 10px;
+    
+}
+.channel-icon svg{
+    width: 80px;
+    height: 80px;
+}
+.pack1{
+    padding-top: 30px;
+    span{
+        font-size: 20px;
+        color: #fff;
+        font-weight: bold;
+    }
+}
+.summary{
+    width: 30%;
+    height: 300px;
+    border-radius: 10px;
+    // border: 1px solid #F5F5F5;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 40px;
+    gap:10px
+    // justify-content: space-between;
+}
+.amount{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.amount span{
+    font-size: 70px;
+    font-weight: bold;
+    color: #fff;
+}
+.apply-coupon{
+    width: 100%;
+    height: 10px;
+    display: flex;
+    background-color:transparent;
+    padding: 20px 30px 20px 8px;
+    border-radius: 8px;
+    flex-wrap: wrap;
+    border: 1px solid #F5F5F5;
+    align-content: center;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  .apply-coupon input{
+    width: 100%;
+    border: none;
+    background: transparent;
+    color: #fff;
+    outline: none;
+  }
+  .applay-code{
+    position: relative;
+  }
+  .coupon-code{
+    width: 106px;
+    position: absolute;
+    top: 0px;
+    left: 5px;
+    padding-left: 2px;
+    pointer-events: none;
+  }
+  .input-text:focus +.coupon-code, .input-text:not(:placeholder-shown) + .coupon-code{
+     top: -23px;
+    color: rgba($color: #fff, $alpha: 0.8);
+    background-color: black;
+    padding: 0 15px;
+}
+.proceed {
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.get-started-btn {
+    align-items: center;
+}
+
+
+.get-started-btn:hover {
+    background-color: #ff1f3d;
+    opacity: 0.9;
+}
+
+.proceed button {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    height: 40px;
+    background: #E50914;
+    border: 0;
+    outline: 0;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+    align-content: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}

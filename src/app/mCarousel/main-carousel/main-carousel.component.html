@@ -1,0 +1,83 @@
+<div class="main">
+  @for (items of bannerInfo; track $index) {
+    @for (item of items.categoryList; track $index) {
+  <div class="wrap" id="id{{$index}}">
+    <div class="detail">
+      <div class="discription">{{ item.contentType }}</div>
+      <div class="title">{{ item.contentName }}</div>
+      <div class="header">
+        <img [src]="item.movieLogo" alt="" />
+      </div>
+      <div class="logoWrap">
+        <div class="logo">
+          <img src="./assets/Login/Movies/Amazon-Prime-Video-Icon.png" alt="" />
+        </div>
+        <div class="logoWrite">Included with your pack</div>
+      </div>
+      <div class="playWrap">
+        <div class="playButton">
+          <img src="assets/Login/Logos/Path 51.svg" alt="" (click)="playVideo(item.contentId)"/>
+        </div>
+        <div class="playWrite">Play</div>
+        <div class="favorite" (click)="myFavorite(item)">
+          <!-- @if(item.isFavorite){ -->
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="26.091"
+            height="23.706"
+            viewBox="0 0 26.091 23.706"
+          >
+            <g id="favorite" transform="translate(-0.921 -4.004)">
+              <path
+                id="Path_52"
+                data-name="Path 52"
+                d="M24.093,6.944A6.55,6.55,0,0,0,14,7.957a6.55,6.55,0,1,0-10.089,8.25L14,26.3,24.093,16.207A6.55,6.55,0,0,0,24.093,6.944Z"
+                transform="translate(0 0)"
+                fill="#fff"
+                stroke="#f7f7f7"
+                stroke-linecap="square"
+                stroke-width="2"
+              />
+            </g>
+          </svg>
+
+          <!-- }@else {
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="26.091"
+            height="23.706"
+            viewBox="0 0 26.091 23.706"
+          >
+            <g id="favorite" transform="translate(-0.921 -4.004)">
+              <path
+                id="Path_52"
+                data-name="Path 52"
+                d="M24.093,6.944A6.55,6.55,0,0,0,14,7.957a6.55,6.55,0,1,0-10.089,8.25L14,26.3,24.093,16.207A6.55,6.55,0,0,0,24.093,6.944Z"
+                transform="translate(0 0)"
+                fill="#f00"
+                stroke="#f00"
+                stroke-linecap="square"
+                stroke-width="2"
+              />
+            </g>
+          </svg>
+          } -->
+        </div>
+        <div class="exclema">
+          <img src="assets/Login/Logos/i.svg" alt="" />
+        </div>
+      </div>
+    </div>
+    <div class="mainImg">
+      <video [src]="item.contentPreview" autoplay muted></video>
+    </div>
+  </div>
+  }}
+</div>
+
+@for (items of defaultInfo;track $index){
+
+  
+<app-continue-watch [styleChange]="$index%2 ==0?'1stStyle':'2ndStyle'" [label]="items.categoryName" [data]="items.categoryList" [j]="$index"/>
+
+}

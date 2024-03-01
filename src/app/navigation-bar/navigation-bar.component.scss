@@ -1,0 +1,226 @@
+
+.navigation-bar{
+    display: flex;
+    padding-left: 30px;
+    padding-right: 30px;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    align-content: center;
+    color: #fff;
+    width: 100vw;
+    height: 10vh;
+    background: black;
+}
+.header-top {
+    // width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    padding-top: 20px;
+    
+}
+.home span {
+    font-weight: bold;
+    cursor: pointer;
+  }
+  .hover-underline-animation {
+    display: inline-block;
+    position: relative;
+    color: #0087ca;
+  }
+  
+  .hover-underline-animation:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #707070;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+  }
+  
+  .hover-underline-animation.underline-active:after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+  
+
+.logo {
+    width: 100px;
+}
+.profile-section{
+    display: flex;
+    align-items: center;
+    // gap: 50px;
+    padding-top: 20px;
+    gap: 25px;
+}
+.search img{
+    width: 20px;
+    cursor: pointer;
+}
+.input{
+    width: 100%;
+    display: flex;
+    background-color:transparent;
+   
+    flex-wrap: wrap;
+    border-bottom: 1px solid #F5F5F5;
+    align-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+  .input input{
+    width: 100%;
+    border: none;
+    background: transparent;
+    color: #fff;
+    outline: none;
+  }
+  .notifiction-icon img{
+    width: 20px;
+  }
+  .notifiction-icon{cursor: pointer;}
+ .squircle{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+  .squircle svg{
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+ .firsteye{
+    position: absolute;
+    top: -3px;
+    left: 6px;
+}
+.secondeye{
+    position: absolute;
+    top: -3px;
+    left: 19px
+}
+.smile{
+    position: absolute;
+    top: 6px;
+    left: 11px;
+}
+#smile{
+    width: 12px;
+    height: 15px;
+}
+#firsteye{
+    width: 5px;
+    height: 5px;
+}
+#secondeye{
+    width: 5px;
+    height: 5px;
+} 
+.drop-down img{
+    width: 15px;
+    height: 20px;
+}
+.drop-down{
+    position: relative;
+    cursor: pointer;
+}
+.userprofile-login{
+    position: absolute;
+    top: -15px;
+    text-align: center;
+    right: -20px;
+    border-radius: 1em;
+    display: flex;
+    place-content: center;
+    width: 230px;
+  }
+  .profile_screen{
+    background: rgba(0 , 0, 0, 0.5);
+    border: 2px solid rgba(32, 32, 32, 0.25);
+    border-radius: 2em;
+    padding: 2em;
+    height: fit-content;
+    margin-top: 55px;
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(5px);
+    display: flex;
+    flex-direction: column;
+}
+.dropdown{
+    display: flex;
+    flex-direction: column;
+}
+.dropdown2{
+    display: flex;
+    gap: 17px;
+    padding-left: 7px;
+
+}
+.profile-button{
+    display: flex;
+    gap:10px;
+    padding-left: 5px;
+}
+.manageprofile{
+    border: 1px solid #707070;
+    color:#fff;
+    background-color: transparent;
+    cursor: pointer;
+    transition: bottom 0.3s ease-in-out;
+    border: none;
+}
+
+
+.pen{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+  }
+  .fa-pen {
+    font-size: 15px;
+    // filter: invert(1);
+    cursor: pointer;
+  }
+  .proceed {
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.get-started-btn {
+    align-items: center;
+}
+
+
+.get-started-btn:hover {
+    background-color: #ff1f3d;
+    opacity: 0.9;
+}
+
+.proceed button {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    height: 40px;
+    background: #E50914;
+    border: 0;
+    outline: 0;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+    align-content: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+

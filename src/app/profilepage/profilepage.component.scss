@@ -1,0 +1,604 @@
+.profile-container{
+    width: 100%;
+    height: 100vh;
+    // background: rgb(5,20,22);
+    background: black;
+    overflow: hidden;
+    position: relative;
+}
+
+#mySVG1{
+    transform: scale(0.2);
+    fill: red;
+}
+#mySVG2{
+    transform: scale(0.2);
+    fill: rgb(200, 255, 0);
+}
+
+.shadow1{
+  border-radius: 50%;
+  width: 200px;
+  height: 275px;
+  background: radial-gradient(circle, #e50914 51%, transparent 94%);
+  box-shadow: 0 0 100px 50px #e50914;
+  position: absolute;
+  bottom: -83px;
+  left: -205px;
+}
+.shadow2{
+    border-radius: 50%;
+    width: 200px;
+    height: 275px;
+    background: radial-gradient(circle, #e50914 51%, transparent 94%);
+    box-shadow: 0 0 100px 50px #e50914 !important;
+    position: absolute;
+    top: -83px;
+    right: -205px;
+}
+.heading{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    padding-top:  150px;
+    text-align: center;
+}
+.heading h1{
+    color: #fff;
+}
+.profiles{
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+}
+.squircle img{
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+}
+.squircle svg{
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+}
+.addProfile{
+  position: relative;
+}
+.addProfile img{
+  width: 100px;
+    height: 100px;
+    cursor: pointer;
+    filter: invert(0);
+}
+.profile-pic{
+    display: flex;
+    gap: 20px;
+}
+.add-icon{
+  position: absolute;
+  top: 0%;
+  display: flex;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 100px;
+}
+.fa-plus{
+  width: 100px;
+    height: 100px; 
+
+    font-size: 40px;
+
+    cursor: pointer;   
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+.squircle{
+    position: relative;
+}
+.firsteye{
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+.secondeye{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+.smile{
+    position: absolute;
+    top: 40px;
+    left: 35px;
+}
+#smile{
+    width: 40px;
+    height: 40px;
+}
+#firsteye{
+    width: 10px;
+    height: 15px;
+}
+#secondeye{
+    width: 10px;
+    height: 15px;
+}
+.pen{
+  position: absolute;
+  top: 0%;
+  display: flex;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 100px;
+}
+.fa-pen {
+       
+    width: 100px;
+    height: 100px; 
+    // transform: translate(-50%, -50%);
+    font-size: 40px;
+    filter: invert(1);
+    cursor: pointer;   
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+.visible{
+    opacity: 0.5;
+}
+.lock-icon{
+  cursor: pointer;
+  position: absolute;
+  left: 45px;
+  color: #707070;
+}
+
+.profile-button{
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+.manageprofile{
+    border: 1px solid #707070;
+    color: #707070;
+    padding: 0.5rem 1.5rem;
+    font-size: 1.5rem;
+    background-color: transparent;
+    margin-top: 3rem;
+    cursor: pointer;
+    font-weight: 600;
+    border-radius: 10px;
+    transition: bottom 0.3s ease-in-out ;
+}
+
+
+.Done{
+    border: 1px solid #707070;
+    padding: 0.5rem 1.5rem;
+    font-size: 1.5rem;
+    margin-top: 3rem;
+    cursor: pointer;
+    font-weight: 600;
+    border-radius: 10px;
+}
+
+.title{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    margin-top: 190px;
+    text-align: center;
+}
+
+.title h1{
+    color: white;
+    padding-right: 225px;
+    // font-weight: 700;
+    border-bottom: 2px solid #707070;
+    padding-bottom: 4px
+}
+.pen1{
+    position: absolute;
+    top: 85%;
+    left: 22%;
+    .fa-pen {
+       
+    width: 20px;
+    height: 20px;
+    transform: translate(-50%, -55%);
+    font-size: 12px;
+    filter: invert(1);
+    cursor: pointer;
+    display: flex;
+    background-color: rgba(255, 255, 255, 0.3);
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+        
+    }
+}
+.details{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+    height: 95PX;
+}
+.name{
+  width: 100%;
+  height: 10px;
+  display: flex;
+  background-color: #707070;
+  padding: 20px 30px 20px 8px;
+  border-radius: 8px;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: center;
+  justify-content: flex-start;
+}
+.name input{
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: #fff;
+  outline: none;
+}
+.name input::placeholder {
+  color: #fff;
+  opacity: 1; 
+}
+.name input:focus::placeholder {
+  color: transparent;
+}
+.kidsafe{
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    align-content: center;
+    justify-content: space-between;
+    align-items: center;
+    height: 40px;
+}
+.toggle1{
+    transform: scale(0.5);
+    width: 35px;
+    .toggle-switch {
+        display: inline-block;
+        background:transparent;
+        border-radius: 16px;
+        width: 58px;
+        height: 32px;
+        position: relative;
+        vertical-align: middle;
+        transition: background 0.25s;
+        border: 2px solid #fff;
+        cursor: pointer;
+      }
+      .toggle-switch:before, .toggle-switch:after {
+        content: "";
+      }
+      .toggle-switch:before {
+        display: block;
+        background:#e50914;
+        border-radius: 50%;
+        box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25);
+        width: 21px;
+        height: 21px;
+        position: absolute;
+        top: 4px;
+        left: 4px;
+        transition: left 0.25s;
+      }
+      .toggle-checkbox:checked + .toggle-switch {
+        background:transparent;
+      }
+      .toggle-checkbox:checked + .toggle-switch:before {
+        left: 30px;
+      }
+      
+      .toggle-checkbox {
+        position: absolute;
+        visibility: hidden;
+      }
+      
+      .toggle-label {
+        margin-left: 5px;
+        position: relative;
+        top: 2px;
+      }
+}
+.toggle2{
+    transform: scale(0.5);
+    width: 30px;
+    .toggle-switch {
+        display: inline-block;
+        background:transparent;
+        border-radius: 16px;
+        width: 58px;
+        height: 32px;
+        position: relative;
+        vertical-align: middle;
+        transition: background 0.25s;
+        border: 2px solid #fff;
+        cursor: pointer;
+      }
+      .toggle-switch:before, .toggle-switch:after {
+        content: "";
+      }
+      .toggle-switch:before {
+        display: block;
+        background:#e50914;
+        border-radius: 50%;
+        box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25);
+        width: 21px;
+        height: 21px;
+        position: absolute;
+        top: 4px;
+        left: 4px;
+        transition: left 0.25s;
+      }
+      .toggle-checkbox:checked + .toggle-switch {
+        background:transparent;
+      }
+      .toggle-checkbox:checked + .toggle-switch:before {
+        left: 30px;
+      }
+      
+      .toggle-checkbox {
+        position: absolute;
+        visibility: hidden;
+      }
+      
+      .toggle-label {
+        margin-left: 5px;
+        position: relative;
+        top: 2px;
+      }
+    
+}
+
+
+  .lock{
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    align-content: center;
+    justify-content: space-between;
+    align-items: center;
+    height: 15px;
+  }
+
+  .reset{
+    display: flex;
+    padding-left: 15px;
+    color: #707070;
+    font-weight: 500;
+    cursor: pointer;
+  }
+  .profileedit-save{
+    width: 80px;
+  border: 1px solid #707070;
+  padding: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: 600;
+  border-radius: 5px;
+  margin-top: 50px;
+  }
+.row {
+  position: absolute;
+  top: 0;
+  text-align: center;
+  left: 0;
+  border-radius: 1em;
+  overflow: hidden;
+  align-items: stretch;
+  z-index: 1;
+  display: flex;
+  place-content: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.lock__screen {
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(32, 32, 32, 0.25);
+  border-radius: 1em;
+  padding: 2em;
+  width: 50%;
+  margin: 0 auto;
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+
+nav {
+  position: relative;
+}
+
+.close-btn {
+  position: absolute;
+  top: -19px;
+  right: -10px;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 20px;
+  
+}
+
+.pin-content {
+  background-clip: padding-box;
+}
+.setpin{
+  display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: flex-start;
+}
+.setpass{
+    margin-top: 20px;
+    width: 60%;
+    display: flex;
+    align-content: center;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+    gap:20px
+}
+.setpass input{
+  width: 60px;
+  height: 60px;
+  border-radius: 5px;
+  border: 1px solid #707070;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  font-size:40px;
+  text-align: center;
+}
+.confpin{
+  margin-top: 30px;
+  display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: flex-start;
+}
+.confpass{
+  margin-top: 20px;
+  width: 60%;
+  display: flex;
+ 
+  align-content: center;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+  gap:20px;
+}
+.confpass input{
+width: 60px;
+height: 60px;
+border-radius: 5px;
+border: 1px solid #707070;
+background: rgba(0, 0, 0, 0.5);
+color: #fff;
+font-size:40px;
+text-align: center;
+
+}
+.pin-mismatch{
+  margin-top: 20px;
+}
+.password-button{
+  display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: flex-end;
+    align-items: center;
+}
+.save{
+  width: 80px;
+  border: 1px solid #707070;
+  padding: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: 600;
+  border-radius: 5px;
+ 
+}
+.notsave{
+  width: 80px;
+  border: 1px solid #707070;
+  padding: 5px;
+  font-size: 1rem;
+  cursor: not-allowed;
+  font-weight: 600;
+  border-radius: 5px;
+}
+
+.userprofile-login{
+  position: absolute;
+  top: 0;
+  text-align: center;
+  left: 0;
+  border-radius: 1em;
+  overflow: hidden;
+  align-items: stretch;
+  z-index: 1;
+  display: flex;
+  place-content: center;
+  height: 100vh;
+  width: 100vw;
+}
+.profile_screen{
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(32, 32, 32, 0.25);
+  border-radius: 1em;
+  padding: 2em;
+  width: 40%;
+  height: 65%;
+  margin:  auto;
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+.profile-pin{
+  background-clip: padding-box;
+ 
+}
+.fields1{
+   padding: 20px; 
+}
+.text1{
+  padding-top: 30px;
+}
+.text3{
+  padding-top: 30px;
+}
+.text3 p{
+  color:#fff;
+  font-weight: 200;
+  cursor: pointer;
+}
+.loginpass{
+  margin-top: 20px;
+    width: 100%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap:20px
+}
+.loginpass input{
+  width: 60px;
+  height: 60px;
+  border-radius: 5px;
+  border: 1px solid #707070;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  font-size:40px;
+  text-align: center;
+}
+.details1{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  height: 95PX;
+}
