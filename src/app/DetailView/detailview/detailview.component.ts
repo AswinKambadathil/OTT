@@ -12,21 +12,42 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class DetailviewComponent implements OnInit{
   ngOnInit(): void {
-    this.postHome()
+    this.postHome();
     
   }
   private httpDataService = inject(ApiServiceService)
   private route = inject(ActivatedRoute)
   id : any
+  bannerInfo:any = []
+  featuredInfo:any = []
+  defaultInfo:any = []
 
+
+  // postHome(){
+  //   this.httpDataService.postBanner({pageName:'Home'}).subscribe({
+  //     next: (response: any) => {
+  //       this.route.paramMap.subscribe(params =>{
+  //         this.id = params.get('id'); 
+  //       });
+  //       this.imageArray = response
+  //       console.log(response);
+        
+  //     },
+  //     error: (error: any) => {
+  //       console.error('Error fetching data:', error);
+  //     }
+  //   });
+  // }
   postHome(){
-    this.httpDataService.postBanner({pageName:'Home'}).subscribe({
-      next: (response: any) => {
+    this.httpDataService.postContinue({pageName:'Home'}).subscribe({
+      next: (response) => { 
+        this.bannerInfo = response.bannerInfo
+        this.featuredInfo = response.featuredInfo
+        this.defaultInfo = response.defaultInfo
         this.route.paramMap.subscribe(params =>{
           this.id = params.get('id'); 
         });
-        this.imageArray = response
-        console.log(response);
+        console.log(this.defaultInfo);
         
       },
       error: (error: any) => {
@@ -34,7 +55,6 @@ export class DetailviewComponent implements OnInit{
       }
     });
   }
-
 
   
   imageArray:any = []

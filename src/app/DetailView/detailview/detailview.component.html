@@ -1,5 +1,7 @@
 <div class="mainDetailWrap">
-  @for (item of imageArray; track $index) { @if (id == item.contentId) {
+  @for (data of defaultInfo; track $index) {
+    @for(item of data.categoryList; track $index){
+    @if (id == item.contentId) {
   <div class="detailWrap">
     <div class="imgWrap">
       <div class="gradient"></div>
@@ -95,5 +97,5 @@
       }
     </div>
   </div>
-  } }
+  } } }
 </div>
