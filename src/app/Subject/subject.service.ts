@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
-import { Observable,Subject } from 'rxjs';
+import { Injectable, signal } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
+
 @Injectable({
   providedIn: 'root'
 })
 export class SubjectService {
-
   private buttonCodeSubject = new Subject<number>();
   delayClick = false;
 

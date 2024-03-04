@@ -15,7 +15,7 @@ import { ChooseLanguageComponent } from './choose-language/choose-language.compo
 import { ChoosePlan1Component } from './choose-plan1/choose-plan1.component';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { PackageandSummaryComponent } from './packageand-summary/packageand-summary.component';
-import { SimulatorComponent } from './simulator/simulator.component';
+import { SimulatorComponent } from './Simulater/simulater/simulater.component';
 @Component({
   selector: 'app-root',
   standalone: true,

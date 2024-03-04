@@ -1,32 +1,48 @@
-import { Component, inject } from '@angular/core';
+import { Component, Input, inject, input } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { ApiServiceService } from '../../api-service.service';
 import { routes } from '../../app.routes';
 import { Router } from '@angular/router';
+import { ContinueWatchComponent } from '../../ContinueWatch/continue-watch/continue-watch.component';
+import { SubjectService } from '../../Subject/subject.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-main-carousel',
   standalone: true,
-  imports: [],
+  imports: [ContinueWatchComponent],
   templateUrl: './main-carousel.component.html',
   styleUrl: './main-carousel.component.scss',
   providers:[ApiServiceService],
   animations:[]
 })
 export class MainCarouselComponent implements OnInit{
+  
+
 
   private httpDataService = inject(ApiServiceService)
   private router = inject(Router)
+  private subject = inject(SubjectService)
+
+  buttonCodeSubscription!: Subscription;
 
   ngOnInit():void{
     this.postHome()
+    // this.initButtonCodeSubscription()
   }
   imageArray:any = []
+  bannerInfo:any = []
+  featuredInfo:any = []
+  defaultInfo:any = []
+  itemIndex = 0;
+  rowIndex = 0;
 
   postHome(){
-    this.httpDataService.postBanner({pageName:'Home'}).subscribe({
-      next: (response: any) => { 
-        this.imageArray = response
+    this.httpDataService.postContinue({pageName:'Home'}).subscribe({
+      next: (response) => { 
+        this.bannerInfo = response.bannerInfo
+        this.featuredInfo = response.featuredInfo
+        this.defaultInfo = response.defaultInfo
       },
       error: (error: any) => {
         console.error('Error fetching data:', error);
@@ -34,75 +50,75 @@ export class MainCarouselComponent implements OnInit{
     });
   }
 
-  imageArra = [
-    {
-      id : 1,
-      imageUrl: 'assets/Login/Movies/kantara-Banner.jpg',
-      description: 'Movie',
-      title: '#1 in Trending',
-      discriptUrl: 'assets/Login/Movies/kantara-Name.jpg',
-      logoUrl: 'assets/Login/Movies/Amazon-Prime-Video-Icon.png',
-      potrait: 'assets/Login/Movies/potrait1.jpeg',
-      name: 'Kantara',
-      isFavorite: 'false'
-    },
-    {
-      id : 2,
-      imageUrl: 'assets/Login/Movies/neru.jpg',
-      description: 'Movie',
-      title: '#1 in Trending',
-      discriptUrl: 'assets/Login/Movies/neru-name.jpeg',
-      logoUrl: 'assets/Login/Movies/Amazon-Prime-Video-Icon.png',
-      potrait: 'assets/Login/Movies/potrait2.jpeg',
-      name: 'Kantara1',
-      isFavorite: 'false'
-    },
-    {
-      id : 3,
-      imageUrl: 'assets/Login/Movies/kantara-Banner.jpg',
-      description: 'Movie',
-      title: '#1 in Trending',
-      discriptUrl: 'assets/Login/Movies/kantara-Name.jpg',
-      logoUrl: 'assets/Login/Movies/Amazon-Prime-Video-Icon.png',
-      potrait: 'assets/Login/Movies/potrait3.jpeg',
-      name: 'Kantara2',
-      isFavorite: 'false'
-    },
-    {
-      id : 4,
-      imageUrl: 'assets/Login/Movies/ozler.jpg',
-      description: 'Movie',
-      title: '#1 in Trending',
-      discriptUrl: 'assets/Login/Movies/ozler-name.jpeg',
-      logoUrl: 'assets/Login/Movies/Amazon-Prime-Video-Icon.png',
-      potrait: 'assets/Login/Movies/potrait4.jpg',
-      name: 'Kantara3',
-      isFavorite: 'false'
-    },
-    {
-      id : 5,
-      imageUrl: 'assets/Login/Movies/kantara-Banner.jpg',
-      description: 'Movie',
-      title: '#1 in Trending',
-      discriptUrl: 'assets/Login/Movies/kantara-Name.jpg',
-      logoUrl: 'assets/Login/Movies/Amazon-Prime-Video-Icon.png',
-      potrait: 'assets/Login/Movies/potrait5.jpg',
-      name: 'Kantara4',
-      isFavorite: 'false'
-    }
-    ,
-    {
-      id : 6,
-      imageUrl: 'assets/Login/Movies/animal.jpg',
-      description: 'Movie',
-      title: '#1 in Trending',
-      discriptUrl: 'assets/Login/Movies/animal-name.jpg',
-      logoUrl: 'assets/Login/Movies/Amazon-Prime-Video-Icon.png',
-      potrait: 'assets/Login/Movies/potrait6.jpeg',
-      name: 'Kantara5',
-      isFavorite: 'false'
-    }
-  ];
+  // imageArra = [
+  //   {
+  //     id : 1,
+  //     imageUrl: 'assets/Login/Movies/kantara-Banner.jpg',
+  //     description: 'Movie',
+  //     title: '#1 in Trending',
+  //     discriptUrl: 'assets/Login/Movies/kantara-Name.jpg',
+  //     logoUrl: 'assets/Login/Movies/Amazon-Prime-Video-Icon.png',
+  //     potrait: 'assets/Login/Movies/potrait1.jpeg',
+  //     name: 'Kantara',
+  //     isFavorite: 'false'
+  //   },
+  //   {
+  //     id : 2,
+  //     imageUrl: 'assets/Login/Movies/neru.jpg',
+  //     description: 'Movie',
+  //     title: '#1 in Trending',
+  //     discriptUrl: 'assets/Login/Movies/neru-name.jpeg',
+  //     logoUrl: 'assets/Login/Movies/Amazon-Prime-Video-Icon.png',
+  //     potrait: 'assets/Login/Movies/potrait2.jpeg',
+  //     name: 'Kantara1',
+  //     isFavorite: 'false'
+  //   },
+  //   {
+  //     id : 3,
+  //     imageUrl: 'assets/Login/Movies/kantara-Banner.jpg',
+  //     description: 'Movie',
+  //     title: '#1 in Trending',
+  //     discriptUrl: 'assets/Login/Movies/kantara-Name.jpg',
+  //     logoUrl: 'assets/Login/Movies/Amazon-Prime-Video-Icon.png',
+  //     potrait: 'assets/Login/Movies/potrait3.jpeg',
+  //     name: 'Kantara2',
+  //     isFavorite: 'false'
+  //   },
+  //   {
+  //     id : 4,
+  //     imageUrl: 'assets/Login/Movies/ozler.jpg',
+  //     description: 'Movie',
+  //     title: '#1 in Trending',
+  //     discriptUrl: 'assets/Login/Movies/ozler-name.jpeg',
+  //     logoUrl: 'assets/Login/Movies/Amazon-Prime-Video-Icon.png',
+  //     potrait: 'assets/Login/Movies/potrait4.jpg',
+  //     name: 'Kantara3',
+  //     isFavorite: 'false'
+  //   },
+  //   {
+  //     id : 5,
+  //     imageUrl: 'assets/Login/Movies/kantara-Banner.jpg',
+  //     description: 'Movie',
+  //     title: '#1 in Trending',
+  //     discriptUrl: 'assets/Login/Movies/kantara-Name.jpg',
+  //     logoUrl: 'assets/Login/Movies/Amazon-Prime-Video-Icon.png',
+  //     potrait: 'assets/Login/Movies/potrait5.jpg',
+  //     name: 'Kantara4',
+  //     isFavorite: 'false'
+  //   }
+  //   ,
+  //   {
+  //     id : 6,
+  //     imageUrl: 'assets/Login/Movies/animal.jpg',
+  //     description: 'Movie',
+  //     title: '#1 in Trending',
+  //     discriptUrl: 'assets/Login/Movies/animal-name.jpg',
+  //     logoUrl: 'assets/Login/Movies/Amazon-Prime-Video-Icon.png',
+  //     potrait: 'assets/Login/Movies/potrait6.jpeg',
+  //     name: 'Kantara5',
+  //     isFavorite: 'false'
+  //   }
+  // ];
 
 
   
@@ -136,9 +152,61 @@ export class MainCarouselComponent implements OnInit{
   }
   
   playVideo(id:any){
-    console.log("hi", id);
     this.router.navigate(["detailView",id])
     
   }
 
+  // initButtonCodeSubscription(): void {
+  //   this.buttonCodeSubscription = this.subject.getButtonCodeObservable().subscribe((code) => {
+  //     switch (code) {
+  //       case 21: {
+  //         this.leftBtnClick();
+  //         break;
+  //       }
+  //       case 22: {
+  //         this.rightBtnClick();
+  //         break;
+  //       }
+  //     }
+  //     // this.setActiveItem();
+  //   });
+  // }
+
+
+  leftBtnClick(){  
+    this.itemIndex = this.itemIndex > 0 ? this.itemIndex - 1 : this.itemIndex;
+    // this.getBannerContent();
+    let scrollOffset = 400;
+    
+    if (document.querySelector(`#id${this.itemIndex}`)?.classList.contains('wrap')) {
+      scrollOffset = 415;
+      console.log(this.itemIndex)
+      document.querySelector(`#id${this.itemIndex}`)?.scrollBy({
+        top: 0,
+        left: -scrollOffset,
+        behavior: 'smooth'
+      });
+     console.log(scrollOffset);
+   }
+ }
+  
+ rightBtnClick(){
+   let carouselLength: any = document.querySelector(`#id${this.itemIndex}`)?.getElementsByClassName('main').length;
+   console.log(carouselLength);
+   
+   if (this.itemIndex < carouselLength - 1) {
+     this.itemIndex = this.itemIndex + 1;
+     console.log(this.itemIndex)
+     // this.getBannerContent();
+     let scrollOffset = 400;
+     if (document.querySelector(`#id${this.itemIndex}`)?.classList.contains('wrap'))
+       scrollOffset = 415;
+     document.querySelector(`#id${this.itemIndex}`)?.scrollBy({
+       top: 0,
+       left: scrollOffset,
+       behavior: 'smooth'
+     });
+     console.log(scrollOffset);
+   }
+ }
 }

@@ -1,6 +1,7 @@
 <div class="main">
-  @for (item of imageArray; track item) {
-  <div class="wrap">
+  @for (items of bannerInfo; track $index) {
+    @for (item of items.categoryList; track $index) {
+  <div class="wrap" id="id{{$index}}">
     <div class="detail">
       <div class="discription">{{ item.contentType }}</div>
       <div class="title">{{ item.contentName }}</div>
@@ -19,7 +20,7 @@
         </div>
         <div class="playWrite">Play</div>
         <div class="favorite" (click)="myFavorite(item)">
-          @if(item.isFavorite){
+          <!-- @if(item.isFavorite){ -->
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="26.091"
@@ -40,7 +41,7 @@
             </g>
           </svg>
 
-          }@else {
+          <!-- }@else {
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="26.091"
@@ -60,7 +61,7 @@
               />
             </g>
           </svg>
-          }
+          } -->
         </div>
         <div class="exclema">
           <img src="assets/Login/Logos/i.svg" alt="" />
@@ -71,5 +72,12 @@
       <video [src]="item.contentPreview" autoplay muted></video>
     </div>
   </div>
-  }
+  }}
 </div>
+
+@for (items of defaultInfo;track $index){
+
+  
+<app-continue-watch [styleChange]="$index%2 ==0?'1stStyle':'2ndStyle'" [label]="items.categoryName" [data]="items.categoryList" [j]="$index"/>
+
+}
