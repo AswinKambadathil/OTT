@@ -442,10 +442,10 @@ export class ProfilepageComponent implements OnInit {
   updateProfile() {
     const profileData = this.editProfileForm.value;
     this.profileService.updateProfileInfo(profileData).subscribe({
-      next: (response) => {
+      next: (response:any) => {
         console.log('Profile updated successfully:', response);
       },
-      error: (error) => {
+      error: (error:any) => {
         console.error('Error updating profile:', error);
       },
     });
