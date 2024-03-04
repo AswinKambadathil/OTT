@@ -1,3 +1,5 @@
+# 0.0.12
+1. Languages API added
 # 0.0.9
 1. Profile Login Created
 # 0.0.8

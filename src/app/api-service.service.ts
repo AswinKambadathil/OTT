@@ -27,11 +27,7 @@ export class ApiServiceService {
     const url = 'https://api.postman.com/collections/23825578-5e314afb-9f4c-4082-bbe3-c7e9fc28ac2b?access_key=PMAT-01HNYB81PCF7DD69XWSNM90V16';
     return this.http.get(url);}
   
-    getLanguage(): Observable<any[]> {
-      return this.http.get<any[]>(
-        'https://json.onnetsystems.dev/bins?id=fQK8nZErq'
-      );
-    }
+
     getGenre(): Observable<any[]> {
       return this.http.get<any[]>(
         'https://json.onnetsystems.dev/bins?id=eVX1qXkQg'
@@ -121,7 +117,20 @@ export class ApiServiceService {
   }))
     }
   
-
+    updateProfileInfo(profileData: any): Observable<any> {
+      return this.http.put('https://app.pishow.tv/acms/subscriberProfiles/updateSubscriberProfilesInfo', profileData);
+    }
     
+    addNewProfile(newProfile: any): Observable<any> {
+      return this.http.post('https://app.pishow.tv/acms/subscriberProfiles/saveSubscriberProfilesInfo',newProfile);
+    }
+
+    selectLanguage(): Observable<any[]> {
+      return this.http.get('https://app.pishow.tv/acms/common/getLanguagesList').pipe(
+        map((response: any) => {
+          return response.data.languageList;
+        })
+      );
+    }
   
 }
