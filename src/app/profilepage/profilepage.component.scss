@@ -63,6 +63,9 @@
   height: 100px;
   cursor: pointer;
 }
+.selected {
+  border: 2px solid #00f; 
+}
 .addProfile{
   position: relative;
 }

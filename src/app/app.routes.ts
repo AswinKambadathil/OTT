@@ -23,5 +23,5 @@ export const routes: Routes =
     {path:'profile',component:ProfilepageComponent},
     {path:'summary/:id',component:PackageandSummaryComponent},
     {path:'navbar',component:NavigationBarComponent},
-    {path:'detailView/:id', component:DetailviewComponent}
+    {path:'detailView/:id', component:DetailviewComponent},
 ];

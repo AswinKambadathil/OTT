@@ -146,4 +146,20 @@ export class ApiServiceService {
     })
     )
   }
+  selectLanguage(): Observable<any[]> {
+    return this.http.get('https://app.pishow.tv/acms/common/getLanguagesList').pipe(
+      map((response: any) => {
+        return response.data.languageList;
+      })
+    );
+  }
+
+  updateProfileInfo(profileData: any): Observable<any> {
+    return this.http.put('https://app.pishow.tv/acms/subscriberProfiles/updateSubscriberProfilesInfo', profileData);
+  }
+  
+  addNewProfile(newProfile: any): Observable<any> {
+    return this.http.post('https://app.pishow.tv/acms/subscriberProfiles/saveSubscriberProfilesInfo',newProfile);
+  }
+
 }

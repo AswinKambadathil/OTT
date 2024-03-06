@@ -1,7 +1,9 @@
-# 0.0.10
+# 0.0.11
 
 1. created buttons for up down left and right on main page
 
+# 0.0.10
+1. Languages API added
 # 0.0.9
 1. Profile Login Created
 # 0.0.8

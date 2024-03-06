@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, NumberFormatStyle } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
@@ -8,15 +8,22 @@ import { RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { ApiServiceService } from '../api-service.service';
+import { Subscription } from 'rxjs';
+import { SubjectService } from '../Subject/subject.service';
 
 @Component({
   selector: 'app-profilepage',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule,HttpClientModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule,
+    HttpClientModule,
+  ],
   templateUrl: './profilepage.component.html',
   styleUrl: './profilepage.component.scss',
   providers: [ApiServiceService],
-  
 })
 export class ProfilepageComponent implements OnInit {
   id: any = '';
@@ -27,7 +34,7 @@ export class ProfilepageComponent implements OnInit {
   profileLock = false;
   ispassword = false;
   isprofile_login = false;
-  isAddnewprofile = false; 
+  isAddnewprofile = false;
   ifAddprofile = false;
   profileTitle: string = '';
   isAddProfile = false;
@@ -38,15 +45,22 @@ export class ProfilepageComponent implements OnInit {
   private router = inject(Router);
   private profilelogin = inject(FormBuilder);
   private formBuilder = inject(FormBuilder);
-  private profileService = inject(ApiServiceService)
+  private profileService = inject(ApiServiceService);
+  private subject = inject(SubjectService);
 
-  constructor( ) {}
+  selectedProfile: any;
+  itemIndex = 0;
+  rowIndex = 0;
+  buttonCodeSubscription!: Subscription;
+
+
+  constructor() {}
   profiles1: any[] = [];
 
   ngOnInit(): void {
-    
     this.getProfileDetails();
-    
+    this.initButtonCodeSubscription();
+
     this.passwordForm = this.formBuilder.group({
       first: ['', Validators.required],
       second: ['', Validators.required],
@@ -65,40 +79,90 @@ export class ProfilepageComponent implements OnInit {
       fourth: ['', Validators.required],
     });
     this.editProfileForm = this.formBuilder.group({
+      subscriberId:[],
       id: [''],
-      name: ['', Validators.required],
-      isprofileLock: [false],
-      color:[''],
-      kidsSafe:[false]
+      profileAvatar:[],
+      profileName: ['', Validators.required],
+      profilePin: [],
+      kidsSafe: [0],
     });
   }
-  
-  
+  // button code management
+  initButtonCodeSubscription(): void {
+    this.buttonCodeSubscription = this.subject.getButtonCodeObservable().subscribe((code) => {
+        switch (code) {
+          case 21: {
+            this.leftBtnClick();
+            break;
+          }
+          case 22: {
+            this.rightBtnClick();
+            break;
+          }
+          case 23: {
+            this.okBtnClick();
+            break;
+          }
+        }
+        // this.setActiveItem();
+      });      
+  }
 
-  // profiles = [
-  //   {
-  //     id: 1,
-  //     name: 'Athul',
-  //     image: '/assets/profilelogo2.svg',
-  //     ifprofilelock: false,
-  //     color: '#CE7AEC'
-  //   },
-  //   {
-  //     id: 2,
-  //     name: 'Aswin',
-  //     image: '/assets/profilelogo.svg',
-  //     ifprofilelock: false,
-  //     color: '#ECE47A'
-  //   },
-  //   {
-  //     id: 3,
-  //     name: 'Manoj',
-  //     image: '/assets/profilelogo2.svg',
-  //     ifprofilelock: false,
-  //     color:'blue'
-      
-  //   },
-  // ];
+  leftBtnClick(): void {
+    this.itemIndex = this.itemIndex > 0 ? this.itemIndex - 1 : this.itemIndex;
+    const profileElement = document.querySelector(`#id${this.itemIndex}`);
+    if (profileElement) {
+      let scrollOffset = 400;
+      const profilesContainer = document.querySelector('.profiles');
+      if (profilesContainer) {
+        scrollOffset = 415;
+        profilesContainer.scrollBy({
+          top: 0,
+          left: -scrollOffset,
+          behavior: 'smooth',
+        });
+      }
+    }
+  }
+
+  rightBtnClick(): void {
+    const totalProfiles = this.profiles1.length;
+    this.itemIndex = this.itemIndex < totalProfiles - 1 ? this.itemIndex + 1 : this.itemIndex;
+    // const profileElement = document.querySelector(`#id${this.itemIndex}`);
+    const squircleElements = document.querySelectorAll('.squircle');
+    if (squircleElements) {  //&& squircleElements.length > 0
+      let scrollOffset = 400;
+      const profilesContainer = document.querySelector('.profiles');
+      if (profilesContainer) {
+        scrollOffset = 415;
+        profilesContainer.scrollBy({
+          top: 0,
+          left: scrollOffset,
+          behavior: 'smooth',
+        });
+      }
+    }
+  }
+
+  setActiveItem(rowIndex: number, itemIndex: number): void {
+    const elems = document.querySelectorAll('.profile-pic .squircle');
+    elems.forEach((el) => {
+      el.classList.remove('active');
+    });
+
+    const selectedProfileElement = document.querySelector(`#id${itemIndex}`);
+    if (selectedProfileElement) {
+      selectedProfileElement.classList.add('active');
+    }
+  }
+
+  okBtnClick(){
+    this.router.navigate(['/welcome'])
+  }
+
+  // selectProfile(profile: any) {
+  //   this.selectedProfile = profile;
+  // }
 
   editProfile() {
     this.isEdit = !this.isEdit;
@@ -107,68 +171,79 @@ export class ProfilepageComponent implements OnInit {
 
   profileEdit(profileObj: any) {
     this.profileAction(profileObj);
-    console.log(this.editProfileForm.get('isprofileLock')?.value,profileObj.id.value);
+    this.getProfileDetails();
   }
 
   profileAction(profileObj: any) {
     this.ifCond = false;
 
-    const { name, id, ifprofilelock, isprofile_login } = profileObj;
+    const { profileName, id, profilePin, kidsSafe, profileAvatar,subscriberId } = profileObj;
 
     if (this.isAddProfile) {
       const newProfile = {
-        id: this.profiles1.length + 1,
-        name: this.editProfileForm.value.name,
-        image: '/assets/profilelogo.svg',
-        ifprofilelock: this.editProfileForm.value.isprofileLock,
-        color:this.editProfileForm.value.color
+        subscriberId:this.editProfileForm.value.subscriberId,
+        profileName: this.editProfileForm.value.profileName,
+        profilePin: this.editProfileForm.value.profilePin!== null ? this.editProfileForm.value.profilePin : 0,
+        profileAvatar: this.editProfileForm.value.profileAvatar,
+        kidsSafe: this.editProfileForm.value.kidsSafe ? 1 : 0,
       };
-
-      this.profiles1.push(newProfile);
-      this.editProfileForm.reset();
+      
+      // this.editProfileForm.patchValue({ profilePin: 1 });
+      this.addProfile(newProfile);
+      
+      // this.profiles1.push(newProfile);      
+      // this.editProfileForm.reset();
       this.isAddProfile = false;
       this.isprofile_login = false;
     } else {
       this.profileTitle = 'Edit Profile';
       this.editProfileForm.patchValue({
+        subscriberId:subscriberId,
         id: id,
-        name: name,
-        isprofileLock: ifprofilelock,
+        profileName: profileName,
+        profilePin: profilePin,
+        kidsSafe: kidsSafe ? 1 : 0,
+        profileAvatar: profileAvatar,
       });
 
       // this.editProfileForm.get('name')?.setValidators([Validators.required]);
       // this.editProfileForm.get('name')?.updateValueAndValidity();
 
-      if (this.editProfileForm.value.isprofileLock !==0) {
-        this.isprofile_login = true;
-      } else {
+      if (this.editProfileForm.value.profilePin == 0) {
         this.isprofileEdit = true;
+      } else if (this.editProfileForm.value.profilePin == null) {
+        this.isprofileEdit = true;
+      } else {
+        this.isprofile_login = true;
       }
     }
+    this.getProfileDetails()
   }
 
   Addnewprofile(profileObj: any) {
     this.profileAction(profileObj);
     this.ifCond = false;
     this.isprofileEdit = true;
-    this.editProfileForm.reset();
-    this.editProfileForm.patchValue({ isprofileLock: false });
     this.isAddProfile = true;
     this.profileTitle = 'Create Profile';
+    this.editProfileForm.reset();
   }
 
-  profilePassword(profile: any) {
-    console.log('profile id', this.editProfileForm.value.id);
-    const isProfileLocked = this.editProfileForm.value.isprofileLock;
-    console.log('Is Profile Locked:', isProfileLocked);
-    if (!isProfileLocked) {
-      // this.ifCond = false;
+  profilePassword(event: any) {
+    const checked = event.target.checked;
+    const profilePinValue = this.editProfileForm.value.profilePin;
+    const valueToSet = checked? profilePinValue != null? profilePinValue: 0: 0;
+   
+    this.editProfileForm.patchValue({
+      profilePin: valueToSet,
+    });
+    if (valueToSet !== 0) {
       this.ispassword = true;
-      console.log(this.ispassword);
     } else {
-      console.log(this.ispassword);
       this.ispassword = false;
     }
+    this.updateProfile();
+    this.getProfileDetails()
   }
 
   onInputChange(
@@ -179,10 +254,70 @@ export class ProfilepageComponent implements OnInit {
       nextInput.focus();
     }
   }
+  num: number = 1;
+
+  onInputChange2(
+    currentInput: HTMLInputElement,
+    nextInput1: HTMLInputElement,
+    nextInput2: HTMLInputElement,
+    nextInput3: HTMLInputElement
+  ): void {
+    if (currentInput && currentInput.value.length === 1) {
+      if (currentInput === nextInput3) {
+        console.log(currentInput);
+
+        this.submitForm();
+      } else {
+        nextInput1.focus();
+      }
+    }
+  }
+
+  toggleKidsSafe(event: Event) {
+    const checked = (event.target as HTMLInputElement).checked;
+    const valueToSet = checked ? 1 : 0;
+    this.editProfileForm.get('kidsSafe')?.setValue(valueToSet);
+  
+  }
+
+  submitForm(): void {
+    const enteredPin =
+      this.profileLoginform.get('first')?.value +
+      this.profileLoginform.get('second')?.value +
+      this.profileLoginform.get('third')?.value +
+      this.profileLoginform.get('fourth')?.value;
+
+    console.log('Entered PIN:', enteredPin);
+
+    const foundProfile = this.profiles1.find(
+      (profile) =>
+        parseInt(enteredPin, 10) === profile.profilePin
+    );
+
+    if (foundProfile) {
+      console.log('Login successful');
+      // this.router.navigate(['/login/maincarousel'])
+      this.isprofileEdit = true;
+      this.isprofile_login = false;
+    } else {
+      console.log('Incorrect PIN entered');
+    }
+
+    this.profileLoginform.reset();
+  }
 
   savePassword() {
-    this.editProfileForm.value.isprofileLock = true;
     this.ispassword = false;
+
+    const enteredPin =
+      this.passwordForm.get('first')?.value +
+      this.passwordForm.get('second')?.value +
+      this.passwordForm.get('third')?.value +
+      this.passwordForm.get('fourth')?.value;
+      this.editProfileForm.value.profilePin = enteredPin;
+      this.updateProfile();
+      console.log(this.editProfileForm);
+      
 
     this.passwordForm.reset();
   }
@@ -196,7 +331,7 @@ export class ProfilepageComponent implements OnInit {
       sixth = this.passwordForm.get('sixth')?.value,
       seventh = this.passwordForm.get('seventh')?.value,
       eighth = this.passwordForm.get('eighth')?.value;
-    
+
     if (first != fifth) {
       return true;
     }
@@ -211,27 +346,6 @@ export class ProfilepageComponent implements OnInit {
     }
     return false || this.passwordForm.invalid;
   }
-  
-
-  onSubmit() {
-    const enteredPin = this.profileLoginform.get('first')?.value +
-                       this.profileLoginform.get('second')?.value +
-                       this.profileLoginform.get('third')?.value +
-                       this.profileLoginform.get('fourth')?.value;
-   
-    
-    console.log('Entered PIN:', enteredPin);
-  
-    const foundProfile = this.profiles1.find(profile => parseInt(enteredPin, 10) === profile.isprofileLock); //profile.isprofileLock
-  
-    if (foundProfile) {
-      console.log('Login successful');
-      this.router.navigate(['/login/maincarousel'])
-    } else {
-      console.log('Incorrect PIN entered');
-    }
-  }
-  
 
   reset(profile: any) {
     console.log('Profile PIN reset for:', this.editProfileForm.value.id);
@@ -242,58 +356,58 @@ export class ProfilepageComponent implements OnInit {
   close() {
     this.ispassword = false;
     this.editProfileForm.patchValue({
-      isprofileLock: false,
+      profilePin: false,
     });
   }
 
   profileedit() {
     if (this.isAddProfile && this.editProfileForm.valid) {
       const newProfile = {
-        id: this.profiles1.length + 1,
-        name: this.editProfileForm.value.name,
-        image: '/assets/profilelogo.svg',
-        ifprofilelock: this.editProfileForm.value.isprofileLock,
-        color:this.editProfileForm.value.color
+        subscriberId: "630383ffbf448c47a0a81413", 
+        profileName: this.editProfileForm.value.profileName,
+        profilePin: this.editProfileForm.value.profilePin !== null ? this.editProfileForm.value.profilePin : 0,
+        profileAvatar: this.editProfileForm.value.profileAvatar,
+        kidsSafe: this.editProfileForm.value.kidsSafe ? 1 : 0,
       };
+      this.addProfile(newProfile);
+      
       this.isprofileEdit = false;
       this.ifCond = true;
       this.isEdit = true;
 
-      this.profiles1.push(newProfile);
-
       this.editProfileForm.reset();
       this.isAddProfile = false;
+      this.getProfileDetails()
+     
     } else if (!this.isAddProfile && this.editProfileForm.valid) {
       const editedProfileId = this.editProfileForm.value.id;
-      const editedProfileName = this.editProfileForm.value.name;
-      const editedProfileLockStatus = this.editProfileForm.value.isprofileLock;
-      
-      console.log(editedProfileId,editedProfileLockStatus);
-      
+      const editedProfileName = this.editProfileForm.value.profileName;
+      const editedProfileLockStatus = this.editProfileForm.value.profilePin;
+      const editedProfileKidSsafe = this.editProfileForm.value.kidsSafe;
 
       const editedProfileIndex = this.profiles1.findIndex(
         (profile) => profile.id === editedProfileId
       );
       if (editedProfileIndex !== -1) {
-        this.profiles1[editedProfileIndex].name = editedProfileName;
-        this.profiles1[editedProfileIndex].ifprofilelock =
-          editedProfileLockStatus;
+        this.profiles1[editedProfileIndex].profileName = editedProfileName;
+        this.profiles1[editedProfileIndex].profilePin = editedProfileLockStatus;
+        this.profiles1[editedProfileIndex].kidsSafe = editedProfileKidSsafe;
       }
 
       this.isprofileEdit = false;
       this.ifCond = true;
       this.isEdit = true;
+      this.updateProfile(); 
     }
+    
   }
 
-  profileLogin(selectedProfile: any) {   
-    if (selectedProfile.isprofileLock !==0) {
-      
+  profileLogin(selectedProfile: any) {
+    if (selectedProfile.profilePin !== 0) {
       this.isprofile_login = true;
     } else {
       this.isprofile_login = false;
-      this.router.navigate(['login/maincarousel'])
-
+      this.router.navigate(['login/maincarousel']);
     }
   }
 
@@ -308,22 +422,45 @@ export class ProfilepageComponent implements OnInit {
     this.isprofile_login = false;
   }
 
-  getProfileDetails(){
+  getProfileDetails() {
     this.profileService.getProfileList().subscribe({
-      next:(response) => {
-       
-        this.profiles1 = response.map((item:any) =>({
-          id:item.id,
-          name:item.profileName,
-          isprofileLock:item.profilePin,
-          image:item.profileAvatar,
-          kidsSafe:item.kidsSafe
-        }))
-        
+      next: (response) => {
+        this.profiles1 = response.map((item: any) => ({
+          id: item.id,
+          profileName: item.profileName,
+          profilePin: item.profilePin,
+          profileAvatar: item.profileAvatar,
+          kidsSafe: item.kidsSafe ? 1 : 0,
+        }));
       },
-      error:(error) => {
+      error: (error) => {
         console.error('Error fetching profiles: ', error);
-      }
-  });
+      },
+    });
   }
+
+  updateProfile() {
+    const profileData = this.editProfileForm.value;
+    this.profileService.updateProfileInfo(profileData).subscribe({
+      next: (response:any) => {
+        console.log('Profile updated successfully:', response);
+      },
+      error: (error:any) => {
+        console.error('Error updating profile:', error);
+      },
+    });
+  }
+
+  addProfile(newProfile: any) {
+    this.profileService.addNewProfile(newProfile).subscribe({
+      next: (response) => {
+        console.log('New profile added successfully:', response);
+      },
+      error: (error) => {
+        console.error('Error adding new profile:', error);
+       
+      }
+    });
+  }
+  
 }

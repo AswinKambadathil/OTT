@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import { ApiServiceService } from '../api-service.service';
+import response from '../response';
 
 @Component({
   selector: 'app-choose-language',
@@ -17,22 +18,21 @@ export class ChooseLanguageComponent implements OnInit{
   constructor(){}
 
   ngOnInit():any{
-    this.selectLanguage();
-    this.selectGenre();
+    this.selectLanguages();
 
   };
-  selectLanguage(): void {    
-    this.languageSevice.getLanguage().subscribe({
-      next: (response) => {
-        this.languages = response;
-        console.log(response);
-      },
-      error: (error) => {
-        console.error('Error fetching languages: ', error);
-      }
-    });
-  }
-languages: any[] = [];
+  // selectLanguage(): void {    
+  //   this.languageSevice.getLanguage().subscribe({
+  //     next: (response) => {
+  //       this.languages = response;
+  //       console.log(response);
+  //     },
+  //     error: (error) => {
+  //       console.error('Error fetching languages: ', error);
+  //     }
+  //   });
+  // }
+
 
   // languages = [
   //   {
@@ -82,17 +82,17 @@ languages: any[] = [];
   //   },
   // ];
 
-  selectGenre(){
-    this.languageSevice.getLanguage().subscribe({
-      next: (response) => {
-        this.genre = response;
-        console.log(response);
-      },
-      error: (error) => {
-        console.error('Error fetching languages: ', error);
-      }
-    });
-  }
+  // selectGenre(){
+  //   this.languageSevice.getLanguage().subscribe({
+  //     next: (response) => {
+  //       this.genre = response;
+  //       console.log(response);
+  //     },
+  //     error: (error) => {
+  //       console.error('Error fetching languages: ', error);
+  //     }
+  //   });
+  // }
 
   genre: any[] = [];
 
@@ -110,4 +110,19 @@ languages: any[] = [];
   toggleColor(item: any) {
     item.clicked = !item.clicked;
   }
+
+  languages: any[] = [];
+  selectLanguages(){
+    this.languageSevice.selectLanguage().subscribe({
+      next:(response) =>{
+        this.languages = response;
+        console.log(this.languages);
+        
+      },
+      error: (error) => {
+        console.error('Error fetching profiles: ', error);
+      },
+    })
+  }
+
 }
