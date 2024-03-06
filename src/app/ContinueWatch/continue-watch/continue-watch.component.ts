@@ -29,6 +29,8 @@ export class ContinueWatchComponent implements OnInit {
   buttonCodeSubscription!: Subscription;
   itemIndex = 0;
   rowIndex = 0;
+  verticalScrollCount = 0;
+  bannerHeight = 298.2;
 
   private continue = inject(ApiServiceService)
   private router = inject(Router)
@@ -57,131 +59,6 @@ export class ContinueWatchComponent implements OnInit {
   }
 
   imageArray: any = []
-  // imageArra = [
-  //   {
-  //     id : 1,
-  //     imageUrl: 'assets/Login/Movies/kantara-Banner.jpg',
-  //     description: 'Movie',
-  //     title: '#1 in Trending',
-  //     discriptUrl: 'assets/Login/Movies/kantara-Name.jpg',
-  //     logoUrl: 'assets/Login/Movies/Amazon-Prime-Video-Icon.png',
-  //     potrait: 'assets/Login/Movies/potrait1.jpeg',
-  //     name: 'Kantara',
-  //     isFavorite: 'false'
-  //   },
-  //   {
-  //     id : 2,
-  //     imageUrl: 'assets/Login/Movies/neru.jpg',
-  //     description: 'Movie',
-  //     title: '#1 in Trending',
-  //     discriptUrl: 'assets/Login/Movies/neru-name.jpeg',
-  //     logoUrl: 'assets/Login/Movies/Amazon-Prime-Video-Icon.png',
-  //     potrait: 'assets/Login/Movies/potrait2.jpeg',
-  //     name: 'Kantara1',
-  //     isFavorite: 'false'
-  //   },
-  //   {
-  //     id : 3,
-  //     imageUrl: 'assets/Login/Movies/kantara-Banner.jpg',
-  //     description: 'Movie',
-  //     title: '#1 in Trending',
-  //     discriptUrl: 'assets/Login/Movies/kantara-Name.jpg',
-  //     logoUrl: 'assets/Login/Movies/Amazon-Prime-Video-Icon.png',
-  //     potrait: 'assets/Login/Movies/potrait3.jpeg',
-  //     name: 'Kantara2',
-  //     isFavorite: 'false'
-  //   },
-  //   {
-  //     id : 4,
-  //     imageUrl: 'assets/Login/Movies/ozler.jpg',
-  //     description: 'Movie',
-  //     title: '#1 in Trending',
-  //     discriptUrl: 'assets/Login/Movies/ozler-name.jpeg',
-  //     logoUrl: 'assets/Login/Movies/Amazon-Prime-Video-Icon.png',
-  //     potrait: 'assets/Login/Movies/potrait4.jpg',
-  //     name: 'Kantara3',
-  //     isFavorite: 'false'
-  //   },
-  //   {
-  //     id : 5,
-  //     imageUrl: 'assets/Login/Movies/kantara-Banner.jpg',
-  //     description: 'Movie',
-  //     title: '#1 in Trending',
-  //     discriptUrl: 'assets/Login/Movies/kantara-Name.jpg',
-  //     logoUrl: 'assets/Login/Movies/Amazon-Prime-Video-Icon.png',
-  //     potrait: 'assets/Login/Movies/potrait5.jpg',
-  //     name: 'Kantara4',
-  //     isFavorite: 'false'
-  //   }
-  //   ,
-  //   {
-  //     id : 6,
-  //     imageUrl: 'assets/Login/Movies/animal.jpg',
-  //     description: 'Movie',
-  //     title: '#1 in Trending',
-  //     discriptUrl: 'assets/Login/Movies/animal-name.jpg',
-  //     logoUrl: 'assets/Login/Movies/Amazon-Prime-Video-Icon.png',
-  //     potrait: 'assets/Login/Movies/potrait6.jpeg',
-  //     name: 'Kantara5',
-  //     isFavorite: 'false'
-  //   },
-  //   {
-  //     id : 7,
-  //     imageUrl: 'assets/Login/Movies/neru.jpg',
-  //     description: 'Movie',
-  //     title: '#1 in Trending',
-  //     discriptUrl: 'assets/Login/Movies/neru-name.jpeg',
-  //     logoUrl: 'assets/Login/Movies/Amazon-Prime-Video-Icon.png',
-  //     potrait: 'assets/Login/Movies/potrait2.jpeg',
-  //     name: 'Kantara1',
-  //     isFavorite: 'false'
-  //   },
-  //   {
-  //     id : 8,
-  //     imageUrl: 'assets/Login/Movies/kantara-Banner.jpg',
-  //     description: 'Movie',
-  //     title: '#1 in Trending',
-  //     discriptUrl: 'assets/Login/Movies/kantara-Name.jpg',
-  //     logoUrl: 'assets/Login/Movies/Amazon-Prime-Video-Icon.png',
-  //     potrait: 'assets/Login/Movies/potrait3.jpeg',
-  //     name: 'Kantara2',
-  //     isFavorite: 'false'
-  //   },
-  //   {
-  //     id : 9,
-  //     imageUrl: 'assets/Login/Movies/ozler.jpg',
-  //     description: 'Movie',
-  //     title: '#1 in Trending',
-  //     discriptUrl: 'assets/Login/Movies/ozler-name.jpeg',
-  //     logoUrl: 'assets/Login/Movies/Amazon-Prime-Video-Icon.png',
-  //     potrait: 'assets/Login/Movies/potrait4.jpg',
-  //     name: 'Kantara3',
-  //     isFavorite: 'false'
-  //   },
-  //   {
-  //     id : 10,
-  //     imageUrl: 'assets/Login/Movies/kantara-Banner.jpg',
-  //     description: 'Movie',
-  //     title: '#1 in Trending',
-  //     discriptUrl: 'assets/Login/Movies/kantara-Name.jpg',
-  //     logoUrl: 'assets/Login/Movies/Amazon-Prime-Video-Icon.png',
-  //     potrait: 'assets/Login/Movies/potrait5.jpg',
-  //     name: 'Kantara4',
-  //     isFavorite: 'false'
-  //   }
-  //   ,
-  //   {
-  //     id : 11,
-  //     imageUrl: 'assets/Login/Movies/animal.jpg',
-  //     description: 'Movie',
-  //     title: '#1 in Trending',
-  //     discriptUrl: 'assets/Login/Movies/animal-name.jpg',
-  //     logoUrl: 'assets/Login/Movies/Amazon-Prime-Video-Icon.png',
-  //     potrait: 'assets/Login/Movies/potrait6.jpeg',
-  //     name: 'Kantara5',
-  //     isFavorite: 'false'
-  //   }
-  // ];
 
 
   transformImg() {
@@ -216,9 +93,6 @@ export class ContinueWatchComponent implements OnInit {
     childDivArray.forEach(elements => {
       elements.style.display = 'block'
     })
-
-
-
   }
 
 
@@ -254,6 +128,14 @@ export class ContinueWatchComponent implements OnInit {
   initButtonCodeSubscription(): void {
     this.buttonCodeSubscription = this.subject.getButtonCodeObservable().subscribe((code) => {
       switch (code) {
+        case 19: {
+          this.upBtnClick();
+          break;
+        }
+        case 20: {
+          this.downBtnClick();
+          break;
+        }
         case 21: {
           this.leftBtnClick();
           break;
@@ -270,25 +152,38 @@ export class ContinueWatchComponent implements OnInit {
   leftBtnClick() {
     this.itemIndex = this.itemIndex > 0 ? this.itemIndex - 1 : this.itemIndex;  
     let scrollOffset = 400;
-    if (document.querySelector(`#id${this.itemIndex}`)) {
-      console.log(this.itemIndex);
+    if (document.querySelector(`#id${this.rowIndex}`)) {
       scrollOffset = 415;
       document.querySelector('imageNamewrap')?.scrollBy({
         top: 0,
         left: -scrollOffset,
         behavior: 'smooth'
       });
-      console.log(scrollOffset);
     }
   }
   
   rightBtnClick() {
-    let carousalItem:any = document.querySelector('.mainImageWrap');
-    let carouselLength:any = carousalItem.querySelectorAll('.imageWrap').length;
+    const className = this.styleChange === "1stStyle" ? "imageNamewrap" : "portImg";
+    const carousalItem: HTMLElement | null = document.querySelector(`#id${this.rowIndex} .${className}`);
+
+    
+    if (!carousalItem) {
+        console.error("Carousel item not found for index:", this.rowIndex);
+        return;
+    }
+
+    const className2 = this.styleChange === "1stStyle" ? "imageWrap" : "portimageWrap";
+    const imageWrapElements = carousalItem.querySelectorAll(`.${className2}`);
+    const carouselLength = imageWrapElements.length;
+
+    console.log("Carousel length:", carouselLength);
+
     if (this.itemIndex < carouselLength - 1) {
-      this.itemIndex = this.itemIndex + 1;      
-      let scrollOffset = 20; // Adjusted the scroll offset
-      let targetElement = document.querySelector(`#id${this.itemIndex}`);
+      this.itemIndex = this.itemIndex + 1; 
+      console.log(this.itemIndex);
+           
+      let scrollOffset = 20;
+      let targetElement = document.querySelector(`#id${this.rowIndex}`);
       if (targetElement && targetElement.classList.contains('imageNamewrap')) {
         targetElement.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
       }
@@ -300,35 +195,57 @@ export class ContinueWatchComponent implements OnInit {
       }
     }
   }
+  upBtnClick(): void {
+    let carousalItem:any = document.querySelector(`#id${this.rowIndex}`);
+    carousalItem.scrollLeft = 0;
+    if (this.rowIndex > 0) {
+      this.rowIndex -= 1;
+      window.scrollTo(0, -(this.bannerHeight - this.verticalScrollCount));
+      this.verticalScrollCount -= 300;
+    }
 
+    this.itemIndex = 0;
+    // this.getBannerContent();
 
-//   rightBtnClick(): void {
-//     const totalProfiles = this.profiles1.length;
-//     this.itemIndex = this.itemIndex < totalProfiles - 1 ? this.itemIndex + 1 : this.itemIndex;
-//     // const profileElement = document.querySelector(#id${this.itemIndex});
-//     const squircleElements = document.querySelectorAll('.squircle');
-//     if (squircleElements) {  //&& squircleElements.length > 0
-//       let scrollOffset = 400;
-//       const profilesContainer = document.querySelector('.profiles');
-//       if (profilesContainer) {
-//         scrollOffset = 415;
-//         profilesContainer.scrollBy({
-//           top: 0,
-//           left: scrollOffset,
-//           behavior: 'smooth',
-//         });
-//       }
-//     }
-//   }
-  
+  }
+
+  downBtnClick(): void {
+    const className = this.styleChange === "1stStyle" ? "imageNamewrap" : "portImg";
+    const carousalItem: HTMLElement | null = document.querySelector(`.mainDiv #id${this.rowIndex}`);
+
+    
+    if (!carousalItem) {
+        console.error("Carousel item not found for index:", this.rowIndex);
+        return;
+    }
+
+    const className2 = this.styleChange === "1stStyle" ? "imageWrap" : "portimageWrap";
+    const imageWrapElements = carousalItem.querySelectorAll(".mainWrap");
+    const carouselLength = imageWrapElements.length;
+
+    console.log("Carousel length:", carouselLength);
+    if (this.itemIndex < carouselLength - 1) {
+      this.itemIndex = this.itemIndex + 1; 
+      console.log(this.itemIndex);
+      window.scrollTo(0, this.bannerHeight + this.verticalScrollCount);
+      this.verticalScrollCount += 300;
+    }
+    this.itemIndex = 0;
+    // this.getBannerContent();
+
+  }
 
 
   setActiveItem(): void {
-      // var elems = document.querySelectorAll(".carousel__container ul li");
-      // [].forEach.call(elems, function (el) {
-      //   // if (el.classList.contains('active'))
-      //   //   el.classList.remove("active");
-      // });
-      // document.querySelector(`#row${this.rowIndex}col${this.itemIndex}`)?.classList.add("active");
+    const currentRowItems = document.querySelectorAll(`.mainWrap#id${this.rowIndex} .imageNamewrap .imageWrap`);
+    currentRowItems.forEach(item => {
+        item.classList.remove("active");
+    });
+
+    // Add "active" class to the currently selected item within the current row
+    const currentItem = document.querySelector(`#row${this.rowIndex}col${this.itemIndex}`);
+    if (currentItem instanceof HTMLElement) {
+        currentItem.classList.add("active");
+    }
   }
 }
