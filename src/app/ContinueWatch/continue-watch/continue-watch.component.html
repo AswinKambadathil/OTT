@@ -1,6 +1,6 @@
 @if(styleChange == "1stStyle"){
 <div class="mainDiv">
-  <div class="mainWrap">
+  <div class="mainWrap" id="id{{j}}">
     @if(arrowLeft){
     <div class="arrowLeft">
       <img
@@ -17,7 +17,7 @@
         <div
           class="imageWrap"
           (click)="playVideo(item.contentId)"
-          id="id{{ $index }}" [class.selected]="itemIndex === $index"
+          id="row{{j}}col{{$index}}" [class.selected]="itemIndex === $index && rowIndex == j"
         >
           <img [src]="item.landscapeUrl" alt="" />
         </div>
@@ -38,7 +38,7 @@
 </div>
 } @if(styleChange == "2ndStyle"){
 <div>
-  <div class="mainWrap">
+  <div class="mainWrap" id="id{{j}}">
     @if(arrowLeft){
     <div class="arrowLeft">
       <img
@@ -56,6 +56,7 @@
             class="portimageWrap"
             (mouseover)="onFocus(item, $event)"
             (mouseleave)="onRelease(item, $event)"
+            id="row{{j}}col{{$index}}" [class.selected]="itemIndex === $index && rowIndex == j"
           >
             <div class="gradient"></div>
             <!-- @if(!onFocus){ -->
