@@ -1,3 +1,7 @@
+# 0.0.13
+
+1. updated is for buttons in simulator html
+
 # 0.0.11
 
 1. created buttons for up down left and right on main page
