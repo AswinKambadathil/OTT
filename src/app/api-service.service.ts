@@ -162,4 +162,20 @@ export class ApiServiceService {
     return this.http.post('https://app.pishow.tv/acms/subscriberProfiles/saveSubscriberProfilesInfo',newProfile);
   }
 
+  selectGenre():Observable<any[]>{
+    return this.http.get('https://app.pishow.tv/acms/common/getGenreList').pipe(
+      map((response: any) => {
+        return response.data.genreList;
+      })
+    );
+  }
+
+  profileAvatar():Observable<any[]>{
+    return this.http.get('https://app.pishow.tv/acms/common/getAvatarList').pipe(
+      map((response:any) =>{
+        return response.data.avatarList;
+      })
+    )
+  }
+
 }

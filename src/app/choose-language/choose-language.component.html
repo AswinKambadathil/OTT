@@ -8,86 +8,59 @@
       <h6>Select any 3 languages</h6>
     </div>
     <div class="languages-icon">
-      @for (item of languages; track item ) {
-      <div class="squircle" (click)="toggleBorder(item)">
+      <!-- @for (item of languages; track $index;) { -->
+      <div *ngFor="let item of languages; let j = index" class="squircle" (click)="toggleLanguageSelection(item)">
         <svg
+        
           viewBox="0 0 160 160"
           xmlns="http://www.w3.org/2000/svg"
           version="1.1"
-          [attr.stroke]="item.showBorder ? item.borderColor : 'none'"
+          
+          
+          
         >
-          <rect
-            width="100%"
-            height="100%"
-            fill="#fff"
-            clip-path="url(#circleClip)"
-          />
-          <clipPath id="circleClip">
-            <path
-              d="
-          M 0 80
-          C 0 20, 20 0, 80 0
-          S 160 20, 160 80, 140 160
-          80 160, 0 140, 0 80ipol
-        "
-              transform="rotate(0, 80, 80)"
-            ></path>
-          </clipPath>
-          <image
-            [attr.href]="item.languageLogoUrl.imageSmall"
-            height="160"
-            width="160"
-          ></image>
+        <path id="id1" 
+        [attr.fill]="item.clicked ? 'red' : '#707070'" 
+        [class.selected]="itemIndex === j && rowIndex === 0"
+        d="M 0 80 C 0 20, 20 0, 80 0 S 160 20, 160 80, 140 160 80 160, 0 140, 0 80"></path>
+          <image [attr.href]="item.languageLogoUrl.imageSmall" height="160" width="160"  ></image>
+          
         </svg>
 
         <div
           class="language"
-          [style.color]="item.textColor"
-          style="font-weight: bold; text-align: left"
+          
+          style="font-weight: bold; text-align: left; color: #fff;"
         >
           {{ item.languageDisplayText }}
         </div>
-        <div
+        <!-- <div
           class="sign"
-          [style.color]="item.textColor"
-          style="font-weight: bold; text-align: left; font-size: 50px"
+         
+          style="font-weight: bold; text-align: left; font-size: 50px; color: #fff;"
         >
           {{ item.sign }}
-        </div>
+        </div> -->
       </div>
-      }
+      <!-- } -->
     </div>
     <div class="heading3">
       <h6>Select any 3 Genre</h6>
     </div>
-    <div class="genre-icon">
-      @for (item of genre; track item) {
-      <div class="squircle" (click)="toggleColor(item)">
+     <div class="genre-icon">
+      <!-- @for (item of genre; track $index) { -->
+      <div *ngFor="let item of genre; let i = index"   class="squircle2 " (click)="toggleColor(item)">
         <svg
           viewBox="0 0 160 160"
           xmlns="http://www.w3.org/2000/svg"
           version="1.1"
           [attr.fill]="item.clicked ? 'red' : '#707070'"
         >
-          <path
-            d="
-                        M 0 80
-                        C 0 20, 20 0, 80 0
-                        S 160 20, 160 80, 140 160
-                        80 160, 0 140, 0 80
-                        "
-            transform="
-                        rotate(
-                        0,
-                        80,
-                        80
-                        )
-                        translate(
-                        0,
-                        0
-                        )
-                        "
-          ></path>
+        <path id="id2" 
+        [attr.fill]="item.clicked ? 'red' : '#707070'" 
+        [class.selected]="itemIndex === i && rowIndex === 1"
+        d="M 0 80 C 0 20, 20 0, 80 0 S 160 20, 160 80, 140 160 80 160, 0 140, 0 80"></path>
+          
         </svg>
         <div
           class="genre"
@@ -98,13 +71,13 @@
             font-size: 20px;
           "
         >
-          {{ item.lang }}
+          {{ item.genreDisplayText }}
         </div>
       </div>
-      }
+      <!-- } -->
     </div>
-    <div class="finish">
-      <button class="get-started-btn">
+    <div class="finish" >
+      <button class="get-started-btn" [class.selected]="itemIndex === 0 && rowIndex===2" id="id3">
         Finish
         <img
           class="finish img"

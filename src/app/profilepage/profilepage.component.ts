@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ApiServiceService } from '../api-service.service';
 import { Subscription } from 'rxjs';
 import { SubjectService } from '../Subject/subject.service';
+import response from '../response';
 
 @Component({
   selector: 'app-profilepage',
@@ -60,6 +61,7 @@ export class ProfilepageComponent implements OnInit {
   ngOnInit(): void {
     this.getProfileDetails();
     this.initButtonCodeSubscription();
+    this.avatarPic();
 
     this.passwordForm = this.formBuilder.group({
       first: ['', Validators.required],
@@ -462,5 +464,19 @@ export class ProfilepageComponent implements OnInit {
       }
     });
   }
-  
+avatar:any[]=[]
+  avatarPic(){
+    this.profileService.profileAvatar().subscribe({
+      next:(response) =>{
+        this.avatar=response
+        console.log(this.avatar);
+        
+      },
+      error:(error)=>{
+        console.log('Error adding new profile:', error);
+        
+      }  
+    })
+  }
+
 }

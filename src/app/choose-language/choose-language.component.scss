@@ -62,17 +62,36 @@
     // border: 3px solid red;
     
 }
-.language{
-    position: absolute;
-    left: 30px;
-    display: flex;
-    bottom: 15px;
+.squircle2{
+    position: relative;
+    cursor: pointer;
+}
+.squircle2 svg{
     width: 120px;
     height: 120px;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: flex-start;
+    // border: 3px solid red;
+    
 }
+.language{
+    position: absolute;
+    left: 10px;
+    display: flex;
+    bottom: 10px;
+    width: 100px;
+    justify-content: center;
+    align-content: center;
+   
+}
+.squircle svg path.selected {
+    stroke:blu;
+    stroke-width: 5px; 
+}
+.squircle2 svg path.selected {
+    stroke: #fff;
+    stroke-width:5px; 
+}
+
+
 .sign{
     position: absolute;
     left: 30px;
@@ -140,4 +159,7 @@
     align-content: center;
     justify-content: center;
     flex-wrap: wrap;
+}
+.finish button.selected {
+    border: 2px solid blue; /* Add border style */
 }

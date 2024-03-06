@@ -1,4 +1,8 @@
-# 0.0.12
+# 0.0.11
+1. Left,Right,Up and down button created for language
+
+
+# 0.0.10
 1. Languages API added
 # 0.0.9
 1. Profile Login Created
