@@ -1,4 +1,9 @@
+# 0.0.13
+
+1. updated is for buttons in simulator html
+
 # 0.0.12
+
 1. Left,Right,Up and down button created for language
 
 # 0.0.11
