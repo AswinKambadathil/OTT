@@ -56,16 +56,17 @@
             class="portimageWrap"
             (mouseover)="onFocus(item, $event)"
             (mouseleave)="onRelease(item, $event)"
-            id="row{{j}}col{{$index}}" [class.selected]="itemIndex === $index && rowIndex == j"
+            id="row{{j}}col{{$index}}" [class.clicked]="itemIndex === $index && rowIndex == j"
+            style="background-image: url({{item.portraitUrl}});"
           >
             <div class="gradient"></div>
             <!-- @if(!onFocus){ -->
-            <img
+            <!-- <img
               [src]="item.portraitUrl"
               alt=""
               [id]="'mainImg' + item.contentId"
               class="mainImg"
-            />
+            /> -->
             <!-- } -->
             <!-- @if(onFocus){ -->
             <!-- <video
