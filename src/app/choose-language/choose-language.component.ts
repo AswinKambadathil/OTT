@@ -4,6 +4,7 @@ import { ApiServiceService } from '../api-service.service';
 import response from '../response';
 import { SubjectService } from '../Subject/subject.service';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-choose-language',
@@ -17,6 +18,8 @@ export class ChooseLanguageComponent implements OnInit{
 
   private languageSevice = inject(ApiServiceService)
   private subject = inject(SubjectService)
+  private route = inject(Router)
+  
 
   itemIndex = 0;
   rowIndex = 0;
@@ -109,7 +112,7 @@ export class ChooseLanguageComponent implements OnInit{
   downBtnClick(): void {
     this.itemIndex = 0;
     const squircleElements = document.querySelectorAll('.squircle2');
-    if (squircleElements.length > 0) {
+    if (squircleElements.length > 0 &&this.rowIndex<2) {
       this.rowIndex += 1;
       console.log(this.rowIndex);
       
@@ -120,7 +123,10 @@ export class ChooseLanguageComponent implements OnInit{
       if (genreElement) {
         genreElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       }
+      window.scrollTo(0,this.verticalScrollCount);
+      this.verticalScrollCount += 100;
     }
+   
   }
   upBtnClick(): void {
     this.itemIndex = 0;
@@ -129,6 +135,8 @@ export class ChooseLanguageComponent implements OnInit{
     if (carousalItem) {
      
       carousalItem.scrollLeft = 0;
+      window.scrollTo(0, -( this.verticalScrollCount));
+      this.verticalScrollCount -= 100;
     }
     
     if (this.rowIndex > 0) {
@@ -188,4 +196,7 @@ export class ChooseLanguageComponent implements OnInit{
     item.clicked = !item.clicked;
   }
 
+    finish(){
+      this.route.navigate(['/profile'])
+    }
 }

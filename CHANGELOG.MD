@@ -1,4 +1,7 @@
-# 0.0.12
+# 0.0.15
+1. Buttons are created for choose Plan1 component
+
+
 1. Left,Right,Up and down button created for language
 
 # 0.0.11

@@ -21,7 +21,7 @@
                         "
                     ></path>
                 </svg> -->
-          <img [className]="isEdit ? 'visible' : ''" [src]="profile.profileAvatar" [class.selected]="itemIndex === $index"/>
+          <img [className]="isEdit ? 'visible' : ''" [src]="profile.profileAvatar" [class.selected]="itemIndex === $index && rowIndex===0"/>
           <!-- <div class="firsteye">
                 <img
                   id="firsteye"
@@ -76,7 +76,7 @@
     </div>
   </div>
   <div class="profile-button">
-    <button
+    <button [class.selected]="itemIndex === 0 && rowIndex===1" id="id2"
       (click)="editProfile()"
       [className]="isEdit ? 'Done' : 'manageprofile'"
     >

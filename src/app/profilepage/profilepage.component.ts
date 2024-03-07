@@ -93,6 +93,14 @@ export class ProfilepageComponent implements OnInit {
   initButtonCodeSubscription(): void {
     this.buttonCodeSubscription = this.subject.getButtonCodeObservable().subscribe((code) => {
         switch (code) {
+          case 19: {
+            this.upBtnClick();
+            break;
+          }
+          case 20: {
+            this.downBtnClick();
+            break;
+          }
           case 21: {
             this.leftBtnClick();
             break;
@@ -160,6 +168,38 @@ export class ProfilepageComponent implements OnInit {
 
   okBtnClick(){
     this.router.navigate(['/welcome'])
+  }
+
+  downBtnClick(){
+    this.itemIndex = 0;
+    const squircleElements = document.querySelectorAll('.squircle');
+    if (squircleElements.length > 0) {
+      this.rowIndex += 1;
+      console.log(this.rowIndex);
+      
+      const genreElement:any = document.querySelector(`#id${this.rowIndex}`);
+      genreElement.scrollLeft=0;
+      console.log(genreElement);
+      
+      if (genreElement) {
+        genreElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    }
+  }
+
+  upBtnClick(): void {
+    this.itemIndex = 0;
+    let carousalItem = document.querySelector(`#id${this.rowIndex}`);
+    
+    if (carousalItem) {
+     
+      carousalItem.scrollLeft = 0;
+    }
+    
+    if (this.rowIndex > 0) {
+      
+      this.rowIndex -= 1;
+    }
   }
 
   // selectProfile(profile: any) {

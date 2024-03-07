@@ -194,7 +194,9 @@
     font-weight: 600;
     border-radius: 10px;
 }
-
+.profile-button button.selected {
+  border: 2px solid blue; 
+}
 .title{
     display: flex;
     flex-direction: column;
