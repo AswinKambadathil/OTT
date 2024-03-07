@@ -1,10 +1,10 @@
-# 0.0.13
+# 0.0.14
 
 1. Added ok button and back button
 
 # 0.0.13
 
-1. updated is for buttons in simulator html
+1. updated id for buttons in simulator html
 
 # 0.0.12
 
