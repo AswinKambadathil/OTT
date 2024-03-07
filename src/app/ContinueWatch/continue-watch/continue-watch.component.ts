@@ -144,10 +144,38 @@ export class ContinueWatchComponent implements OnInit {
           this.rightBtnClick();
           break;
         }
+        case 4: {
+          this.backBtnClick();
+          break;
+        }
+        case 23: {
+          this.okBtnClick();
+          break;
+        }
       }
       this.setActiveItem();
     });
   }
+
+
+  backBtnClick(): void {
+    this.itemIndex = 0;
+    this.rowIndex = 0;
+    // this.getBannerContent();
+    window.scrollTo(0, 0);
+    this.verticalScrollCount = 0;
+  }
+
+
+  okBtnClick(): void {
+    let item:any= this.data[this.itemIndex]
+    console.log(item);
+    
+  
+    // this.router.navigate(["detailView", this.data[this.itemIndex].contentId])
+  
+  }
+
 
   leftBtnClick() {
     this.itemIndex = this.itemIndex > 0 ? this.itemIndex - 1 : this.itemIndex;  
@@ -182,7 +210,7 @@ export class ContinueWatchComponent implements OnInit {
       this.itemIndex = this.itemIndex + 1; 
       console.log(this.itemIndex);
            
-      let scrollOffset = 20;
+      let scrollOffset = 400;
       let targetElement = document.querySelector(`#id${this.rowIndex}`);
       if (targetElement && targetElement.classList.contains('imageNamewrap')) {
         targetElement.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
@@ -210,30 +238,40 @@ export class ContinueWatchComponent implements OnInit {
   }
 
   downBtnClick(): void {
-    const className = this.styleChange === "1stStyle" ? "imageNamewrap" : "portImg";
-    const carousalItem: HTMLElement | null = document.querySelector(`.mainDiv #id${this.rowIndex}`);
-
-    
-    if (!carousalItem) {
-        console.error("Carousel item not found for index:", this.rowIndex);
-        return;
-    }
-
-    const className2 = this.styleChange === "1stStyle" ? "imageWrap" : "portimageWrap";
-    const imageWrapElements = carousalItem.querySelectorAll(".mainWrap");
-    const carouselLength = imageWrapElements.length;
-
-    console.log("Carousel length:", carouselLength);
-    if (this.itemIndex < carouselLength - 1) {
-      this.itemIndex = this.itemIndex + 1; 
-      console.log(this.itemIndex);
-      window.scrollTo(0, this.bannerHeight + this.verticalScrollCount);
+    let carousalItem:any = document.querySelector(`#id${this.rowIndex}`);
+    carousalItem.scrollLeft = 0;
+    if (this.rowIndex >= 0) {
+      this.rowIndex += 1;
+      window.scrollTo(0, this.bannerHeight + this.verticalScrollCount);;
       this.verticalScrollCount += 300;
     }
-    this.itemIndex = 0;
-    // this.getBannerContent();
-
   }
+
+  // downBtnClick(): void {
+  //   const className = this.styleChange === "1stStyle" ? "imageNamewrap" : "portImg";
+  //   const carousalItem: HTMLElement | null = document.querySelector(`.mainWrap`);
+
+    
+  //   if (!carousalItem) {
+  //       console.error("Carousel item not found for index:", this.rowIndex);
+  //       return;
+  //   }
+
+  //   const className2 = this.styleChange === "1stStyle" ? "imageWrap" : "portimageWrap";
+  //   const imageWrapElements = carousalItem.querySelectorAll(".mainWrap");
+  //   const carouselLength = imageWrapElements.length;
+
+  //   console.log("Carousel length:", carouselLength);
+  //   if (this.itemIndex < carouselLength - 1) {
+  //     this.itemIndex = this.itemIndex + 1; 
+  //     console.log(this.itemIndex);
+  //     window.scrollTo(0, this.bannerHeight + this.verticalScrollCount);
+  //     this.verticalScrollCount += 300;
+  //   }
+  //   this.itemIndex = 0;
+  //   // this.getBannerContent();
+
+  // }
 
 
   setActiveItem(): void {
@@ -241,8 +279,6 @@ export class ContinueWatchComponent implements OnInit {
     currentRowItems.forEach(item => {
         item.classList.remove("active");
     });
-
-    // Add "active" class to the currently selected item within the current row
     const currentItem = document.querySelector(`#row${this.rowIndex}col${this.itemIndex}`);
     if (currentItem instanceof HTMLElement) {
         currentItem.classList.add("active");

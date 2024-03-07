@@ -20,6 +20,10 @@ export class ApiServiceService {
         map((response: { data: any; }) => response.data)
       );
   }
+  getData(): Observable<any> {
+    const url = 'https://api.postman.com/collections/23825578-5e314afb-9f4c-4082-bbe3-c7e9fc28ac2b?access_key=PMAT-01HNYB81PCF7DD69XWSNM90V16';
+    return this.http.get(url);
+  }
 
 
   ftaChannels(): Observable<any[]> {
@@ -68,7 +72,12 @@ export class ApiServiceService {
       })
     );
   }
+  getProfile(): Observable<any> {
+    const url = 'https://app.pishow.tv/acms/subscriber/getProfilesListBySubscriber/630383ffbf448c47a0a81413';
+    return this.http.get(url);
+  }
   
+
   postContinue(body: { pageName: string; }): Observable<any> {
     const url = 'https://app.pishow.tv/acms/contents/getTvAppHomePageContentsInfoList';
     return this.http.post(url, body).pipe(map((response:any)=>{

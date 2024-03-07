@@ -2,6 +2,16 @@
 1. Buttons are created for choose Plan1 component
 
 
+# 0.0.14
+
+1. Added ok button and back button
+
+# 0.0.13
+
+1. updated id for buttons in simulator html
+
+# 0.0.12
+
 1. Left,Right,Up and down button created for language
 
 # 0.0.11
