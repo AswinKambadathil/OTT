@@ -1,3 +1,6 @@
+# 0.0.16
+1. rxjs is added in two servises
+
 # 0.0.15
 1. Buttons are created for choose Plan1 component
 

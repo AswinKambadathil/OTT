@@ -68,7 +68,7 @@
           </div>
 
           <div class="ottchannels">
-            @for (item of items.providersInfo; track $index)  {
+            @for (item of items.providersInfo.slice(0, 4); track $index)  {
             <div class="channel-icon">
               <svg
                 viewBox="0 0 160 160"
@@ -113,7 +113,7 @@
           </div>
 
           <div class="ottchannels">
-            @for (item of ftaChannelsData; track item) {
+            @for (item of ftaChannelsData.slice(0, 4); track item) {
             <div class="channel-icon">
                 <svg
                 viewBox="0 0 160 160"

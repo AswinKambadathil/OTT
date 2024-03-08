@@ -58,6 +58,14 @@ export class ChoosePlan1Component {
             this.upBtnClick();
             break;
           }
+          case 23: {
+            this.okBtnClick();
+            break;
+          }
+          case 4: {
+            this.backBtnClick();
+            break;
+          }
         }
       });
   }
@@ -71,10 +79,10 @@ export class ChoosePlan1Component {
 
       const squircleElements = document.querySelectorAll('.pack');
       if (squircleElements && squircleElements.length > 0) {
-        let scrollOffset = 30;
+        
         const profilesContainer = document.querySelector('.packss');
         if (profilesContainer) {
-          scrollOffset = 300;
+          let scrollOffset = 300;
           profilesContainer.scrollBy({
             top: 0,
             left: -scrollOffset,
@@ -94,10 +102,10 @@ export class ChoosePlan1Component {
 
       const squircleElements = document.querySelectorAll('.pack');
       if (squircleElements && squircleElements.length > 0) {
-        let scrollOffset = 30;
+       
         const profilesContainer = document.querySelector('.packss');
         if (profilesContainer) {
-          scrollOffset = 300;
+          let scrollOffset = 335;
           profilesContainer.scrollBy({
             top: 0,
             left: scrollOffset,
@@ -139,6 +147,29 @@ export class ChoosePlan1Component {
     }
   }
 
+  okBtnClick(): void {
+    if (this.rowIndex==0) {
+       
+        const selecttPack = this.pack[this.itemIndex]; 
+        console.log(selecttPack);
+        
+        if (selecttPack) {
+            
+          selecttPack.packageStatus = 1;
+            
+            this.packageSelect(selecttPack.id);
+        }
+        this.router.navigate(['/summary', this.id]);
+    }else{
+      this.router.navigate(['/summary', this.id]);
+    }
+    
+}
+backBtnClick(){
+  
+}
+
+
   packageSelect(item1: any) {
     this.pack.forEach((item) => {
       item.packageStatus = item.id === item1 ? 0 : 1;
@@ -146,6 +177,7 @@ export class ChoosePlan1Component {
     console.log(item1);
 
     this.id = item1;
+    this.router.navigate(['/summary', this.id]);
 
     // item.packageStatus = item.packageStatus === 1 ? 0 : 1;
     // console.log(this.pack);
@@ -153,23 +185,22 @@ export class ChoosePlan1Component {
 
   pack: any[] = [];
 
-  selectPack(): void {
-    this.servicee.getPacks().subscribe({
-      next: (response) => {
-        this.pack = response;
-      },
-      error: (error) => {
-        console.error('Error fetching languages: ', error);
-      },
-    });
-  }
-
+ selectPack(): void {
+  this.servicee.getPacks().subscribe({
+    next: (response) => {
+      this.pack = response.data; // Access the 'data' property
+    },
+    error: (error) => {
+      console.error('Error fetching packs: ', error);
+    },
+  });
+}
   ftaChannelsData: any[] = [];
 
   fetchFTAChannels() {
     this.servicee.ftaChannels().subscribe({
       next: (response) => {
-        this.ftaChannelsData = response;
+        this.ftaChannelsData = response.data;
       },
       error: (error) => {
         console.log('Error fetching FTA channels:', error);

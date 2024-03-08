@@ -8,7 +8,7 @@ import { RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { ApiServiceService } from '../api-service.service';
-import { Subscription } from 'rxjs';
+import { Subscription, take } from 'rxjs';
 import { SubjectService } from '../Subject/subject.service';
 import response from '../response';
 
@@ -251,6 +251,8 @@ export class ProfilepageComponent implements OnInit {
       // this.editProfileForm.get('name')?.setValidators([Validators.required]);
       // this.editProfileForm.get('name')?.updateValueAndValidity();
 
+      
+
       if (this.editProfileForm.value.profilePin == 0) {
         this.isprofileEdit = true;
       } else if (this.editProfileForm.value.profilePin == null) {
@@ -258,8 +260,10 @@ export class ProfilepageComponent implements OnInit {
       } else {
         this.isprofile_login = true;
       }
+      
     }
-    this.getProfileDetails()
+    this.updateProfile();
+    // this.getProfileDetails()
   }
 
   Addnewprofile(profileObj: any) {
@@ -323,18 +327,26 @@ export class ProfilepageComponent implements OnInit {
   }
 
   submitForm(): void {
+    this.updateProfile()
+    console.log(this.updateProfile);
+    
+    
     const enteredPin =
       this.profileLoginform.get('first')?.value +
       this.profileLoginform.get('second')?.value +
       this.profileLoginform.get('third')?.value +
       this.profileLoginform.get('fourth')?.value;
 
-    console.log('Entered PIN:', enteredPin);
+    // console.log('Entered PIN:', enteredPin);
 
     const foundProfile = this.profiles1.find(
       (profile) =>
         parseInt(enteredPin, 10) === profile.profilePin
     );
+    console.log("hello:",foundProfile);
+    
+    // this.profileLoginform.reset();
+   
 
     if (foundProfile) {
       console.log('Login successful');
@@ -345,7 +357,6 @@ export class ProfilepageComponent implements OnInit {
       console.log('Incorrect PIN entered');
     }
 
-    this.profileLoginform.reset();
   }
 
   savePassword() {
@@ -509,7 +520,7 @@ avatar:any[]=[]
     this.profileService.profileAvatar().subscribe({
       next:(response) =>{
         this.avatar=response
-        console.log(this.avatar);
+
         
       },
       error:(error)=>{

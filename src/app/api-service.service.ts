@@ -1,38 +1,35 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { Observable, map } from 'rxjs';
-import res from './response'
-
+import { Observable, of } from 'rxjs';
+import res from './response';
+import { catchError, map, shareReplay, tap } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root',
 })
 export class ApiServiceService {
-  selectedScreenId: any = null;
-
+ 
+  private profileList$!: Observable<any[]>;
   private http = inject(HttpClient)
-
+  private packs$!: Observable<{ data: any[], source: string }>;
+  private fta$!:Observable<{ data: any[], source: string }>;
+  private lang$!:Observable<{data:any[],source:string}>
   constructor() { }
 
 
   getProfileList(): Observable<any[]> {
-    return this.http.get<any>('https://app.pishow.tv/acms/subscriber/getProfilesListBySubscriber/630383ffbf448c47a0a81413')
-      .pipe(
-        map((response: { data: any; }) => response.data)
+    if (!this.profileList$) {
+      this.profileList$ = this.http.get<any>('https://app.pishow.tv/acms/subscriber/getProfilesListBySubscriber/630383ffbf448c47a0a81413').pipe(
+        map((response: { data: any; }) => response.data),
+        shareReplay(1) 
       );
-  }
-  getData(): Observable<any> {
-    const url = 'https://api.postman.com/collections/23825578-5e314afb-9f4c-4082-bbe3-c7e9fc28ac2b?access_key=PMAT-01HNYB81PCF7DD69XWSNM90V16';
-    return this.http.get(url);
+    }
+    return this.profileList$;
   }
 
 
-  ftaChannels(): Observable<any[]> {
-    return this.http
-      .post(
-        'https://app.pishow.tv/acms/contents/getTvAppHomePageContentsInfoList',
-        { pageName: 'Home' }
-      )
-      .pipe(
+  ftaChannels(): Observable<{ data: any[], source: string }> {
+    if (!this.fta$) {
+    this.fta$ = this.http.post<any>('https://app.pishow.tv/acms/contents/getTvAppHomePageContentsInfoList', { pageName: 'Home' }).pipe(
         map((response: any) => {
           let ftaArray = [];
           for (let element of response.data.categoryList) {
@@ -40,10 +37,19 @@ export class ApiServiceService {
               ftaArray.push(...element.ftaInfo.ftaList);
             }
           }
-          return ftaArray;
+          return { data: ftaArray, source: 'API' };
+        }),
+        catchError(error => {
+          console.error('Error fetching data from API:', error);
+          return of({ data: [], source: 'Cache' });
+        }),
+        shareReplay(1),
+        tap(_ => {
+          console.log('Data fetched from API and cached.');
         })
       );
-    // && element.ftaInfo.ftaListName === "Movie Channels - Live Tv"
+    }
+    return this.fta$;
   }
 
 
@@ -65,19 +71,24 @@ export class ApiServiceService {
     );
   }
 
-  getPacks(): Observable<any[]> {
-    return this.http.get('https://app.pishow.tv/acms/packages/getPackagesInfoList').pipe(
-      map((response: any) => {
-        return response.data;
-      })
-    );
+  getPacks(): Observable<{ data: any[], source: string }> {
+    if (!this.packs$) {
+      this.packs$ = this.http.get<any>('https://app.pishow.tv/acms/packages/getPackagesInfoList').pipe(
+        map((response: any) => {
+          return { data: response.data, source: 'API' };
+        }),
+        catchError(error => {
+          
+          return of({ data: [], source: 'Cache' });
+        }),
+        shareReplay(1),
+        tap(_ => {
+          console.log('Data fetched from API and cached.');
+        })
+      );
+    }
+    return this.packs$;
   }
-  getProfile(): Observable<any> {
-    const url = 'https://app.pishow.tv/acms/subscriber/getProfilesListBySubscriber/630383ffbf448c47a0a81413';
-    return this.http.get(url);
-  }
-  
-
   postContinue(body: { pageName: string; }): Observable<any> {
     const url = 'https://app.pishow.tv/acms/contents/getTvAppHomePageContentsInfoList';
     return this.http.post(url, body).pipe(map((response:any)=>{
@@ -114,12 +125,17 @@ export class ApiServiceService {
     })
     )
   }
-  selectLanguage(): Observable<any[]> {
-    return this.http.get('https://app.pishow.tv/acms/common/getLanguagesList').pipe(
-      map((response: any) => {
-        return response.data.languageList;
-      })
-    );
+ selectLanguage(): Observable<{ data: any[], source: string }> {
+    if (!this.lang$) {
+      this.lang$ = this.http.get('https://app.pishow.tv/acms/common/getLanguagesList').pipe(
+        map((response: any) => ({
+          data: response.data.languageList,
+          source: 'API'
+        })),
+        shareReplay(1)
+      );
+    }
+    return this.lang$;
   }
 
   updateProfileInfo(profileData: any): Observable<any> {
