@@ -114,27 +114,27 @@ export class ContinueWatchComponent implements OnInit{
       }
       else{
       switch (code) {
-        case 19: {
+        case 38: {
           this.upBtnClick();
           break;
         }
-        case 20: {
+        case 40: {
           this.downBtnClick();
           break;
         }
-        case 21: {
+        case 37: {
           this.leftBtnClick();
           break;
         }
-        case 22: {
+        case 39: {
           this.rightBtnClick();
           break;
         }
-        case 4: {
+        case 461: {
           this.backBtnClick();
           break;
         }
-        case 23: {
+        case 13: {
           this.okBtnClick();
           break;
         }
