@@ -1,3 +1,5 @@
+# 0.0.17
+1. Profile page lock pin issues fixed
 # 0.0.16
 1. rxjs is added in two servises
 

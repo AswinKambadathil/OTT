@@ -6,10 +6,14 @@
       <div class="profile-pic">
         @for (profile of profiles1; track $index){
         <div class="squircle" (click)="profileLogin(profile)"  id="id{{$index}}">
-          <!-- <svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg" version="1.1" 
-                    [attr.fill]="profile.color" 
+          <svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg" version="1.1" 
+                    [attr.fill]="'#707070'" 
+                    
                     >
-                    <path d="
+                    <path
+                    [class.selected]="itemIndex === $index && rowIndex===0" 
+                    
+                    d="
                         M 0 80
                         C 0 20, 20 0, 80 0
                         S 160 20, 160 80, 140 160
@@ -20,8 +24,10 @@
                         translate(0, 0)
                         "
                     ></path>
-                </svg> -->
-          <img [className]="isEdit ? 'visible' : ''" [src]="profile.profileAvatar" [class.selected]="itemIndex === $index && rowIndex===0"/>
+                    <image  [attr.href]="profile.profileAvatar" />
+                </svg>
+               <div [className]="isEdit ? 'visible' : ''"></div>
+         
           <!-- <div class="firsteye">
                 <img
                   id="firsteye"
@@ -54,7 +60,7 @@
             {{ profile.profileName }}
           </p>
 
-          @if (profile.profilePin !==0) {
+          @if (profile.profilePin !=0) {
           <div class="lock-icon">
             <i class="fas fa-lock" style="color: #707070"></i>
           </div>
@@ -145,7 +151,7 @@
               @if (editProfileForm.value.profilePin) {
               <div
                 class="reset"
-                (click)="reset(editProfileForm.value.ifprofileLock)"
+                (click)="reset(editProfileForm.value.profilePin)"
               >
                 <span>Reset PIN</span>
               </div>
