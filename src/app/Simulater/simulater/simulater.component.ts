@@ -23,6 +23,8 @@ export class SimulatorComponent implements OnInit {
   }
 
   propagateButtonCode(code: number): void {
+    console.log("at propogate Button Code",code);
+    
     this.subject.propagateButtonCode(code);
   }
 

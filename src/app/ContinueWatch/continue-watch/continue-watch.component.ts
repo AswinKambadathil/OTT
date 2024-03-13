@@ -1,11 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Component, Input, OnInit, computed, inject, effect } from '@angular/core';
-import { Subscription, catchError, finalize, map, switchMap } from 'rxjs';
-import { HttpWrapperService } from '../../utilities/interceptors/http-interceptor/http-wrapper.service';
-import { ApiServiceService } from '../../api-service.service';
+import { Component, Input, OnInit, inject} from '@angular/core';
+import { Subscription} from 'rxjs';
 import { Router } from '@angular/router';
-import { HtmlTagDefinition } from '@angular/compiler';
 import { SubjectService } from '../../Subject/subject.service';
 
 @Component({
@@ -14,9 +10,8 @@ import { SubjectService } from '../../Subject/subject.service';
   imports: [CommonModule],
   templateUrl: './continue-watch.component.html',
   styleUrl: './continue-watch.component.scss',
-  providers: [ApiServiceService]
 })
-export class ContinueWatchComponent implements OnInit {
+export class ContinueWatchComponent implements OnInit{
 
   @Input() styleChange: "1stStyle" | "2ndStyle" = "1stStyle"
   @Input() data!: any
@@ -27,31 +22,18 @@ export class ContinueWatchComponent implements OnInit {
   arrowRight = true
   onFocuses = false
   buttonCodeSubscription!: Subscription;
-  itemIndex = 0;
+  itemIndex:any = 0;
   rowIndex = 0;
   verticalScrollCount = 0;
   bannerHeight = 298.2;
+  private itemIndices: number[][] = [];
 
-  private continue = inject(ApiServiceService)
   private router = inject(Router)
   private subject = inject(SubjectService)
 
   ngOnInit() {
     this.removeSpacesFromLabel()
-    // this.postHome()
     this.initButtonCodeSubscription()
-  }
-
-  postHome() {
-    this.continue.postContinue({ pageName: 'Home' }).subscribe({
-      next: (response) => {
-        this.imageArray = response.defaultInfo
-
-      },
-      error: (error: any) => {
-        console.error('Error fetching data:', error);
-      }
-    });
   }
 
   removeSpacesFromLabel() {
@@ -88,6 +70,12 @@ export class ContinueWatchComponent implements OnInit {
     // let image = document.getElementById(`mainImg${item.contentId}`)  as HTMLVideoElement
     // image.src = item.contentPreview
     // console.log(item.contentPreview);
+    parentDiv.style.backgroundImage=`url(${item.contentPreview})`;
+    let aspectRatio = 16 / 9;
+    let width = 300 * aspectRatio; 
+    parentDiv.style.width = `${width}px`;
+    parentDiv.style.height = '300px';
+    
     let childDiv = parentDiv?.getElementsByClassName('playWrapMain')
     let childDivArray = Array.from(childDiv) as HTMLElement[]
     childDivArray.forEach(elements => {
@@ -98,9 +86,10 @@ export class ContinueWatchComponent implements OnInit {
 
   onRelease(item: any, e: MouseEvent) {
     this.onFocuses = false
-    let parentDiv = (e.target as HTMLImageElement).parentNode as HTMLDivElement
+    let parentDiv = (e.target as HTMLDivElement).parentNode as HTMLDivElement
     // let image = document.getElementById(`mainImg${item.contentId}`)  as HTMLImageElement
     // image.src = item.portraitUrl  
+    parentDiv.style.backgroundImage=`url(${item.portraitUrl})`;
     let childDiv = parentDiv?.getElementsByClassName('playWrapMain')
     let childDivArray = Array.from(childDiv) as HTMLElement[]
     childDivArray.forEach(elements => {
@@ -116,17 +105,14 @@ export class ContinueWatchComponent implements OnInit {
   playVideo(id: any) {
     this.router.navigate(["detailView", id])
   }
-
-  // buttonCode = this.subject.getButton
-  
-
-  // buttonEffect = computed(()=>{
-  //   console.log("working", this.buttonCode);
     
-  //   return this.buttonCode})
-    
+  subscription = false
   initButtonCodeSubscription(): void {
     this.buttonCodeSubscription = this.subject.getButtonCodeObservable().subscribe((code) => {
+      if(this.subscription){
+        return
+      }
+      else{
       switch (code) {
         case 19: {
           this.upBtnClick();
@@ -153,8 +139,18 @@ export class ContinueWatchComponent implements OnInit {
           break;
         }
       }
+      this.subscription = false
+    }
       this.setActiveItem();
     });
+  }
+  
+  
+  updateItemIndex(): void {
+    if (!this.itemIndices[this.rowIndex]) {
+      this.itemIndices[this.rowIndex] = [];
+    }
+    this.itemIndices[this.rowIndex] = this.itemIndex;
   }
 
 
@@ -166,23 +162,22 @@ export class ContinueWatchComponent implements OnInit {
     this.verticalScrollCount = 0;
   }
 
-
-  okBtnClick(): void {
-    let item:any= this.data[this.itemIndex]
-    console.log(item);
-    
   
+  okBtnClick(): void {
+    let item = this.data[this.itemIndex]
+    console.log(item);
     // this.router.navigate(["detailView", this.data[this.itemIndex].contentId])
   
   }
-
-
+  
+  
   leftBtnClick() {
     this.itemIndex = this.itemIndex > 0 ? this.itemIndex - 1 : this.itemIndex;  
+    this.updateItemIndex();
     let scrollOffset = 400;
-    if (document.querySelector(`#id${this.rowIndex}`)) {
-      scrollOffset = 415;
-      document.querySelector('imageNamewrap')?.scrollBy({
+    if (document.getElementById(`id${this.rowIndex}`)) {
+      scrollOffset = 300;
+      document.getElementById(this.id)?.scrollBy({
         top: 0,
         left: -scrollOffset,
         behavior: 'smooth'
@@ -194,12 +189,11 @@ export class ContinueWatchComponent implements OnInit {
     const className = this.styleChange === "1stStyle" ? "imageNamewrap" : "portImg";
     const carousalItem: HTMLElement | null = document.querySelector(`#id${this.rowIndex} .${className}`);
 
-    
     if (!carousalItem) {
-        console.error("Carousel item not found for index:", this.rowIndex);
-        return;
+      console.error("Carousel item not found for index:", this.rowIndex);
+      return;
     }
-
+    
     const className2 = this.styleChange === "1stStyle" ? "imageWrap" : "portimageWrap";
     const imageWrapElements = carousalItem.querySelectorAll(`.${className2}`);
     const carouselLength = imageWrapElements.length;
@@ -208,22 +202,26 @@ export class ContinueWatchComponent implements OnInit {
 
     if (this.itemIndex < carouselLength - 1) {
       this.itemIndex = this.itemIndex + 1; 
+      this.updateItemIndex();
       console.log(this.itemIndex);
            
-      let scrollOffset = 400;
-      let targetElement = document.querySelector(`#id${this.rowIndex}`);
-      if (targetElement && targetElement.classList.contains('imageNamewrap')) {
-        targetElement.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
-      }
-       else {
-        carousalItem.scrollBy({
-          left: scrollOffset,
-          behavior: 'smooth'
-        });
-      }
+      let scrollOffset = 38;
+      const targetElement = imageWrapElements[this.itemIndex];
+      console.log(targetElement);
+      
+        if (targetElement && targetElement instanceof HTMLElement) {
+          const parentElement = targetElement.parentNode as HTMLElement;
+            parentElement.scrollBy({
+                left: scrollOffset,
+                behavior: 'smooth'
+            });
+        } else {
+            console.error("Main Image Wrap not found");
+        }
     }
   }
   upBtnClick(): void {
+    this.itemIndex = this.itemIndices[this.rowIndex - 1] !== undefined ? this.itemIndices[this.rowIndex - 1]:0;
     let carousalItem:any = document.querySelector(`#id${this.rowIndex}`);
     carousalItem.scrollLeft = 0;
     if (this.rowIndex > 0) {
@@ -232,12 +230,13 @@ export class ContinueWatchComponent implements OnInit {
       this.verticalScrollCount -= 300;
     }
 
-    this.itemIndex = 0;
+    // this.itemIndex = 0;
     // this.getBannerContent();
 
   }
 
   downBtnClick(): void {
+    this.itemIndex = this.itemIndices[this.rowIndex + 1] !== undefined ? this.itemIndices[this.rowIndex + 1] : 0;
     let carousalItem:any = document.querySelector(`#id${this.rowIndex}`);
     carousalItem.scrollLeft = 0;
     if (this.rowIndex >= 0) {

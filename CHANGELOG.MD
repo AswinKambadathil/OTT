@@ -1,3 +1,7 @@
+# 0.0.15
+
+1. Given functionalities for left right up and down buttons
+
 # 0.0.14
 
 1. Added ok button and back button

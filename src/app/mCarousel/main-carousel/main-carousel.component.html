@@ -1,7 +1,8 @@
+<div class="wholeMain">
 <div class="main">
-  @for (items of bannerInfo; track $index) {
-    @for (item of items.categoryList; track $index) {
-  <div class="wrap" id="id{{$index}}">
+  @for (items of bannerInfo; track $index) { @for (item of items.categoryList;
+  track $index) {
+  <div class="wrap" id="id{{ $index }}">
     <div class="detail">
       <div class="discription">{{ item.contentType }}</div>
       <div class="title">{{ item.contentName }}</div>
@@ -16,7 +17,11 @@
       </div>
       <div class="playWrap">
         <div class="playButton">
-          <img src="assets/Login/Logos/Path 51.svg" alt="" (click)="playVideo(item.contentId)"/>
+          <img
+            src="assets/Login/Logos/Path 51.svg"
+            alt=""
+            (click)="playVideo(item.contentId)"
+          />
         </div>
         <div class="playWrite">Play</div>
         <div class="favorite" (click)="myFavorite(item)">
@@ -77,7 +82,12 @@
 
 @for (items of defaultInfo;track $index){
 
-  
-<app-continue-watch [styleChange]="$index%2 ==0?'1stStyle':'2ndStyle'" [label]="items.categoryName" [data]="items.categoryList" [j]="$index"/>
+<app-continue-watch
+  [styleChange]="$index % 2 == 0 ? '1stStyle' : '2ndStyle'"
+  [label]="items.categoryName"
+  [data]="items.categoryList"
+  [j]="$index"
+/>
 
 }
+</div>
