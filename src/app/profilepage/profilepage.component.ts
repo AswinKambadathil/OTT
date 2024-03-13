@@ -8,7 +8,7 @@ import { RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { ApiServiceService } from '../api-service.service';
-import { Subscription } from 'rxjs';
+import { Subscription, take } from 'rxjs';
 import { SubjectService } from '../Subject/subject.service';
 import response from '../response';
 
@@ -85,7 +85,7 @@ export class ProfilepageComponent implements OnInit {
       id: [''],
       profileAvatar:[],
       profileName: ['', Validators.required],
-      profilePin: [],
+      profilePin: [0],
       kidsSafe: [0],
     });
   }
@@ -93,6 +93,14 @@ export class ProfilepageComponent implements OnInit {
   initButtonCodeSubscription(): void {
     this.buttonCodeSubscription = this.subject.getButtonCodeObservable().subscribe((code) => {
         switch (code) {
+          case 19: {
+            this.upBtnClick();
+            break;
+          }
+          case 20: {
+            this.downBtnClick();
+            break;
+          }
           case 21: {
             this.leftBtnClick();
             break;
@@ -113,6 +121,7 @@ export class ProfilepageComponent implements OnInit {
   leftBtnClick(): void {
     this.itemIndex = this.itemIndex > 0 ? this.itemIndex - 1 : this.itemIndex;
     const profileElement = document.querySelector(`#id${this.itemIndex}`);
+
     if (profileElement) {
       let scrollOffset = 400;
       const profilesContainer = document.querySelector('.profiles');
@@ -130,7 +139,8 @@ export class ProfilepageComponent implements OnInit {
   rightBtnClick(): void {
     const totalProfiles = this.profiles1.length;
     this.itemIndex = this.itemIndex < totalProfiles - 1 ? this.itemIndex + 1 : this.itemIndex;
-    // const profileElement = document.querySelector(`#id${this.itemIndex}`);
+    const profileElement = document.querySelector(`#id${this.itemIndex}`);
+
     const squircleElements = document.querySelectorAll('.squircle');
     if (squircleElements) {  //&& squircleElements.length > 0
       let scrollOffset = 400;
@@ -162,6 +172,35 @@ export class ProfilepageComponent implements OnInit {
     this.router.navigate(['/welcome'])
   }
 
+  downBtnClick(){
+    if(this.rowIndex<1){
+    this.itemIndex = 0;
+    const squircleElements = document.querySelectorAll('.squircle');
+    if (squircleElements.length > 0) {
+      this.rowIndex += 1;
+      const genreElement:any = document.querySelector(`#id${this.rowIndex}`);
+      genreElement.scrollLeft=0;
+      if (genreElement) {
+        genreElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    }}
+  }
+
+  upBtnClick(): void {
+    this.itemIndex = 0;
+    let carousalItem = document.querySelector(`#id${this.rowIndex}`);
+    
+    if (carousalItem) {
+     
+      carousalItem.scrollLeft = 0;
+    }
+    
+    if (this.rowIndex > 0) {
+      
+      this.rowIndex -= 1;
+    }
+  }
+
   // selectProfile(profile: any) {
   //   this.selectedProfile = profile;
   // }
@@ -173,7 +212,7 @@ export class ProfilepageComponent implements OnInit {
 
   profileEdit(profileObj: any) {
     this.profileAction(profileObj);
-    this.getProfileDetails();
+    // this.getProfileDetails();
   }
 
   profileAction(profileObj: any) {
@@ -198,6 +237,7 @@ export class ProfilepageComponent implements OnInit {
       this.isAddProfile = false;
       this.isprofile_login = false;
     } else {
+     
       this.profileTitle = 'Edit Profile';
       this.editProfileForm.patchValue({
         subscriberId:subscriberId,
@@ -211,6 +251,8 @@ export class ProfilepageComponent implements OnInit {
       // this.editProfileForm.get('name')?.setValidators([Validators.required]);
       // this.editProfileForm.get('name')?.updateValueAndValidity();
 
+      
+
       if (this.editProfileForm.value.profilePin == 0) {
         this.isprofileEdit = true;
       } else if (this.editProfileForm.value.profilePin == null) {
@@ -218,8 +260,10 @@ export class ProfilepageComponent implements OnInit {
       } else {
         this.isprofile_login = true;
       }
+      
     }
-    this.getProfileDetails()
+    
+    // this.getProfileDetails()
   }
 
   Addnewprofile(profileObj: any) {
@@ -244,7 +288,7 @@ export class ProfilepageComponent implements OnInit {
     } else {
       this.ispassword = false;
     }
-    this.updateProfile();
+    
     this.getProfileDetails()
   }
 
@@ -283,45 +327,58 @@ export class ProfilepageComponent implements OnInit {
   }
 
   submitForm(): void {
+   
+    
+
     const enteredPin =
-      this.profileLoginform.get('first')?.value +
-      this.profileLoginform.get('second')?.value +
-      this.profileLoginform.get('third')?.value +
-      this.profileLoginform.get('fourth')?.value;
-
-    console.log('Entered PIN:', enteredPin);
-
-    const foundProfile = this.profiles1.find(
-      (profile) =>
-        parseInt(enteredPin, 10) === profile.profilePin
-    );
-
+    (this.profileLoginform.get('first')?.value ?? '') +
+    (this.profileLoginform.get('second')?.value ?? '') +
+    (this.profileLoginform.get('third')?.value ?? '') +
+    (this.profileLoginform.get('fourth')?.value ?? '');
+  
+  console.log('Entered PIN:', enteredPin);
+  
+  const enteredPinValue = enteredPin;
+  console.log("Parsed Entered PIN:", enteredPinValue);
+    
+  if (!isNaN(enteredPinValue)) {
+    const foundProfile = this.profiles1.find(profile => profile.profilePin.toString() === enteredPinValue);
+    
     if (foundProfile) {
       console.log('Login successful');
-      // this.router.navigate(['/login/maincarousel'])
       this.isprofileEdit = true;
       this.isprofile_login = false;
-    } else {
+    }
+    else{
+      this.isprofileEdit = false;
       console.log('Incorrect PIN entered');
     }
+  
+  }
+   
+    // this.profileLoginform.reset();
+   
 
-    this.profileLoginform.reset();
+    // if (foundProfile===this.profiles1.) {
+      
+    // } else {
+    //   console.log('Incorrect PIN entered');
+    // }
+
   }
 
   savePassword() {
     this.ispassword = false;
-
+  
     const enteredPin =
       this.passwordForm.get('first')?.value +
       this.passwordForm.get('second')?.value +
       this.passwordForm.get('third')?.value +
       this.passwordForm.get('fourth')?.value;
       this.editProfileForm.value.profilePin = enteredPin;
-      this.updateProfile();
-      console.log(this.editProfileForm);
       
-
     this.passwordForm.reset();
+    
   }
 
   formValidity() {
@@ -367,7 +424,7 @@ export class ProfilepageComponent implements OnInit {
       const newProfile = {
         subscriberId: "630383ffbf448c47a0a81413", 
         profileName: this.editProfileForm.value.profileName,
-        profilePin: this.editProfileForm.value.profilePin !== null ? this.editProfileForm.value.profilePin : 0,
+        profilePin: this.editProfileForm.value.profilePin,
         profileAvatar: this.editProfileForm.value.profileAvatar,
         kidsSafe: this.editProfileForm.value.kidsSafe ? 1 : 0,
       };
@@ -399,9 +456,10 @@ export class ProfilepageComponent implements OnInit {
       this.isprofileEdit = false;
       this.ifCond = true;
       this.isEdit = true;
-      this.updateProfile(); 
+     
+      
     }
-    
+    this.updateProfile(); 
   }
 
   profileLogin(selectedProfile: any) {
@@ -425,8 +483,12 @@ export class ProfilepageComponent implements OnInit {
   }
 
   getProfileDetails() {
+    console.log("api here");
+    
     this.profileService.getProfileList().subscribe({
       next: (response) => {
+        console.log(response);
+        
         this.profiles1 = response.map((item: any) => ({
           id: item.id,
           profileName: item.profileName,
@@ -446,6 +508,7 @@ export class ProfilepageComponent implements OnInit {
     this.profileService.updateProfileInfo(profileData).subscribe({
       next: (response:any) => {
         console.log('Profile updated successfully:', response);
+        this.getProfileDetails()
       },
       error: (error:any) => {
         console.error('Error updating profile:', error);
@@ -469,8 +532,6 @@ avatar:any[]=[]
     this.profileService.profileAvatar().subscribe({
       next:(response) =>{
         this.avatar=response
-        console.log(this.avatar);
-        
       },
       error:(error)=>{
         console.log('Error adding new profile:', error);

@@ -47,12 +47,13 @@
     <div class="packss">
       @for (items of pack; track $index) { 
         
-      <div class="packs">
+      <div class="packs" [class.selected]="items.packageStatus === 1" 
+   
+      [style.border]="items.packageStatus === 1 ? '1px solid #F5F5F5': '1px solid #E50914' "
+      (click)="packageSelect(items.id)"  >
         <div
-        class="pack"
-    [class.selected]="items.packageStatus === 1"
-    [style.border]="items.packageStatus === 1 ? '1px solid #F5F5F5': '1px solid #E50914' "
-    (click)="packageSelect(items.id)"
+        class="pack" id = "id{{$index}}" [class.select]="itemIndex === $index && rowIndex === 0" 
+    
         >
           <div class="packNo">
             <span style="color: #fff">Pack</span
@@ -67,7 +68,7 @@
           </div>
 
           <div class="ottchannels">
-            @for (item of items.providersInfo; track $index)  {
+            @for (item of items.providersInfo.slice(0, 4); track $index)  {
             <div class="channel-icon">
               <svg
                 viewBox="0 0 160 160"
@@ -112,7 +113,7 @@
           </div>
 
           <div class="ottchannels">
-            @for (item of ftaChannelsData; track item) {
+            @for (item of ftaChannelsData.slice(0, 4); track item) {
             <div class="channel-icon">
                 <svg
                 viewBox="0 0 160 160"
@@ -176,8 +177,8 @@
 
       }
     </div>
-    <div class="proceed" (click)="proceed()">
-      <button class="get-started-btn">Proceed</button>
+    <div class="proceed" >
+      <button class="get-started-btn" (click)="proceed()" [class.selected]=" rowIndex===1" id="id2">Proceed</button>
     </div>
   </div>
 </div>

@@ -72,7 +72,7 @@
                 viewBox="0 0 160 160"
                 xmlns="http://www.w3.org/2000/svg"
                 version="1.1"
-                [attr.fill]="profile.color"
+                [attr.fill]="profile.profileAvatar"
               >
                 <path
                   d="
@@ -104,11 +104,11 @@
                 <img id="smile" src="/assets/smile.svg" />
               </div>
               <p style="color: #f5f1f1; text-align: center">
-                {{ profile.name }}
+                {{ profile.profileName }}
               </p>
             </div>
 
-              @if (profile.ifprofilelock) {
+              @if (profile.profilePin) {
               <div class="lock-icon">
                 <i class="fas fa-lock" style="color: #fff"></i>
               </div>

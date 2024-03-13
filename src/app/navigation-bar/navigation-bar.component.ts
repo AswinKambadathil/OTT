@@ -1,41 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
+import { ApiServiceService } from '../api-service.service';
 
 @Component({
   selector: 'app-navigation-bar',
   standalone: true,
   imports: [],
   templateUrl: './navigation-bar.component.html',
-  styleUrl: './navigation-bar.component.scss'
+  styleUrl: './navigation-bar.component.scss',
+  providers: [ApiServiceService],
 })
-export class NavigationBarComponent {
+export class NavigationBarComponent implements OnInit{
 
-
+  private profileService = inject(ApiServiceService)
   isPtofile = false;
 
-  profiles = [
-    {
-      id: 1,
-      name: 'Athul',
-      image: '/assets/profilelogo2.svg',
-      ifprofilelock: true,
-      color: '#096CE6'
-    },
-    {
-      id: 2,
-      name: 'Aswin',
-      image: '/assets/profilelogo.svg',
-      ifprofilelock: false,
-      color: '#073C4D'
-    },
-    {
-      id: 3,
-      name: 'Manoj',
-      image: '/assets/profilelogo2.svg',
-      ifprofilelock: false,
-      color:'#E50914'
-      
-    },
-  ];
+  constructor(){}
+
+  ngOnInit(): void {
+      this.getProfileDetails();
+  }
+
+  profiles:any[] =[];
 
   pages = [
     { id: 1, page: 'Home', isActive: false, background: false },
@@ -56,5 +41,22 @@ export class NavigationBarComponent {
   noFocus(){
     let val = document.getElementById('userprofile-login') as HTMLDivElement
     val.style.display = 'none'
+  }
+
+  getProfileDetails() {
+    this.profileService.getProfileList().subscribe({
+      next: (response) => {
+        this.profiles = response.map((item: any) => ({
+          id: item.id,
+          profileName: item.profileName,
+          profilePin: item.profilePin,
+          profileAvatar: item.profileAvatar,
+          kidsSafe: item.kidsSafe ? 1 : 0,
+        }));
+      },
+      error: (error) => {
+        console.error('Error fetching profiles: ', error);
+      },
+    });
   }
 }

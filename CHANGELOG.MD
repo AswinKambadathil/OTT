@@ -1,3 +1,11 @@
+# 0.0.18
+1. Profile page lock pin issues fixed
+# 0.0.17
+1. rxjs is added in two servises
+
+# 0.0.16
+1. Buttons are created for choose Plan1 component
+
 # 0.0.15
 
 1. Given functionalities for left right up and down buttons

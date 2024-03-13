@@ -15,9 +15,7 @@
           viewBox="0 0 160 160"
           xmlns="http://www.w3.org/2000/svg"
           version="1.1"
-          
-          
-          
+
         >
         <path id="id1" 
         [attr.fill]="item.clicked ? 'red' : '#707070'" 
@@ -76,7 +74,7 @@
       </div>
       <!-- } -->
     </div>
-    <div class="finish" >
+    <div class="finish" (click)="finish()" >
       <button class="get-started-btn" [class.selected]="itemIndex === 0 && rowIndex===2" id="id3">
         Finish
         <img

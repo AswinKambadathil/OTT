@@ -2,6 +2,8 @@ import { Component, inject,OnInit } from '@angular/core';
 import { ActivatedRoute, Router} from '@angular/router';
 import { ApiServiceService } from '../api-service.service';
 import { CommonModule } from '@angular/common';
+import { SubjectService } from '../Subject/subject.service';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-packageand-summary',
   standalone: true,
@@ -17,7 +19,14 @@ export class PackageandSummaryComponent  {
   private router = inject(Router);
   private servicee =  inject(ApiServiceService);
   private routes = inject(ActivatedRoute)
+  private subject = inject(SubjectService)
   id:any;
+
+
+  itemIndex = 0;
+  rowIndex = 0;
+  buttonCodeSubscription!: Subscription;
+  verticalScrollCount = 0;
  
   constructor() { }
 
@@ -26,41 +35,56 @@ export class PackageandSummaryComponent  {
     this.fetchFTAChannels();
     this.providers();
     this.selectPack();
+    this.initButtonCodeSubscription()
   }
-  
+  // button code management
+  initButtonCodeSubscription(): void {
+    this.buttonCodeSubscription = this.subject
+      .getButtonCodeObservable()
+      .subscribe((code) => {
+        switch (code) {
+          case 4: {
+            this.backBtnClick();
+            break;
+          }
+        }
+      });
+  }
+  backBtnClick(){
+    this.router.navigate(['/chooseplan1']);
+    
+    
+  }
   proceed(){
     this.router.navigate(['/language']);
   }
 
   ftaChannelsData: any[] =[];
 
-  fetchFTAChannels() {
-  
+  fetchFTAChannels(): void {
     this.servicee.ftaChannels().subscribe({
-      next:(response)=>{
-        this.ftaChannelsData = response;
-
-        // console.log(this.ftaChannelsData);
+      next: (response) => {
+        if (response.source === 'API') {
+          console.log('Data fetched from API:', response.data);
+        } else if (response.source === 'Cache') {
+          console.log('Data fetched from Cache:', response.data);
+        }
+        this.ftaChannelsData = response.data;
       },
-      error:(error) =>{
-        console.log('Error fetching FTA channels:', error);
-        
+      error: (error) => {
+        console.error('Error fetching FTA channels:', error);
       },
     });
   }
-
+  
   ProviderChannelList:any[]= [];
   providers(){
     this.routes.paramMap.subscribe(paraMs =>{
       this.id = paraMs.get('id')
-      // console.log(this.id);
-      
     });
     this.servicee.providerschannel().subscribe({
       next:(response)=>{
         this.ProviderChannelList = response;
-        // console.log(this.ProviderChannelList);
-        
       },
       error:(error) =>{
         console.log('Error fetching Providers:', error);
@@ -69,20 +93,18 @@ export class PackageandSummaryComponent  {
     })
   }
 
-  pack: any[] = [];
+pack: any[] = [];
 
-  selectPack(): void {
-    this.servicee.getPacks().subscribe({
-      next: (response) => {
-        this.pack = response;
-        console.log(this.pack);
-        
-       
-      },
-      error: (error) => {
-        console.error('Error fetching languages: ', error);
-      },
-    });
-  }
+selectPack(): void {
+  this.servicee.getPacks().subscribe({
+    next: (response) => {
+      this.pack = response.data; 
+    },
+    error: (error) => {
+      console.error('Error fetching packs: ', error);
+    },
+  });
+}
+
 
 }
