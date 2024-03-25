@@ -42,27 +42,27 @@ export class ChoosePlan1Component {
       .getButtonCodeObservable()
       .subscribe((code) => {
         switch (code) {
-          case 21: {
+          case 37: {
             this.leftBtnClick();
             break;
           }
-          case 22: {
+          case 39: {
             this.rightBtnClick();
             break;
           }
-          case 20: {
+          case 40: {
             this.downBtnClick();
             break;
           }
-          case 19: {
+          case 38: {
             this.upBtnClick();
             break;
           }
-          case 23: {
+          case 13: {
             this.okBtnClick();
             break;
           }
-          case 4: {
+          case 461: {
             this.backBtnClick();
             break;
           }

@@ -43,7 +43,7 @@ export class PackageandSummaryComponent  {
       .getButtonCodeObservable()
       .subscribe((code) => {
         switch (code) {
-          case 4: {
+          case 461: {
             this.backBtnClick();
             break;
           }

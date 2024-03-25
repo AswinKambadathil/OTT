@@ -1,3 +1,6 @@
+# 0.0.19
+1. Key code changed
+
 # 0.0.18
 1. Profile page lock pin issues fixed
 # 0.0.17
